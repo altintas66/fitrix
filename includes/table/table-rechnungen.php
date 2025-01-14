@@ -44,12 +44,12 @@
 								<?php echo $c_html->datum($buff['faellig_am'], true, false); ?>
 							</span>
 						</td>
-						<?php if($gesamt_ausblenden == false)  { ?>
+						<?php if($gesamt_ausblenden == true)  { ?>
 							<td>
 								<?php echo $c_html->waehrung($buff['gesamt_brutto']); ?>
 							</td>
 						<?php } ?>
-						<?php if($zahlung_ausblenden == false)  { ?>
+						<?php if($zahlung_ausblenden == true)  { ?>
 							<td>
 								<span class="<?php echo $buff['gesamt_zahlung_class']; ?>">
 									<?php echo $c_html->waehrung($buff['gesamt_zahlung']); ?>
