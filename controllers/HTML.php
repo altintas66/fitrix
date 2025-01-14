@@ -142,12 +142,13 @@
 			return number_format(floatval($zahl), 2, ",", ".")." €";
 		}
 
+		
 		public function table_header($ths, $thead = true, $echo = true, $class = '', $data = '') {
 			$html = '';
 			if($thead == true) $html .= '<thead>';
 			$html .= '<tr '.$data.' class="'.$class.'">';
 			foreach($ths AS $th) { 
-				if(isset($ths['ausblenden']) && ($ths['ausblenden'] == true) ) continue;
+				if(isset($th['ausblenden']) && ($th['ausblenden'] == true) ) continue;
 				if(isset($th['class'])) $class = $th['class'];
 				else $class = '';
 				$html .= '<th class="'.$class.'">';
@@ -161,6 +162,7 @@
 			if($echo == true) echo $html;
 			else return $html;
 		}
+
 
 		public function td_user($users) {
 			if($users == NULL) return '';

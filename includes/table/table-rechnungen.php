@@ -7,6 +7,7 @@
 				
 				if($c_permission->check_user_has_permission('RECHNUNG_UEBERSICHT_GESAMTBETRAG_ANZEIGEN')) $gesamt_ausblenden = false;
 				if($c_permission->check_user_has_permission('RECHNUNG_UEBERSICHT_ZAHLUNGSBETRAG_ANZEIGEN')) $zahlung_ausblenden = false;
+
 				
 				$c_html->table_header(array(
 					array('title' => 'Rechnungsnr.'),
@@ -44,12 +45,12 @@
 								<?php echo $c_html->datum($buff['faellig_am'], true, false); ?>
 							</span>
 						</td>
-						<?php if($gesamt_ausblenden == true)  { ?>
+						<?php if($gesamt_ausblenden == false)  { ?>
 							<td>
 								<?php echo $c_html->waehrung($buff['gesamt_brutto']); ?>
 							</td>
 						<?php } ?>
-						<?php if($zahlung_ausblenden == true)  { ?>
+						<?php if($zahlung_ausblenden == false)  { ?>
 							<td>
 								<span class="<?php echo $buff['gesamt_zahlung_class']; ?>">
 									<?php echo $c_html->waehrung($buff['gesamt_zahlung']); ?>
