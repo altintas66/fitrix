@@ -1,15 +1,17 @@
 # Allgemein
-upload/
-xml/rechnungen/
+backup/
+cache/
+pdf/
 pdf/abonnements/
 pdf/angebote/
 pdf/mahnungen/
 pdf/rechnungen/
-cache/
-
+upload/
+xml/
+xml/rechnungen/
+ 
+ 
+ 
 # Ignore config
 config/config-custom.php
 config/db.php
-
-
-
