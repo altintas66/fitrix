@@ -348,6 +348,17 @@ class Rechnung {
 		$praefix      = $this->einstellungen['rechnung_rechnungsnummer_praefix'].'-'.date('Y').date('m').'-';
 		if(($status == 'entwurf')) return $praefix.'XXXX';
 
+		if($this->einstellungen['rechnungsnummer_generierung_inkrementell'] == '1') {
+			
+			$zuletzt_vergebene_rechnungsnummer = intval($this->einstellungen['zuletzt_vergebene_rechnungsnummer']);
+
+			$this->einstellungen_controller->sql_update(
+				'zuletzt_vergebene_rechnungsnummer', 
+				($zuletzt_vergebene_rechnungsnummer + 1)
+			); 
+
+			return $zuletzt_vergebene_rechnungsnummer;
+		}
 	
 		$z_verg_rgnr  = $this->einstellungen['zuletzt_vergebene_rechnungsnummer'];
 		$suffix       = $this->get_rechnungsnummer_suffix($z_verg_rgnr);
@@ -359,7 +370,8 @@ class Rechnung {
 		return $praefix.$freie_nummer['suffix'];
 	}
 
-	public function get_rechnungsnummer_suffix($nummer) {
+	public function get_rechnungsnummer_suffix($nummer) 
+	{
 		$nummer = strval($nummer);
 		if(strlen($nummer) == 1) return '000'.$nummer;
 		else if(strlen($nummer) == 2) return '00'.$nummer; 

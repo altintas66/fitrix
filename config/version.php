@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '1.5';
+    $version['nummer'] = '1.6';
  
     $versionen = array(
+        '1.6' => array(
+            'Rechnungsnummer inkrementell Option in den Einstellungen'
+        ),
         '1.5' => array(
             'Rechte erweitert bezüglich Rechnungsübersicht'
         ),
