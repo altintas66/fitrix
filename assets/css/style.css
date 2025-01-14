@@ -1203,6 +1203,7 @@ button.bg-danger:hover {
 }
 .header-left .logo.logo-small {
     display: none;
+	max-height: 30px;
 }
 .header .dropdown-menu > li > a {
 	position: relative;
@@ -2822,6 +2823,10 @@ table.table-inbox tbody tr.checked {
 .header .header-left .logo img {
 	max-height: 55px;
 	max-width: 120px;
+}
+
+.header .header-left .logo-small img {
+	max-height: 30px;
 }
 
 textarea.form-control {

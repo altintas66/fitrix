@@ -27,7 +27,7 @@
 						<img src="<?php echo $logo; ?>" alt="Logo">
 					</a>
 					<a href="index.php" class="logo logo-small">
-						<img src="<?php echo $logo_klein; ?>" alt="Logo" height="30">
+						<img src="<?php echo $logo_klein; ?>" alt="Logo" />
 					</a>
                 </div>
 				
