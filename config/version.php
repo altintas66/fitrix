@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '1.3';
+    $version['nummer'] = '1.4';
  
     $versionen = array(
+        '1.4' => array(
+            'Qualityhosting Rechnung anlegen Button in den Optionen'
+        ),
         '1.3' => array(
             'Versionsseite angelegt'
         ),

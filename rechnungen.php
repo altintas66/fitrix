@@ -4,9 +4,9 @@
 
 	$c_html->get_header();
 	$c_html->get_breadcrumbs(array(array('Alle Rechnungen', '#')));
-	
 
 	$rechnungen = $c_rechnung->get_all();
+	$einstellungen = $c_einstellungen->get_all();
 
 	$gesamt_zahlung_monat = $c_statistik->get_gesamt_zahlung_monat();
 	$anzahl_bezahlte_rgs  = $c_statistik->get_anzahl_bezahlte_rechnungen();
@@ -19,7 +19,9 @@
 			<div class="button-group">
 				<?php 
 					$c_button->button_rechnung_anlegen();
+					if($einstellungen['quality_hosting_rechnungen_ausblenden'] == '1'){ 
 					$c_button->button_quality_hosting_rechnung_anlegen();
+					}
 				?>
 			</div>
 		</div>
