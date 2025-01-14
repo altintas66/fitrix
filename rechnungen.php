@@ -19,8 +19,8 @@
 			<div class="button-group">
 				<?php 
 					$c_button->button_rechnung_anlegen();
-					if($einstellungen['quality_hosting_rechnungen_ausblenden'] == '1'){ 
-					$c_button->button_quality_hosting_rechnung_anlegen();
+					if($einstellungen['quality_hosting_rechnungen_ausblenden'] == '0') { 
+						$c_button->button_quality_hosting_rechnung_anlegen();
 					}
 				?>
 			</div>

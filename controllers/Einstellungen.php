@@ -59,6 +59,7 @@ class Einstellungen {
 			'angebot_position_keine_pflichtfelder'           			    => 'Keine Pflichtfelder in der Angebotsposition',
 			'angebot_pdf_position_laufende_kosten_ausblenden'               => 'Angebot PDF laufende Kosten ausblenden',
 			'rechnung_pdf_position_laufende_kosten_ausblenden'              => 'Rechnung PDF laufende Kosten ausblenden',
+			'quality_hosting_rechnungen_ausblenden'              			=> 'Qualityhosting Rechnung anlegen ausblenden',
 			'rechnung_datum_nach_leistungsdatum'                            => 'Soll die Rechnung das Leistungsdatum berücksichtigen? Ansonsten wird die Rechnung nach dem Abrechnungszeitraum berücksichtigt.'
 		);
  	}
