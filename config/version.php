@@ -1,10 +1,13 @@
 <?php
  
-    global $version;
+    global $version, $versionen;
  
-    $version['nummer'] = '1.2';
+    $version['nummer'] = '1.3';
  
     $versionen = array(
+        '1.3' => array(
+            'Versionsseite angelegt'
+        ),
         '1.2' => array(
             'CSS angepasst'
         ),
