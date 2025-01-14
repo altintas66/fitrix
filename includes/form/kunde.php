@@ -26,7 +26,7 @@
                                     'suchname', 
                                     isset($buff['suchname']) ? $buff['suchname'] : '',
                                     '', 
-                                    true
+                                    false
                                 ); 
                             ?>
                         </div>
@@ -40,7 +40,7 @@
                                     'telefon', 
                                     isset($buff['telefon']) ? $buff['telefon'] : '',
                                     '', 
-                                    true
+                                    false
                                 ); 
                             ?>
                         </div>
@@ -65,7 +65,7 @@
                                     'webseite', 
                                     isset($buff['webseite']) ? $buff['webseite'] : '',
                                     '', 
-                                    true
+                                    false
                                 ); 
                             ?>
                         </div>
@@ -153,7 +153,7 @@
                                     'geschaeftsfuehrer', 
                                     isset($buff['geschaeftsfuehrer']) ? $buff['geschaeftsfuehrer'] : '',
                                     '', 
-                                    true
+                                    false
                                 ); 
                             ?>
                         </div>
@@ -164,7 +164,7 @@
                                     'umsatzsteuer_id', 
                                     isset($buff['umsatzsteuer_id']) ? $buff['umsatzsteuer_id'] : '',
                                     '', 
-                                    true
+                                    false
                                 ); 
                             ?>
                         </div>
