@@ -1,0 +1,15 @@
+# Allgemein
+upload/
+xml/rechnungen/
+pdf/abonnements/
+pdf/angebote/
+pdf/mahnungen/
+pdf/rechnungen/
+cache/
+
+# Ignore config
+config/config-custom.php
+config/db.php
+
+
+
