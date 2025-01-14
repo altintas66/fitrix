@@ -506,7 +506,7 @@
 
 	$(document).ready(function(){
 		if($('.js_kunde_wrapper').length == 0) return;
-		
+		if($('#zammad_organization_id').length == 0) return;
 		zammad_organisation_id_changed();
 
 		$('#zammad_organization_id').change(function(){ 

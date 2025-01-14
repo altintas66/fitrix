@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '1.6';
+    $version['nummer'] = '1.7';
  
     $versionen = array(
+        '1.7' => array(
+            'Kunde Pflichtfelder raus genommen sowie Modul Überprüfung Abonnement Kunde Sidebar'
+        ),
         '1.6' => array(
             'Rechnungsnummer inkrementell Option in den Einstellungen'
         ),
