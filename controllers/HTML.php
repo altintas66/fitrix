@@ -147,6 +147,7 @@
 			if($thead == true) $html .= '<thead>';
 			$html .= '<tr '.$data.' class="'.$class.'">';
 			foreach($ths AS $th) { 
+				if(isset($ths['ausblenden']) && ($ths['ausblenden'] == true) ) continue;
 				if(isset($th['class'])) $class = $th['class'];
 				else $class = '';
 				$html .= '<th class="'.$class.'">';
