@@ -11,11 +11,11 @@
 
 	<p>Version Nummer: <?php echo $version['nummer']; ?></p>
 
-	<div class="card">
-		<?php $c_html->card_header('Versionsupdates'); ?>
-		<div class="card-body">
-			<?php foreach($versionen AS $version_nummer => $version_aenderungen) { ?>
-				<p><?php echo $version_nummer; ?></p>
+	
+	<?php foreach($versionen AS $version_nummer => $version_aenderungen) { ?>
+		<div class="card">
+			<?php $c_html->card_header($version_nummer); ?>
+			<div class="card-body">
 				<ul>
 					<?php foreach($version_aenderungen AS $aenderung) { ?>
 						<li>
@@ -23,9 +23,9 @@
 						</li>
 					<?php } ?>
 				</ul>
-			<?php } ?>
+			</div>
 		</div>
-	</div>
+	<?php } ?>
 
 	
 <?php 
