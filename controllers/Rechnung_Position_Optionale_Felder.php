@@ -28,7 +28,9 @@ class Rechnung_Position_Optionale_Felder {
             ".$tablename.".fahrzeug_marke            AS 'fahrzeug_marke', 
             ".$tablename.".fahrzeug_modell           AS 'fahrzeug_modell', 
             ".$tablename.".fahrzeug_kennzeichen      AS 'fahrzeug_kennzeichen', 
-            ".$tablename.".fahrzeug_fin              AS 'fahrzeug_fin'
+            ".$tablename.".fahrzeug_fin              AS 'fahrzeug_fin',
+			".$tablename.".teppichreinigung_laenge   AS 'teppichreinigung_laenge',
+			".$tablename.".teppichreinigung_breite   AS 'teppichreinigung_breite'
 		";
 	}
 	
@@ -102,7 +104,9 @@ class Rechnung_Position_Optionale_Felder {
 			'".$values["fahrzeug_marke"]."',
 			'".$values["fahrzeug_modell"]."',
             '".$values["fahrzeug_kennzeichen"]."',
-            '".$values["fahrzeug_fin"]."'
+            '".$values["fahrzeug_fin"]."',
+			 '".$values["teppichreinigung_laenge"]."',
+			  '".$values["teppichreinigung_breite"]."'
 		)";
 
 		return array(
@@ -127,7 +131,9 @@ class Rechnung_Position_Optionale_Felder {
 				fahrzeug_marke           = '".$values['fahrzeug_marke']."',
 				fahrzeug_modell          = '".$values['fahrzeug_modell']."',
                 fahrzeug_kennzeichen     = '".$values['fahrzeug_kennzeichen']."',
-                fahrzeug_fin             = '".$values['fahrzeug_fin']."'
+                fahrzeug_fin             = '".$values['fahrzeug_fin']."',
+				teppichreinigung_laenge  = '".$values['teppichreinigung_laenge']."',
+				teppichreinigung_breite  = '".$values['teppichreinigung_breite']."'
 		WHERE fk_rechnung_position_id = ".intval($rechnung_position_id);
 
 		return $this->db->update($sql);	

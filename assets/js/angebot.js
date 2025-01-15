@@ -141,13 +141,15 @@ $('#js_modal_angebot_position_anlegen_submit').click(function() {
     }
 
     ajax_position_anlegen({ 
-        'artikel_id'            : $(required_fields[0]).val(),
-        'menge'                 : $(required_fields[1]).val(),
-        'zyklus_id'             : $(required_fields[2]).val(),
-        'fahrzeug_marke'        : $(praefix + 'fahrzeug_marke').val(),
-        'fahrzeug_modell'       : $(praefix + 'fahrzeug_modell').val(),
-        'fahrzeug_kennzeichen'  : $(praefix + 'fahrzeug_kennzeichen').val(),
-        'fahrzeug_fin'          : $(praefix + 'fahrzeug_fin').val()
+        'artikel_id'               : $(required_fields[0]).val(),
+        'menge'                    : $(required_fields[1]).val(),
+        'zyklus_id'                : $(required_fields[2]).val(),
+        'fahrzeug_marke'           : $(praefix + 'fahrzeug_marke').val(),
+        'fahrzeug_modell'          : $(praefix + 'fahrzeug_modell').val(),
+        'fahrzeug_kennzeichen'     : $(praefix + 'fahrzeug_kennzeichen').val(),
+        'fahrzeug_fin'             : $(praefix + 'fahrzeug_fin').val(),
+        'teppichreinigung_laenge'  : $(praefix + 'teppichreinigung_laenge').val(),
+        'teppichreinigung_breite'  : $(praefix + 'teppichreinigung_breite').val()
     });
 
 });
@@ -156,15 +158,17 @@ function ajax_position_anlegen(fields) {
     Locker.lock(true);
         
     var data = {
-        action                : "insert_angebot_position",
-        angebot_id            : $('#angebot_id').val(),
-        artikel_id            : fields.artikel_id,
-        menge                 : fields.menge,
-        zyklus_id             : fields.zyklus_id,
-        fahrzeug_marke        : fields.fahrzeug_marke,
-        fahrzeug_modell       : fields.fahrzeug_modell,
-        fahrzeug_kennzeichen  : fields.fahrzeug_kennzeichen,
-        fahrzeug_fin          : fields.fahrzeug_fin
+        action                   : "insert_angebot_position",
+        angebot_id               : $('#angebot_id').val(),
+        artikel_id               : fields.artikel_id,
+        menge                    : fields.menge,
+        zyklus_id                : fields.zyklus_id,
+        fahrzeug_marke           : fields.fahrzeug_marke,
+        fahrzeug_modell          : fields.fahrzeug_modell,
+        fahrzeug_kennzeichen     : fields.fahrzeug_kennzeichen,
+        fahrzeug_fin             : fields.fahrzeug_fin,
+        teppichreinigung_laenge  : fields.teppichreinigung_laenge,
+        teppichreinigung_breite  : fields.teppichreinigung_breite
     };
 
     $.ajax({
@@ -317,21 +321,7 @@ function modal_angebot_position_bearbeiten(position) {
 
     $(praefix+'beschreibung').val(position.beschreibung);
 
-    if($(modal).find(praefix+'fahrzeug_marke').length > 0) {
-        set_select2_value(praefix+'fahrzeug_marke', position.fahrzeug_marke);
-    }
-
-    if($(modal).find(praefix+'fahrzeug_modell').length > 0) {
-        $(modal).find(praefix+'fahrzeug_modell').val(position.fahrzeug_modell);
-    }
-
-    if($(modal).find(praefix+'fahrzeug_kennzeichen').length > 0) {
-        $(modal).find(praefix+'fahrzeug_kennzeichen').val(position.fahrzeug_kennzeichen);
-    }
-
-    if($(modal).find(praefix+'fahrzeug_fin').length > 0) {
-        $(modal).find(praefix+'fahrzeug_fin').val(position.fahrzeug_fin);
-    }
+    fill_optionale_felder(modal, praefix, position);
 
 
     $('#modal_angebot_position_bearbeiten').modal('show');
@@ -362,19 +352,21 @@ $('#js_modal_angebot_position_bearbeiten_submit').click(function() {
     }
 
     ajax_angebot_position_bearbeiten({
-        'angebot_position_id' : angebot_position_bearbeiten_id,
-        'artikel_name'        : $(required_fields[0]).val(),
-        'menge'               : $(required_fields[1]).val(),
-        'einrichtungsgebuehr' : $(required_fields[2]).val(),
-        'netto_preis'         : $(required_fields[3]).val(),
-        'artikel_typ_id'      : $(required_fields[4]).val(),
-        'einheit_id'          : $(required_fields[5]).val(),
-        'zyklus_id'           : $(required_fields[6]).val(),
-        'beschreibung'        : $(praefix+'beschreibung').val(),
-        'fahrzeug_marke'       : $(praefix+'fahrzeug_marke').val(),
-        'fahrzeug_modell'      : $(praefix+'fahrzeug_modell').val(),
-        'fahrzeug_kennzeichen' : $(praefix+'fahrzeug_kennzeichen').val(),
-        'fahrzeug_fin'         : $(praefix+'fahrzeug_fin').val()
+        'angebot_position_id'     : angebot_position_bearbeiten_id,
+        'artikel_name'            : $(required_fields[0]).val(),
+        'menge'                   : $(required_fields[1]).val(),
+        'einrichtungsgebuehr'     : $(required_fields[2]).val(),
+        'netto_preis'             : $(required_fields[3]).val(),
+        'artikel_typ_id'          : $(required_fields[4]).val(),
+        'einheit_id'              : $(required_fields[5]).val(),
+        'zyklus_id'               : $(required_fields[6]).val(),
+        'beschreibung'            : $(praefix+'beschreibung').val(),
+        'fahrzeug_marke'          : $(praefix+'fahrzeug_marke').val(),
+        'fahrzeug_modell'         : $(praefix+'fahrzeug_modell').val(),
+        'fahrzeug_kennzeichen'    : $(praefix+'fahrzeug_kennzeichen').val(),
+        'fahrzeug_fin'            : $(praefix+'fahrzeug_fin').val(),
+        'teppichreinigung_laenge' : $(praefix+'teppichreinigung_laenge').val(),
+        'teppichreinigung_breite' : $(praefix+'teppichreinigung_breite').val()
 
     });
 
@@ -384,21 +376,23 @@ function ajax_angebot_position_bearbeiten(position) {
     Locker.lock(true);
         
     var data = {
-        action               : "update_angebot_position",
-        angebot_id           : $('#angebot_id').val(),
-        angebot_position_id  : angebot_position_bearbeiten_id,
-        artikel_name         : position.artikel_name,
-        menge                : position.menge,
-        einrichtungsgebuehr  : position.einrichtungsgebuehr,
-        netto_preis          : position.netto_preis,
-        beschreibung         : position.beschreibung,
-        artikel_typ_id       : position.artikel_typ_id,
-        einheit_id           : position.einheit_id,
-        zyklus_id            : position.zyklus_id,
-        fahrzeug_marke       : position.fahrzeug_marke,
-        fahrzeug_modell      : position.fahrzeug_modell,
-        fahrzeug_kennzeichen : position.fahrzeug_kennzeichen,
-        fahrzeug_fin         : position.fahrzeug_fin
+        action                  : "update_angebot_position",
+        angebot_id              : $('#angebot_id').val(),
+        angebot_position_id     : angebot_position_bearbeiten_id,
+        artikel_name            : position.artikel_name,
+        menge                   : position.menge,
+        einrichtungsgebuehr     : position.einrichtungsgebuehr,
+        netto_preis             : position.netto_preis,
+        beschreibung            : position.beschreibung,
+        artikel_typ_id          : position.artikel_typ_id,
+        einheit_id              : position.einheit_id,
+        zyklus_id               : position.zyklus_id,
+        fahrzeug_marke          : position.fahrzeug_marke,
+        fahrzeug_modell         : position.fahrzeug_modell,
+        fahrzeug_kennzeichen    : position.fahrzeug_kennzeichen,
+        fahrzeug_fin            : position.fahrzeug_fin,
+        teppichreinigung_laenge : position.teppichreinigung_laenge,
+        teppichreinigung_breite : position.teppichreinigung_breite
     };
 
     $.ajax({

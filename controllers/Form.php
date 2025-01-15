@@ -1699,6 +1699,39 @@
 		<?php 
 		}
 
+		public function get_rechnung_angebot_position_teppichreinigung($praefix)
+		{
+			if($this->einstellungen['rechnung_position_keine_pflichtfelder'] == '1') $required = false;
+			else $required = true;
+		?>
+			<div class="row">
+				<div class="col-md-6">
+					<?php 
+						$this->input_text(
+							'Länge', 
+							$praefix.'teppichreinigung_laenge', 
+							'', 
+							'', 
+							$required
+						);
+					?>
+				</div>
+				<div class="col-md-6">
+					<?php
+						$this->input_text(
+							'Breite', 
+							$praefix.'teppichreinigung_breite', 
+							'', 
+							'', 
+							$required
+						);
+					?>
+				</div>
+			</div>
+			
+		<?php 
+		}
+
 		public function modal_rechnung_zahlung_hinzufuegen() {
 			$praefix = 'mrzh_';
 			$heute = date('Y-m-d');
@@ -1867,7 +1900,10 @@
 								</div>
 							</div>
 
-							<?php if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); ?>
+							<?php 
+								if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); 
+								if(isset($this->aktive_module['teppichreinigung'])) $this->get_rechnung_angebot_position_teppichreinigung($praefix); 
+							?>
 
 							<div class="row">
 								<div class="col-md-12">
@@ -1978,7 +2014,10 @@
 								else $this->rechnung_modal_abrechnungszeitraum_zyklus($praefix);
 							?>
 							
-							<?php if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); ?>
+							<?php 
+								if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); 
+								if(isset($this->aktive_module['teppichreinigung'])) $this->get_rechnung_angebot_position_teppichreinigung($praefix); 
+							?>
 
 							<div class="row">
 								<div class="col-md-12">
@@ -2170,7 +2209,10 @@
 								</div>
 							</div>
 
-							<?php if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); ?>
+							<?php 
+								if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); 
+								if(isset($this->aktive_module['teppichreinigung'])) $this->get_rechnung_angebot_position_teppichreinigung($praefix); 
+							?>
 
 							<div class="row">
 								<div class="col-md-12">

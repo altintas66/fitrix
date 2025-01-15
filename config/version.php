@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '1.8';
+    $version['nummer'] = '1.9';
  
     $versionen = array(
+        '1.9' => array(
+            'Teppichreinigung Modul hinzugefügt'
+        ),
         '1.8' => array(
             'Einrichtungsgebühr und Vertragslaufzeit ausblenden Funktion in den Einstellungen hinzugefügt (Artikel)'
         ),

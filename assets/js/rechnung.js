@@ -156,14 +156,16 @@
         }
 
         ajax_rechnung_position_artikel_anlegen({
-            'artikel_id'            : $(required_fields[0]).val(),
-            'menge'                 : $(required_fields[1]).val(),
-            'zyklus_id'             : $(required_fields[2]).val(),
-            'leistungsdatum'        : $(required_fields[3]).val(),
-            'fahrzeug_marke'        : $(praefix + 'fahrzeug_marke').val(),
-            'fahrzeug_modell'       : $(praefix + 'fahrzeug_modell').val(),
-            'fahrzeug_kennzeichen'  : $(praefix + 'fahrzeug_kennzeichen').val(),
-            'fahrzeug_fin'          : $(praefix + 'fahrzeug_fin').val()
+            'artikel_id'               : $(required_fields[0]).val(),
+            'menge'                    : $(required_fields[1]).val(),
+            'zyklus_id'                : $(required_fields[2]).val(),
+            'leistungsdatum'           : $(required_fields[3]).val(),
+            'fahrzeug_marke'           : $(praefix + 'fahrzeug_marke').val(),
+            'fahrzeug_modell'          : $(praefix + 'fahrzeug_modell').val(),
+            'fahrzeug_kennzeichen'     : $(praefix + 'fahrzeug_kennzeichen').val(),
+            'fahrzeug_fin'             : $(praefix + 'fahrzeug_fin').val(),
+            'teppichreinigung_laenge'  : $(praefix + 'teppichreinigung_laenge').val(),
+            'teppichreinigung_breite'  : $(praefix + 'teppichreinigung_breite').val()
         });
 
     });
@@ -172,16 +174,18 @@
         Locker.lock(true);
 
         var data = {
-            action                : "insert_rechnung_artikel_position",
-            rechnung_id           : $('#rechnung_id').val(),
-            artikel_id            : fields.artikel_id,
-            menge                 : fields.menge,
-            zyklus_id             : fields.zyklus_id,
-            leistungsdatum        : fields.leistungsdatum,
-            fahrzeug_marke        : fields.fahrzeug_marke,
-            fahrzeug_modell       : fields.fahrzeug_modell,
-            fahrzeug_kennzeichen  : fields.fahrzeug_kennzeichen,
-            fahrzeug_fin          : fields.fahrzeug_fin
+            action                   : "insert_rechnung_artikel_position",
+            rechnung_id              : $('#rechnung_id').val(),
+            artikel_id               : fields.artikel_id,
+            menge                    : fields.menge,
+            zyklus_id                : fields.zyklus_id,
+            leistungsdatum           : fields.leistungsdatum,
+            fahrzeug_marke           : fields.fahrzeug_marke,
+            fahrzeug_modell          : fields.fahrzeug_modell,
+            fahrzeug_kennzeichen     : fields.fahrzeug_kennzeichen,
+            fahrzeug_fin             : fields.fahrzeug_fin,
+            teppichreinigung_laenge  : fields.teppichreinigung_laenge,
+            teppichreinigung_breite  : fields.teppichreinigung_breite
         };
 
         $.ajax({
@@ -237,20 +241,22 @@
         // }
 
         ajax_rechnung_individuelle_position_anlegen({
-            'artikel_name'           : $(required_fields[0]).val(),
-            'einheit_id'             : $(required_fields[1]).val(),
-            'artikel_menge'          : $(required_fields[2]).val(),
-            'artikel_typ_id'         : $(required_fields[3]).val(),
-            'zyklus_id'              : $(required_fields[4]).val(),
-            'artikel_preis'          : $(required_fields[5]).val(),
-            'artikel_beschreibung'   : $(required_fields[6]).val(),
-            'abrechnungszeitrum_von' : $(praefix + 'abrechnungszeitrum_von').val(),
-            'abrechnungszeitrum_bis' : $(praefix + 'abrechnungszeitrum_bis').val(),
-            'leistungsdatum'         : $(praefix + 'leistungsdatum').val(),
-            'fahrzeug_marke'         : $(praefix + 'fahrzeug_marke').val(),
-            'fahrzeug_modell'        : $(praefix + 'fahrzeug_modell').val(),
-            'fahrzeug_kennzeichen'   : $(praefix + 'fahrzeug_kennzeichen').val(),
-            'fahrzeug_fin'           : $(praefix + 'fahrzeug_fin').val()
+            'artikel_name'             : $(required_fields[0]).val(),
+            'einheit_id'               : $(required_fields[1]).val(),
+            'artikel_menge'            : $(required_fields[2]).val(),
+            'artikel_typ_id'           : $(required_fields[3]).val(),
+            'zyklus_id'                : $(required_fields[4]).val(),
+            'artikel_preis'            : $(required_fields[5]).val(),
+            'artikel_beschreibung'     : $(required_fields[6]).val(),
+            'abrechnungszeitrum_von'   : $(praefix + 'abrechnungszeitrum_von').val(),
+            'abrechnungszeitrum_bis'   : $(praefix + 'abrechnungszeitrum_bis').val(),
+            'leistungsdatum'           : $(praefix + 'leistungsdatum').val(),
+            'fahrzeug_marke'           : $(praefix + 'fahrzeug_marke').val(),
+            'fahrzeug_modell'          : $(praefix + 'fahrzeug_modell').val(),
+            'fahrzeug_kennzeichen'     : $(praefix + 'fahrzeug_kennzeichen').val(),
+            'fahrzeug_fin'             : $(praefix + 'fahrzeug_fin').val(),
+            'teppichreinigung_laenge'  : $(praefix + 'teppichreinigung_laenge').val(),
+            'teppichreinigung_breite'  : $(praefix + 'teppichreinigung_breite').val(),
         });
 
     });
@@ -274,7 +280,9 @@
             fahrzeug_marke              : fields.fahrzeug_marke,
             fahrzeug_modell             : fields.fahrzeug_modell,
             fahrzeug_kennzeichen        : fields.fahrzeug_kennzeichen,
-            fahrzeug_fin                : fields.fahrzeug_fin
+            fahrzeug_fin                : fields.fahrzeug_fin,
+            teppichreinigung_laenge     : fields.teppichreinigung_laenge,
+            teppichreinigung_breite     : fields.teppichreinigung_breite
         };
 
         $.ajax({
@@ -348,25 +356,7 @@
         $(modal).find(praefix+'artikel_einheit').val(position.artikel_einheit);
         $(modal).find(praefix+'artikel_zyklus').val(position.artikel_zyklus);
 
-        if($(modal).find(praefix+'leistungsdatum').length) {
-            $(modal).find(praefix+'leistungsdatum').val(position.leistungsdatum_german);
-        }
-
-        if($(modal).find(praefix+'fahrzeug_marke').length > 0) {
-            set_select2_value(praefix+'fahrzeug_marke', position.fahrzeug_marke);
-        }
-
-        if($(modal).find(praefix+'fahrzeug_modell').length > 0) {
-            $(modal).find(praefix+'fahrzeug_modell').val(position.fahrzeug_modell);
-        }
-
-        if($(modal).find(praefix+'fahrzeug_kennzeichen').length > 0) {
-            $(modal).find(praefix+'fahrzeug_kennzeichen').val(position.fahrzeug_kennzeichen);
-        }
-
-        if($(modal).find(praefix+'fahrzeug_fin').length > 0) {
-            $(modal).find(praefix+'fahrzeug_fin').val(position.fahrzeug_fin);
-        }
+        fill_optionale_felder(modal, praefix, position);
 
 
         $('#modal_rechnung_position_bearbeiten').modal('show');
@@ -396,22 +386,24 @@
         }
 
         ajax_rechnung_position_bearbeiten({
-            'rechnung_position_id'   : rechnung_position_bearbeiten_id,
-            'artikel_name'           : $(required_fields[0]).val(),
-            'artikel_menge'          : $(required_fields[1]).val(),
-            'artikel_preis'          : $(required_fields[2]).val(),
-            'beschreibung'           : $(required_fields[3]).val(),
-            'artikel_artikel_typ'    : $(required_fields[4]).val(),
-            'artikel_einheit'        : $(required_fields[5]).val(),
-            'artikel_zyklus'         : $(required_fields[6]).val(),
-            'artikel_zyklus'         : $(required_fields[6]).val(),
-            'leistungsdatum'         : $(praefix + 'leistungsdatum').val(),
-            'abrechnungszeitrum_von' : $(praefix + 'abrechnungszeitrum_von').val(),
-            'abrechnungszeitrum_bis' : $(praefix + 'abrechnungszeitrum_bis').val(),
-            'fahrzeug_marke'         : $(praefix + 'fahrzeug_marke').val(),
-            'fahrzeug_modell'        : $(praefix + 'fahrzeug_modell').val(),
-            'fahrzeug_kennzeichen'   : $(praefix + 'fahrzeug_kennzeichen').val(),
-            'fahrzeug_fin'           : $(praefix + 'fahrzeug_fin').val(),
+            'rechnung_position_id'     : rechnung_position_bearbeiten_id,
+            'artikel_name'             : $(required_fields[0]).val(),
+            'artikel_menge'            : $(required_fields[1]).val(),
+            'artikel_preis'            : $(required_fields[2]).val(),
+            'beschreibung'             : $(required_fields[3]).val(),
+            'artikel_artikel_typ'      : $(required_fields[4]).val(),
+            'artikel_einheit'          : $(required_fields[5]).val(),
+            'artikel_zyklus'           : $(required_fields[6]).val(),
+            'artikel_zyklus'           : $(required_fields[6]).val(),
+            'leistungsdatum'           : $(praefix + 'leistungsdatum').val(),
+            'abrechnungszeitrum_von'   : $(praefix + 'abrechnungszeitrum_von').val(),
+            'abrechnungszeitrum_bis'   : $(praefix + 'abrechnungszeitrum_bis').val(),
+            'fahrzeug_marke'           : $(praefix + 'fahrzeug_marke').val(),
+            'fahrzeug_modell'          : $(praefix + 'fahrzeug_modell').val(),
+            'fahrzeug_kennzeichen'     : $(praefix + 'fahrzeug_kennzeichen').val(),
+            'fahrzeug_fin'             : $(praefix + 'fahrzeug_fin').val(),
+            'teppichreinigung_laenge'  : $(praefix + 'teppichreinigung_laenge').val(),
+            'teppichreinigung_breite'  : $(praefix + 'teppichreinigung_breite').val(),
         });
 
         
@@ -421,23 +413,25 @@
     function ajax_rechnung_position_bearbeiten(position) {
         Locker.lock(true);
         var data = {
-            action                  : "update_rechnung_position",
-            rechnung_id             : $('#rechnung_id').val(),
-            rechnung_position_id    : rechnung_position_bearbeiten_id,
-            artikel_name            : position.artikel_name,
-            artikel_menge           : position.artikel_menge,
-            artikel_preis           : position.artikel_preis,
-            beschreibung            : position.beschreibung,
-            artikel_artikel_typ     : position.artikel_artikel_typ,
-            artikel_einheit         : position.artikel_einheit,
-            artikel_zyklus          : position.artikel_zyklus,
-            leistungsdatum          : position.leistungsdatum,
-            abrechnungszeitrum_von  : position.abrechnungszeitrum_von,
-            abrechnungszeitrum_bis  : position.abrechnungszeitrum_bis,
-            fahrzeug_marke          : position.fahrzeug_marke,
-            fahrzeug_modell         : position.fahrzeug_modell,
-            fahrzeug_kennzeichen    : position.fahrzeug_kennzeichen,
-            fahrzeug_fin            : position.fahrzeug_fin
+            action                   : "update_rechnung_position",
+            rechnung_id              : $('#rechnung_id').val(),
+            rechnung_position_id     : rechnung_position_bearbeiten_id,
+            artikel_name             : position.artikel_name,
+            artikel_menge            : position.artikel_menge,
+            artikel_preis            : position.artikel_preis,
+            beschreibung             : position.beschreibung,
+            artikel_artikel_typ      : position.artikel_artikel_typ,
+            artikel_einheit          : position.artikel_einheit,
+            artikel_zyklus           : position.artikel_zyklus,
+            leistungsdatum           : position.leistungsdatum,
+            abrechnungszeitrum_von   : position.abrechnungszeitrum_von,
+            abrechnungszeitrum_bis   : position.abrechnungszeitrum_bis,
+            fahrzeug_marke           : position.fahrzeug_marke,
+            fahrzeug_modell          : position.fahrzeug_modell,
+            fahrzeug_kennzeichen     : position.fahrzeug_kennzeichen,
+            fahrzeug_fin             : position.fahrzeug_fin,
+            teppichreinigung_laenge  : position.teppichreinigung_laenge,
+            teppichreinigung_breite  : position.teppichreinigung_breite
         };
         $.ajax({
             url: siteurl + "controllers/AJAX.php",

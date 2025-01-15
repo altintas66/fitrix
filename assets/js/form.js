@@ -5,7 +5,7 @@
 /*============================
  [Table of JS]
 
-0.  Locker
+0.  Locker & Allgemein
 1.  jQuery Plugins
 	 1.1 Datepicker
 	 1.2 Notebook Editor
@@ -85,6 +85,38 @@ function createLockerTop() {
 
 createLocker();
 createLockerTop();
+
+function fill_optionale_felder(modal, praefix, position) {
+        
+	if($(modal).find(praefix+'leistungsdatum').length) {
+		$(modal).find(praefix+'leistungsdatum').val(position.leistungsdatum_german);
+	}
+
+	if($(modal).find(praefix+'fahrzeug_marke').length > 0) {
+		set_select2_value(praefix+'fahrzeug_marke', position.fahrzeug_marke);
+	}
+
+	if($(modal).find(praefix+'fahrzeug_modell').length > 0) {
+		$(modal).find(praefix+'fahrzeug_modell').val(position.fahrzeug_modell);
+	}
+
+	if($(modal).find(praefix+'fahrzeug_kennzeichen').length > 0) {
+		$(modal).find(praefix+'fahrzeug_kennzeichen').val(position.fahrzeug_kennzeichen);
+	}
+
+	if($(modal).find(praefix+'fahrzeug_fin').length > 0) {
+		$(modal).find(praefix+'fahrzeug_fin').val(position.fahrzeug_fin);
+	}
+
+	if($(modal).find(praefix+'teppichreinigung_laenge').length > 0) {
+		$(modal).find(praefix+'teppichreinigung_laenge').val(position.teppichreinigung_laenge);
+	}
+
+	if($(modal).find(praefix+'teppichreinigung_breite').length > 0) {
+		$(modal).find(praefix+'teppichreinigung_breite').val(position.teppichreinigung_breite);
+	}
+}
+
 
 /*-----------------
 	1. jQuery Plugins
