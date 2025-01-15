@@ -8,6 +8,7 @@
 		<div id="config"
 			data-site-url="<?php echo $config['siteurl']; ?>"
 			data-upload-path="<?php echo $c_helper->get_upload_path(''); ?>"
+			data-rechnungen-pfad-url="<?php echo $config['rechnungen_pfad_url']; ?>"
 		></div>
 
 		<?php 

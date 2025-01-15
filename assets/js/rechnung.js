@@ -905,7 +905,7 @@
             success: function (success) {
                 var obj = jQuery.parseJSON(success);
                 if(obj.result != false) {
-                    var url = 'https://fitrix.inoya.cloud/pdf/rechnungen/' + obj.result.dateiname;
+                    var url = $('#config').attr('data-rechnungen-pfad-url') + obj.result.dateiname;
                     window.open(url, '_blank');
                 }
                 Locker.lock(false);

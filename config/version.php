@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '1.9';
+    $version['nummer'] = '2.0';
  
     $versionen = array(
+        '2.0' => array(
+            'Button Rechnung Vorschau Bug'
+        ),
         '1.9' => array(
             'Teppichreinigung Modul hinzugefügt'
         ),
