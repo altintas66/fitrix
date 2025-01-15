@@ -10,11 +10,11 @@
                             $einstellungen['kunde_suche']
                         ); 
                     ?>
-                </div>
+                </div> 
+            </div>
                 
         </div>
             
 
     </div>
 
-<br><br>
