@@ -53,7 +53,12 @@ class Rechnung_Position_Optionale_Felder {
 	{
 		$check = false;
 
-		if(isset($this->aktive_module['lackierer_kfz'])) $check = true;
+		if(
+			(isset($this->aktive_module['lackierer_kfz'])) ||
+			(isset($this->aktive_module['teppichreinigung']))
+		) {
+			$check = true;
+		}
 
 		return $check;
 	}
@@ -105,8 +110,8 @@ class Rechnung_Position_Optionale_Felder {
 			'".$values["fahrzeug_modell"]."',
             '".$values["fahrzeug_kennzeichen"]."',
             '".$values["fahrzeug_fin"]."',
-			 '".$values["teppichreinigung_laenge"]."',
-			  '".$values["teppichreinigung_breite"]."'
+			'".$values["teppichreinigung_laenge"]."',
+			'".$values["teppichreinigung_breite"]."'
 		)";
 
 		return array(
