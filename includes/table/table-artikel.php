@@ -2,12 +2,15 @@
 	<div class="table-responsive">
 		<table class="table table-striped js_table js_table_artikel table-center sortable-table">
 			<?php 
+				$einr_geb_ausb = false;
+				if($einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '1') $einr_geb_ausb = true;
+
                 $c_html->table_header(array(
                     array('title' => 'Foto'),
 					array('title' => 'Artikelname'),
 					array('title' => 'Beschreibung'),
 					array('title' => 'Preis'),
-					array('title' => 'Einrichtungs-<br>gebühr'),
+					array('title' => 'Einrichtungs-<br>gebühr', 'ausblenden' => $einr_geb_ausb),
 					array('title' => 'Status'),
 					array('title' => 'Optionen', 'class' => 'text-right')
                 ));
@@ -36,7 +39,11 @@
 								Variationen: <?php echo $c_helper->get_size_of_array($buff['preise']); ?>
 							</span>
 						</td>	
-						<td><?php echo $c_html->waehrung($buff['einrichtungsgebuehr']); ?></td>		
+						<?php if($einr_geb_ausb == false) { ?>
+							<td>
+								<?php echo $c_html->waehrung($buff['einrichtungsgebuehr']); ?>
+							</td>		
+						<?php } ?>
 						<td>
 							<?php $c_form->status_edit($buff['status'], $buff['artikel_id'], $c_artikel->get_tablename()); ?>
 						</td>

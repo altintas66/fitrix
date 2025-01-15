@@ -45,17 +45,19 @@
                                 ); 
                             ?>
                         </div>
-                        <div class="col-md-4">
-                            <?php 
-                                $c_form->input_waehrung(
-                                    'Einrichtungsgebühr', 
-                                    'einrichtungsgebuehr', 
-                                    isset($buff['einrichtungsgebuehr']) ? $buff['einrichtungsgebuehr'] : '',
-                                    '', 
-                                    true
-                                ); 
-                            ?>
-                        </div>
+                        <?php if($einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0') { ?>
+                            <div class="col-md-4">
+                                <?php 
+                                    $c_form->input_waehrung(
+                                        'Einrichtungsgebühr', 
+                                        'einrichtungsgebuehr', 
+                                        isset($buff['einrichtungsgebuehr']) ? $buff['einrichtungsgebuehr'] : '',
+                                        '', 
+                                        true
+                                    ); 
+                                ?>
+                            </div>
+                        <?php }; ?>
                         <div class="col-md-4">
                             <?php 
                                 $c_form->artikel_typ(
@@ -66,41 +68,42 @@
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <?php 
-                                $c_form->input_toggle(
-                                    'Vertragslaufzeit',
-                                    'vertragslaufzeit',
-                                    isset($buff['vertragslaufzeit']) ? $buff['vertragslaufzeit'] : '0', 
-                                );
-                            ?>
+                    <?php if($einstellungen['artikel_vertragslaufzeit_ausblenden'] == '0') { ?>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <?php 
+                                    $c_form->input_toggle(
+                                        'Vertragslaufzeit',
+                                        'vertragslaufzeit',
+                                        isset($buff['vertragslaufzeit']) ? $buff['vertragslaufzeit'] : '0', 
+                                    );
+                                ?>
+                            </div>
+                            <div class="col-md-4 js_vertragslaufzeit_input">
+                                <?php 
+                                    $c_form->input_text(
+                                        'Vertragslaufzeit Monate', 
+                                        'vertragslaufzeit_monate', 
+                                        isset($buff['vertragslaufzeit_monate']) ? $buff['vertragslaufzeit_monate'] : '',
+                                        '', 
+                                        true
+                                    ); 
+                                ?>
+                            </div>
+                            <div class="col-md-4 js_vertragslaufzeit_input">
+                                <?php 
+                                    $c_form->input_text(
+                                        'Vertragslaufzeit Kündigungsfrist', 
+                                        'vertragslaufzeit_kuendigungsfrist', 
+                                        isset($buff['vertragslaufzeit_kuendigungsfrist']) ? $buff['vertragslaufzeit_kuendigungsfrist'] : '',
+                                        '', 
+                                        true
+                                    ); 
+                                ?>
+                            </div>
+                        
                         </div>
-                        <div class="col-md-4 js_vertragslaufzeit_input">
-                            <?php 
-                                $c_form->input_text(
-                                    'Vertragslaufzeit Monate', 
-                                    'vertragslaufzeit_monate', 
-                                    isset($buff['vertragslaufzeit_monate']) ? $buff['vertragslaufzeit_monate'] : '',
-                                    '', 
-                                    true
-                                ); 
-                            ?>
-                        </div>
-                        <div class="col-md-4 js_vertragslaufzeit_input">
-                            <?php 
-                                $c_form->input_text(
-                                    'Vertragslaufzeit Kündigungsfrist', 
-                                    'vertragslaufzeit_kuendigungsfrist', 
-                                    isset($buff['vertragslaufzeit_kuendigungsfrist']) ? $buff['vertragslaufzeit_kuendigungsfrist'] : '',
-                                    '', 
-                                    true
-                                ); 
-                            ?>
-                        </div>
-                    
-                    </div>
+                    <?php }; ?>
 
                 
                     <div class="row">

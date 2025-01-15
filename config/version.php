@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '1.7';
+    $version['nummer'] = '1.8';
  
     $versionen = array(
+        '1.8' => array(
+            'Einrichtungsgebühr und Vertragslaufzeit ausblenden Funktion in den Einstellungen hinzugefügt (Artikel)'
+        ),
         '1.7' => array(
             'Kunde Pflichtfelder raus genommen sowie Modul Überprüfung Abonnement Kunde Sidebar'
         ),
