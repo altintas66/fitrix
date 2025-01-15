@@ -3,12 +3,10 @@
 class Helper {
 
 	private $db;
-	private $einstellungen;
 
-	public function __construct($db, $einstellungen) 
+	public function __construct($db) 
 	{
 		$this->db            = $db;
-		$this->einstellungen = $einstellungen;
 	}
 
 	public function delete_entry($id, $table) 
@@ -151,6 +149,7 @@ class Helper {
 
 	public function get_key_values_from_kunde($kunden) 
 	{
+		global $einstellungen;
 		if($kunden == null) return array();
 		if(is_array($kunden) == false) return array();
 		$results = array();
@@ -158,8 +157,8 @@ class Helper {
 
 		foreach($kunden AS $arr) {
 			
-			if($this->einstellungen['kunde_suche'] == 'adresse') $result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['adresse'].')';
-			else if($this->einstellungen['kunde_suche'] == 'suchname') $result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['suchname'].')';
+			if($einstellungen['kunde_suche'] == 'adresse') $result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['adresse'].')';
+			else if($einstellungen['kunde_suche'] == 'suchname') $result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['suchname'].')';
 			else $result[$arr['kunde_id']] = $arr['firmen_name'];
 		}
 
