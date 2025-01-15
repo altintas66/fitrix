@@ -2194,26 +2194,27 @@ table.table-inbox tbody tr.checked {
 	28. Responsive
 -----------------------*/
 
-@media only screen and (min-width:768px) {
-	.avatar-xxl {
-		width: 8rem;
-		height: 8rem;
+@media only screen and (max-width: 1400px) {
+	
+	ul.tab {
+		width: 100%;
+		margin-bottom: 20px;
+		min-height: auto;
 	}
-	.avatar-xxl .border {
-		border-width: 4px !important;
+
+	ul.tab li button {
+		text-align: center;
 	}
-	.avatar-xxl .rounded {
-		border-radius: 12px !important;
+
+	.tabcontent {
+		padding: 0px;
+		width: 100%;
+		height: auto;
 	}
-	.avatar-xxl .avatar-title {
-		font-size: 42px;
-	}
-	.avatar-xxl.avatar-away:before,
-	.avatar-xxl.avatar-offline:before,
-	.avatar-xxl.avatar-online:before {
-		border-width: 4px;
-	}
+
+
 }
+
 
 @media only screen and (min-width: 992px) {
 	#toggle_btn {
@@ -2281,26 +2282,7 @@ table.table-inbox tbody tr.checked {
 	}
 }
 
-@media only screen and (max-width: 1400px) {
-	.chat-window .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-name, 
-	.chat-window .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-last-chat {
-		max-width: 180px;
-	}
-}
-@media only screen and (max-width: 1199px) {
-	.chat-window .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-name, 
-	.chat-window .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-last-chat {
-		max-width: 150px;
-	}
-	.chat-window .chat-cont-left {
-		flex: 0 0 40%;
-		max-width: 40%;
-	}
-	.chat-window .chat-cont-right {
-		flex: 0 0 60%;
-		max-width: 60%;
-	}
-}
+
 @media only screen and (max-width: 991.98px) {
 	.header .header-left {
 		position: absolute;
@@ -2387,7 +2369,8 @@ table.table-inbox tbody tr.checked {
 	}
 }
 
-@media only screen and (max-width: 767.98px) {
+
+@media only screen and (max-width: 768px) {
 	body {
 		font-size: 0.9375rem;
 	}

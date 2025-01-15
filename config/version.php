@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.1';
+    $version['nummer'] = '2.2';
  
     $versionen = array(
+        '2.2' => array(
+            'CSS Anpassungen'
+        ),
         '2.1' => array(
             'Kunde Suchname'
         ),
