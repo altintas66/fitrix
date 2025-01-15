@@ -2197,19 +2197,19 @@ table.table-inbox tbody tr.checked {
 @media only screen and (max-width: 1400px) {
 	
 	ul.tab {
-		width: 100%;
-		margin-bottom: 20px;
-		min-height: auto;
+		width: 100%!important;
+		margin-bottom: 20px!important;
+		min-height: auto!important;
 	}
 
 	ul.tab li button {
-		text-align: center;
+		text-align: center!important;
 	}
 
 	.tabcontent {
-		padding: 0px;
-		width: 100%;
-		height: auto;
+		padding: 0px!important;
+		width: 100%!important;
+		height: auto!important;
 	}
 
 
