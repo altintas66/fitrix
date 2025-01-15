@@ -7,7 +7,7 @@
 	
 
 	$artikel = $c_artikel->get_all();
-
+	$einstellungen = $c_einstellungen->get_all();
 	
 	
 ?>
