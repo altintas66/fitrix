@@ -15,6 +15,8 @@
 	$artikel_id = $buff['artikel_id'];
 
 	$button_title = 'Änderungen speichern';
+
+	$einstellungen = $c_einstellungen->get_all();
   
 ?> 
 	
