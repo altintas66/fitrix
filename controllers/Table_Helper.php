@@ -230,7 +230,10 @@ class Table_Helper {
         if(isset($this->aktive_module['lackierer_kfz'])) {
             $this->get_rechnung_table_header_lackierer_kfz($optionen);
             $this->get_rechnung_table_positionen_lackierer_kfz($positionen, $optionen);
-        } else {
+        } else if(isset($this->aktive_module['teppichreinigung'])) {
+            $this->get_rechnung_table_header_teppichreinigung($optionen);
+            $this->get_rechnung_table_positionen_teppichreinigung($positionen, $optionen);
+        } else{
             $this->get_rechnung_table_header_standard($optionen);
             $this->get_rechnung_table_positionen_standard($positionen, $optionen);
         }
@@ -263,6 +266,20 @@ class Table_Helper {
         </tr>
     <?php 
     }
+
+    public function get_rechnung_table_header_teppichreinigung($optionen = false) {
+        ?>
+             <tr class="heading">
+                <th>Leistung</th>
+                <th>Fahrzeug</th>
+                <th>Maße</th>
+                <th>Leistungs<br>datum</th>
+                <th>E-Preis</th>
+                <th>G-Preis</th>
+                <?php if($optionen == true) echo '<th>Optionen</th>'; ?>
+            </tr>
+        <?php 
+        }
 
     public function get_rechnung_table_positionen_standard($positionen, $optionen = false) 
     {
@@ -316,6 +333,42 @@ class Table_Helper {
                 <td>
                     <?php echo $position['fahrzeug_kennzeichen']; ?><br>
                     <?php echo $position['fahrzeug_fin']; ?>
+                </td>
+                <td>
+                    <?php echo $position['artikel_menge']; ?>
+                    <?php echo $position['artikel_einheit']; ?>
+                </td>
+                <td>
+                    <?php echo $c_rechnung_position->get_abrechnungszeitraum_beschreibung($position); ?>
+                </td>
+                <td>
+                    <?php echo $this->html->waehrung($position['artikel_preis']); ?>
+                </td>
+                <td>
+                    <?php echo $this->html->waehrung((intval($position['artikel_menge']) * floatval($position['artikel_preis']))); ?>
+                </td>
+                <?php if($optionen == true) $this->get_rechnung_table_position_bearbeiten_td($position); ?>
+            </tr>
+        <?php 
+        } 
+    }
+
+    public function get_rechnung_table_positionen_teppichreinigung($positionen, $optionen = false) 
+    {
+        global $c_rechnung_position;
+        foreach($positionen AS $position) { ?>
+            <tr>
+                <td>
+                    <?php echo $position['artikel_name']; ?>
+                    <?php 
+                        if($position['artikel_beschreibung'] != '') {
+                            echo $this->helper->string_neue_zeilen($this->helper->escape_html($position['artikel_beschreibung']), 30); 
+                        }
+                    ?>
+                </td>
+                <td>
+                    Länge: <?php echo $position['teppichreinigung_laenge']; ?><br>
+                    Breite: <?php echo $position['teppichreinigung_breite']; ?>
                 </td>
                 <td>
                     <?php echo $position['artikel_menge']; ?>
