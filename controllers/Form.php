@@ -1614,6 +1614,7 @@
 							</div>
 							
 							<?php if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); ?>
+							<?php if(isset($this->aktive_module['teppichreinigung'])) $this->get_rechnung_angebot_position_teppichreinigung($praefix); ?>
 
 							<div class="row">
 								<div class="col-md-12">
