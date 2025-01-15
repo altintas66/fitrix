@@ -150,12 +150,12 @@
     //Allgemeine Klassen
     $c_db                                    = new Database($link);
     $c_url                                   = new URL($config);
-    $c_helper                                = new Helper($c_db);
+    $c_einstellungen                         = new Einstellungen($c_db);
+    $einstellungen                           = $c_einstellungen->get_all();
+    $c_helper                                = new Helper($c_db, $einstellungen);
     $c_modul                                 = new Modul($c_db, $c_helper);
     $module                                  = $c_modul->get_all();
     $aktive_module                           = $c_modul->get_aktive_module();
-    $c_einstellungen                         = new Einstellungen($c_db);
-    $einstellungen                           = $c_einstellungen->get_all();
     $c_cronjob                               = new Cronjob($c_db, $c_helper);
     $c_placeholder                           = new Placeholder($c_db, $c_helper, $einstellungen);
     $c_erinnerung                            = new Erinnerung($c_db, $c_helper, $c_url);

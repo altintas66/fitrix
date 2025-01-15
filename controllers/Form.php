@@ -815,6 +815,27 @@
 			);
 		}
 
+		public function kunde_suche($wrapper = true, $value = '', $field_name = 'kunde_suche') {
+			
+			$values = array(
+				''         => 'Firmenname',
+				'suchname' => 'Firmenname (Suchname)',
+				'adresse'  => 'Firmenname (Adresse)'
+			);
+
+			if($wrapper == true) $label = 'Kundensuche';
+			else $label = $wrapper;
+
+			$this->select(
+				$label, 
+				$field_name, 
+				$values, 
+				$value, 
+				false,
+				'select2'
+			);
+		}
+
 		public function bericht($wrapper = true, $value = '', $field_name = 'bericht') {
 			
 			$values = array(

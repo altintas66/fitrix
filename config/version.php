@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.0';
+    $version['nummer'] = '2.1';
  
     $versionen = array(
+        '2.1' => array(
+            'Kunde Suchname'
+        ),
         '2.0' => array(
             'Button Rechnung Vorschau Bug'
         ),

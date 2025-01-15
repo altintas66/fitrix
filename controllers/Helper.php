@@ -3,13 +3,16 @@
 class Helper {
 
 	private $db;
+	private $einstellungen;
 
-	public function __construct($db) 
+	public function __construct($db, $einstellungen) 
 	{
-		$this->db = $db;
+		$this->db            = $db;
+		$this->einstellungen = $einstellungen;
 	}
 
-	public function delete_entry($id, $table) {
+	public function delete_entry($id, $table) 
+	{
 		$sql = 'DELETE FROM '.$table.' WHERE id = '.intval($id);
 		$this->db->delete($sql);
 	}
@@ -146,14 +149,20 @@ class Helper {
 		return $result;
 	}
 
-	public function get_key_values_from_kunde($kunden) {
+	public function get_key_values_from_kunde($kunden) 
+	{
 		if($kunden == null) return array();
 		if(is_array($kunden) == false) return array();
 		$results = array();
 		$result[''] = '---';
+
 		foreach($kunden AS $arr) {
-			$result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['suchname'].')';
+			
+			if($this->einstellungen['kunde_suche'] == 'adresse') $result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['adresse'].')';
+			else if($this->einstellungen['kunde_suche'] == 'suchname') $result[$arr['kunde_id']] = $arr['firmen_name'].' ('.$arr['suchname'].')';
+			else $result[$arr['kunde_id']] = $arr['firmen_name'];
 		}
+
 		return $result;
 	}
 

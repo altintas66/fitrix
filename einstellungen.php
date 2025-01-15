@@ -18,6 +18,7 @@
 		'bilder'           => 'Bilder',
 		'angebot'          => 'Angebot',
 		'rechnung'         => 'Rechnung',
+		'kunden'           => 'Kunden',
 		'optionen'         => 'Optionen'
 	);
 ?>

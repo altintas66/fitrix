@@ -175,7 +175,8 @@ class Einstellungen {
 			'zahlungserinnerung_senden_nach_x_tagen',
 			'firmen_name_kurz',
 			'zuletzt_vergebene_rechnungsnummer',
-			'mahngebuehr'
+			'mahngebuehr',
+			'kunde_suche'
 		) AS $a) {
 			$this->sql_update($a, $this->helper->escape_value($post[$a]));	
 		}	
