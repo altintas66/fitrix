@@ -278,20 +278,23 @@ class Rechnung_Position {
 
 		$result = $this->insert(
 			array(
-				'rechnung_id'          => $post['rechnung_id'],
-				'artikel_id'           => $post['artikel_id'],
-				'artikel_nummer'       => $artikel['artikel_nummer'],
-				'artikel_name'         => $artikel['artikel_name'],
-				'artikel_beschreibung' => $artikel['artikel_beschreibung'],
-				'artikel_preis'        => $preis,
-				'artikel_menge'        => $post['menge'],
-				'artikel_einheit'      => $artikel['einheit'],
-				'artikel_artikel_typ'  => $artikel['artikel_typ'],
-				'artikel_zyklus'       => $artikel_zyklus,
-				'fahrzeug_marke'       => $post['fahrzeug_marke'],
-				'fahrzeug_modell'      => $post['fahrzeug_modell'],
-				'fahrzeug_kennzeichen' => $post['fahrzeug_kennzeichen'],
-				'fahrzeug_fin'         => $post['fahrzeug_fin']
+				'rechnung_id'              => $post['rechnung_id'],
+				'artikel_id'               => $post['artikel_id'],
+				'artikel_nummer'           => $artikel['artikel_nummer'],
+				'artikel_name'             => $artikel['artikel_name'],
+				'artikel_beschreibung'     => $artikel['artikel_beschreibung'],
+				'artikel_preis'            => $preis,
+				'artikel_menge'            => $post['menge'],
+				'artikel_einheit'          => $artikel['einheit'],
+				'artikel_artikel_typ'      => $artikel['artikel_typ'],
+				'artikel_zyklus'           => $artikel_zyklus,
+				'fahrzeug_marke'           => $post['fahrzeug_marke'],
+				'fahrzeug_modell'          => $post['fahrzeug_modell'],
+				'fahrzeug_kennzeichen'     => $post['fahrzeug_kennzeichen'],
+				'fahrzeug_fin'             => $post['fahrzeug_fin'],
+				'leistungsdatum'           => $post['leistungsdatum'],
+				'teppichreinigung_laenge'  => $post['teppichreinigung_laenge'],
+				'teppichreinigung_breite'  => $post['teppichreinigung_breite']
 			)
 		);
 

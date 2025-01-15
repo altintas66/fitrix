@@ -271,7 +271,7 @@ class Table_Helper {
         ?>
              <tr class="heading">
                 <th>Leistung</th>
-                <th>Fahrzeug</th>
+                <th>Menge</th>
                 <th>Maße</th>
                 <th>Leistungs<br>datum</th>
                 <th>E-Preis</th>
@@ -367,12 +367,12 @@ class Table_Helper {
                     ?>
                 </td>
                 <td>
-                    Länge: <?php echo $position['teppichreinigung_laenge']; ?><br>
-                    Breite: <?php echo $position['teppichreinigung_breite']; ?>
-                </td>
-                <td>
                     <?php echo $position['artikel_menge']; ?>
                     <?php echo $position['artikel_einheit']; ?>
+                </td>
+                <td>
+                    Länge: <?php echo $position['teppichreinigung_laenge']; ?><br>
+                    Breite: <?php echo $position['teppichreinigung_breite']; ?>
                 </td>
                 <td>
                     <?php echo $c_rechnung_position->get_abrechnungszeitraum_beschreibung($position); ?>

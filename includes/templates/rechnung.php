@@ -41,11 +41,12 @@
         <table cellpadding="0" cellspacing="0" class="table_positionen">
 
 
-            <?php if($rechnung['positionen'] != null) { ?>
-                <?php 
+            <?php 
+                if($rechnung['positionen'] != null) { 
                     $c_table_helper->get_rechnung_table_positionen($rechnung['positionen'], true);    
-                ?>
-            <?php } ?>
+                }
+            ?>
+
 
             <?php 
                 $mwst   = $this->helper->get_mwst($netto_gesamt, $rechnung['mwst_satz']);

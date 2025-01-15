@@ -773,15 +773,17 @@ class AJAX
 		);
 
 		$result = $this->rechnung_position->insert_artikel_position(array(
-			'rechnung_id'          => $_POST['rechnung_id'],
-			'artikel_id'           => $_POST['artikel_id'],
-			'menge'                => $_POST['menge'],
-			'zyklus_id'            => $_POST['zyklus_id'],
-			'leistungsdatum'       => $_POST['leistungsdatum'],
-			'fahrzeug_marke'       => $_POST['fahrzeug_marke'],
-			'fahrzeug_modell'      => $_POST['fahrzeug_modell'],
-			'fahrzeug_kennzeichen' => $_POST['fahrzeug_kennzeichen'],
-			'fahrzeug_fin'         => $_POST['fahrzeug_fin']
+			'rechnung_id'                => $_POST['rechnung_id'],
+			'artikel_id'                 => $_POST['artikel_id'],
+			'menge'                      => $_POST['menge'],
+			'zyklus_id'                  => $_POST['zyklus_id'],
+			'leistungsdatum'             => $_POST['leistungsdatum'],
+			'fahrzeug_marke'             => $_POST['fahrzeug_marke'],
+			'fahrzeug_modell'            => $_POST['fahrzeug_modell'],
+			'fahrzeug_kennzeichen'       => $_POST['fahrzeug_kennzeichen'],
+			'fahrzeug_fin'               => $_POST['fahrzeug_fin'],
+			'teppichreinigung_laenge'    => $_POST['teppichreinigung_laenge'],
+			'teppichreinigung_breite'    => $_POST['teppichreinigung_breite']
 		));
 
 		echo json_encode($result);

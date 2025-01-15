@@ -1702,8 +1702,7 @@
 
 		public function get_rechnung_angebot_position_teppichreinigung($praefix)
 		{
-			if($this->einstellungen['rechnung_position_keine_pflichtfelder'] == '1') $required = false;
-			else $required = true;
+			$required = true;
 		?>
 			<div class="row">
 				<div class="col-md-6">
