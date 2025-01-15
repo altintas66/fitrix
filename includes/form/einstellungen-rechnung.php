@@ -61,11 +61,10 @@
                 </div>
                 <div class="col-md-12">
                     <?php 
-                        $c_form->wysiwyg(
+                        $c_form->textarea(
                             'Bedingungen', 
                             'rechnung_bedingungen', 
                             $einstellungen['rechnung_bedingungen'],
-                            '',
                             true
                         );
                     ?>

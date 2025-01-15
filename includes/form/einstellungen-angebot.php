@@ -28,11 +28,10 @@
                 </div>
                 <div class="col-md-12">
                     <?php 
-                        $c_form->wysiwyg(
+                        $c_form->textarea(
                             'Bedingungen', 
                             'angebot_bedingungen', 
                             $einstellungen['angebot_bedingungen'],
-                            '',
                             true
                         );
                     ?>

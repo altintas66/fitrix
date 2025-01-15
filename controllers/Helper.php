@@ -539,4 +539,10 @@ class Helper {
 		);
 	}
 
+	public function replace_rn_with_br($text) 
+	{
+		$text = str_replace("\\r\\n", '<br>', $text);
+		return $text;
+	}
+
 }
