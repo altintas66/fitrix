@@ -10,6 +10,7 @@ class Rechnung_Position {
 	private $artikel_typ;
 	private $artikel_preis;
 	private $optionale_felder;
+	private $einstellungen;
 
 	
 	private $fields;
@@ -18,7 +19,7 @@ class Rechnung_Position {
 
 
 	
-	public function __construct($db, $helper, $artikel, $einheit, $zyklus, $artikel_typ, $artikel_preis, $optionale_felder) 
+	public function __construct($db, $helper, $artikel, $einheit, $zyklus, $artikel_typ, $artikel_preis, $optionale_felder, $einstellungen) 
 	{
 		$this->db                = $db;
 		$this->helper            = $helper;
@@ -28,6 +29,7 @@ class Rechnung_Position {
 		$this->artikel_typ       = $artikel_typ;
 		$this->artikel_preis     = $artikel_preis;
 		$this->optionale_felder  = $optionale_felder;
+		$this->einstellungen     = $einstellungen;
 
 		
 		$this->set_tablename();
@@ -418,7 +420,9 @@ class Rechnung_Position {
 	public function get_abrechnungszeitraum_beschreibung($position)
 	{
 
-		if(isset($this->aktive_module['lackierer_kfz'])) {
+
+
+		if($this->einstellungen['rechnung_datum_nach_leistungsdatum'] == '1') {
 			return $this->helper->german_date_no_time($position['leistungsdatum']);
 		}
 
