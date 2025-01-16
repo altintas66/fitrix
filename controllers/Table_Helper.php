@@ -474,7 +474,7 @@ class Table_Helper {
         <tr class="heading">
             <th>Leistung/Artikel</th>
             <th>Menge</th>
-            <th>LängexBreite</th>
+            <th>Maße</th>
             <?php if($this->einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0'){ ?>
                 <th>Einmalige<br>Kosten</th>
             <?php }?>
