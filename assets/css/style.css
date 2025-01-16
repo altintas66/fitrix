@@ -2280,6 +2280,11 @@ table.table-inbox tbody tr.checked {
 	.mini-sidebar .page-wrapper {
 		margin-left: 78px;
 	}
+
+	.js_dashboard_wrapper .card_1 .card-body {
+		height: auto;
+		background-image: url('');
+	}
 }
 
 

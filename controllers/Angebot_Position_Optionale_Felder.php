@@ -28,7 +28,9 @@ class Angebot_Position_Optionale_Felder {
             ".$tablename.".fahrzeug_marke            AS 'fahrzeug_marke', 
             ".$tablename.".fahrzeug_modell           AS 'fahrzeug_modell', 
             ".$tablename.".fahrzeug_kennzeichen      AS 'fahrzeug_kennzeichen', 
-            ".$tablename.".fahrzeug_fin              AS 'fahrzeug_fin'
+            ".$tablename.".fahrzeug_fin              AS 'fahrzeug_fin',
+			".$tablename."teppichreinigung_laenge    AS 'teppichreinigung_laenge',
+			".$tablename."teppichreinigung_breite    AS 'teppichreinigung_breite'
 		";
 	}
 	
