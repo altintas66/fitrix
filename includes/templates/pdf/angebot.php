@@ -57,7 +57,7 @@
             </td>
             <td>
                 Angebotsnummer: <?php echo $angebot['angebotsnummer']; ?><br>
-                Kundennummer: ddd
+                Kundennummer: <?php echo $angebot['fk_kunde_id']; ?>
             </td>
         </tr>
     </table>
