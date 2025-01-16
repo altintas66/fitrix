@@ -104,7 +104,9 @@ class Angebot_Position_Optionale_Felder {
 			'".$values["fahrzeug_marke"]."',
 			'".$values["fahrzeug_modell"]."',
             '".$values["fahrzeug_kennzeichen"]."',
-            '".$values["fahrzeug_fin"]."'
+            '".$values["fahrzeug_fin"]."',
+			'".$values["teppichreinigung_laenge"]."',
+			'".$values["teppichreinigung_breite"]."'
 		)";
 
 		return array(
@@ -129,7 +131,9 @@ class Angebot_Position_Optionale_Felder {
 				fahrzeug_marke           = '".$values['fahrzeug_marke']."',
 				fahrzeug_modell          = '".$values['fahrzeug_modell']."',
                 fahrzeug_kennzeichen     = '".$values['fahrzeug_kennzeichen']."',
-                fahrzeug_fin             = '".$values['fahrzeug_fin']."'
+                fahrzeug_fin             = '".$values['fahrzeug_fin']."',
+				teppichreinigung_laenge  = '".$values['teppichreinigung_laenge']."',
+				teppichreinigung_breite  = '".$values['teppichreinigung_breite']."'
 		WHERE fk_angebot_position_id = ".intval($angebot_position_id);
 
 		return $this->db->update($sql);	

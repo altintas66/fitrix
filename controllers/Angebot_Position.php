@@ -68,7 +68,7 @@ class Angebot_Position {
             angebot_position_optionale_felder.fahrzeug_marke           AS 'fahrzeug_marke', 
             angebot_position_optionale_felder.fahrzeug_modell          AS 'fahrzeug_modell', 
             angebot_position_optionale_felder.fahrzeug_kennzeichen     AS 'fahrzeug_kennzeichen', 
-            angebot_position_optionale_felder.fahrzeug_fin             AS 'fahrzeug_fin'
+            angebot_position_optionale_felder.fahrzeug_fin             AS 'fahrzeug_fin',
             angebot_position_optionale_felder.teppichreinigung_laenge  AS 'teppichreinigung_laenge',
             angebot_position_optionale_felder.teppichreinigung_breite  AS 'teppichreinigung_breite'
         ";
