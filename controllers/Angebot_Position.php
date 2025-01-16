@@ -240,8 +240,8 @@ class Angebot_Position {
 			'fahrzeug_modell'                    => $post['fahrzeug_modell'],
 			'fahrzeug_kennzeichen'               => $post['fahrzeug_kennzeichen'],
 			'fahrzeug_fin'                       => $post['fahrzeug_fin'],
-            'teppichlaenge_laenge'               => $post['teppichlaenge_laenge'],
-			'teppichlaenge_breite'               => $post['teppichlaenge_breite']
+            'teppichreinigung_laenge'            => $post['teppichreinigung_laenge'],
+			'teppichreinigung_breite'            => $post['teppichreinigung_breite']
         ));
 
         return $result;
