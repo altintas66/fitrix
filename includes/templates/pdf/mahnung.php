@@ -183,7 +183,7 @@
 
         <?php if($rechnung['zusatz_text'] != '') { ?>
             <div class="footer-zusatz-text">
-                <?php echo $c_helper->clean_wysiwyg_html($angebot['zusatz_text']); ?>
+                <?php echo $c_helper->replace_rn_with_br($angebot['zusatz_text']); ?>
             </div>
         <?php } ?>
 

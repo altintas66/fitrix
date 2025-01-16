@@ -83,12 +83,12 @@
     <!-- Footer -->
     <div class="footer">
         <?php 
-            echo $c_helper->clean_wysiwyg_html($rechnung['bedingungen']); 
+            echo $c_helper->replace_rn_with_br($rechnung['bedingungen']); 
         ?>
 
         <?php if($rechnung['zusatz_text'] != '') { ?>
             <div class="footer-zusatz-text">
-                <?php echo $c_helper->clean_wysiwyg_html($rechnung['zusatz_text']); ?>
+                <?php echo $c_helper->replace_rn_with_br($rechnung['zusatz_text']); ?>
             </div>
         <?php } ?>
 
