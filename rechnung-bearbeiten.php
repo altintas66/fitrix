@@ -136,7 +136,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <?php 
-                                    $c_form->wysiwyg(
+                                    $c_form->textarea(
                                         'Bedingungen', 
                                         'bedingungen', 
                                         $buff['bedingungen'], 
@@ -148,7 +148,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <?php 
-                                    $c_form->wysiwyg(
+                                    $c_form->textarea(
                                         'Zusätzlicher Inhalt', 
                                         'zusatz_text', 
                                         $buff['zusatz_text'], 
