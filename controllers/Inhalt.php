@@ -113,7 +113,7 @@ class Inhalt {
 	{
 		$sql ="
 			UPDATE ".$this->get_tablename()." SET 
-				metavalue = '".$this->helper->escape_value($metavalue)."'
+				metavalue = '".$metavalue."'
 		WHERE metakey = '".$metakey."'";
 	
 
