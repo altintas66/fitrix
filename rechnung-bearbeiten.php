@@ -5,11 +5,7 @@
 	$c_html->get_header();
 	$c_html->get_breadcrumbs(array(array('Rechnungen', $c_url->get_rechnung_uebersicht()), array('Rechnung bearbeiten', '#')));
 	
-    if(isset($_POST['btn_rechnung_bearbeiten_submit'])) {
-        $result = $c_rechnung->update($_POST);
-        if($result != false) $c_helper->redirect($c_url->get_rechnung_bearbeiten($_POST['rechnung_id']));
-    }
-
+   
 	$buff = $c_rechnung->get($_GET['id']);
    
     if($buff == null) $c_helper->redirect($c_url->get_rechnung_uebersicht());
