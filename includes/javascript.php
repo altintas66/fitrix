@@ -29,13 +29,13 @@
 	
 
 	<script src="<?php echo $config['httpsurl']; ?>assets/js/theme.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/form.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/suche.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/javascript.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/rechnung.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/angebot.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/abonnement.js"></script>
-	<script src="<?php echo $config['httpsurl']; ?>assets/js/mahnung.js"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/form.js?vers=<?php echo $version['nummer']; ?>"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/suche.js?vers=<?php echo $version['nummer']; ?>"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/javascript.js?vers=<?php echo $version['nummer']; ?>"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/rechnung.js?vers=<?php echo $version['nummer']; ?>"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/angebot.js?vers=<?php echo $version['nummer']; ?>"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/abonnement.js?vers=<?php echo $version['nummer']; ?>"></script>
+	<script src="<?php echo $config['httpsurl']; ?>assets/js/mahnung.js?vers=<?php echo $version['nummer']; ?>"></script>
 
 	
 	<?php 
