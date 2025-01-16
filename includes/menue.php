@@ -8,7 +8,7 @@
 	<div class="sidebar-inner slimscroll">
 		<div id="sidebar-menu" class="sidebar-menu">
 			<?php
-				global $c_permission, $einstellungen, $module;
+				global $c_permission, $einstellungen, $aktive_module;
 
 				$array = array(
 					array('Allgemein', NULL, NULL),
@@ -28,19 +28,20 @@
 					$array[] = array('Rechnungen', 'rechnung.png', $c_url->get_rechnung_uebersicht());
 				}
 		
-				if($module['angebot']['status'] == 'aktiv') {
+				if(isset($this->aktive_module['angebot'])) {
 					if($c_permission->check_user_has_permission('ANGEBOTE_VERWALTEN')) {
 						$array[] = array('Angebote', 'angebot.png', $c_url->get_angebot_uebersicht());
 					}
 				}
 
-				if($module['abonnement']['status'] == 'aktiv') {
+				
+				if(isset($this->aktive_module['abonnement'])) {
 					if($c_permission->check_user_has_permission('ABONNEMENT_VERWALTEN')) {
 						$array[] = array('Abonnements', 'abonnement.png', $c_url->get_abonnement_uebersicht());
 					}
 				}
 
-				if($module['zammad']['status'] == 'aktiv') {
+				if(isset($this->aktive_module['zammad'])) {
 					if($einstellungen['zammad_api_tickets'] == '1') {
 						if($c_permission->check_user_has_permission('ZAMMAD_API')) {
 							$zammad = array();
@@ -56,7 +57,7 @@
 
 				$array[] = array('Weiteres', NULL, NULL);
 
-				if($module['mahnung']['status'] == 'aktiv') {
+				if(isset($this->aktive_module['mahnung'])) {
 					if($c_permission->check_user_has_permission('MAHNUNGEN_VERWALTEN')) {
 						$array[] = array('Mahnungen', 'mahnung.png', $c_url->get_mahnung_uebersicht());
 					}
@@ -86,13 +87,21 @@
 					$inhalte[] = array('Orte', $c_url->get_ort_uebersicht());
 					$inhalte[] = array('Kategorien', $c_url->get_kategorie_uebersicht());
 					$inhalte[] = array('MwSt', $c_url->get_mwst_uebersicht());
-					$inhalte[] = array('Zyklen', $c_url->get_zyklus_uebersicht());
+					
+					if($einstellungen['rechnung_datum_nach_leistungsdatum'] == '0') {
+						$inhalte[] = array('Zyklen', $c_url->get_zyklus_uebersicht());
+					}
+					
 					$inhalte[] = array('Artikel Typen', $c_url->get_artikel_typ_uebersicht());
 					$inhalte[] = array('Zahlungsarten', $c_url->get_zahlungsart_uebersicht());
-					if($c_permission->check_user_has_permission('SERVER_VERWALTEN')) {
-						$inhalte[] = array('Hostings', $c_url->get_hosting_uebersicht());
-						$inhalte[] = array('Server', $c_url->get_server_uebersicht());
+					
+					if(isset($this->aktive_module['hosting_server'])) {
+						if($c_permission->check_user_has_permission('SERVER_VERWALTEN')) {
+							$inhalte[] = array('Hostings', $c_url->get_hosting_uebersicht());
+							$inhalte[] = array('Server', $c_url->get_server_uebersicht());
+						}
 					}
+
 					$array[] = array('Inhalte', 'inhalte.png', '#', $inhalte);
 				}
 
