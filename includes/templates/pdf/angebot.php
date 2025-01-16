@@ -70,34 +70,31 @@
                     ?>
                 </table>
 
-                <table>
-                <tr class="total-row">
-                    <td></td>
-                    <td colspan="2" style="text-align:right;">Netto</td>
-                    <td colspan="2" style="text-align:right;">
-                        <?php echo $c_html->waehrung($netto_gesamt); ?>
-                    </td>
-                </tr>
-                <tr class="total-row">
-                    <td></td>
-                    <td colspan="2" style="text-align:right;">MwSt (<?php echo $angebot['mwst_satz']; ?>%)</td>
-                    <td colspan="2" style="text-align:right;">
-                        <?php 
-                            $mwst = $c_helper->get_mwst($netto_gesamt, $angebot['mwst_satz']);
-                            echo $c_html->waehrung($mwst); 
-                        ?>
-                    </td> 
-                </tr>
-                <tr class="total-row">
-                    <td></td>
-                    <td colspan="2" style="text-align:right;">Gesamt</td>
-                    <td colspan="2" style="text-align:right;">
-                        <?php 
-                            $brutto = $c_helper->get_brutto($netto_gesamt, $angebot['mwst_satz']); 
-                            echo $c_html->waehrung($brutto);
-                        ?>
-                    </td>
-                </tr>
+                <table class="width-100 totals">
+                    <tr class="total-row first-row">
+                        <td class="text-right">Netto</td>
+                        <td class="text-right">
+                            <?php echo $c_html->waehrung($netto_gesamt); ?>
+                        </td>
+                    </tr>
+                    <tr class="total-row">
+                        <td class="text-right">MwSt (<?php echo $angebot['mwst_satz']; ?>%)</td>
+                        <td class="text-right">
+                            <?php 
+                                $mwst = $c_helper->get_mwst($netto_gesamt, $angebot['mwst_satz']);
+                                echo $c_html->waehrung($mwst); 
+                            ?>
+                        </td> 
+                    </tr>
+                    <tr class="total-row">
+                        <td class="text-right">Gesamt</td>
+                        <td class="text-right">
+                            <?php 
+                                $brutto = $c_helper->get_brutto($netto_gesamt, $angebot['mwst_satz']); 
+                                echo $c_html->waehrung($brutto);
+                            ?>
+                        </td>
+                    </tr>
             </table>
     
     <?php } ?>

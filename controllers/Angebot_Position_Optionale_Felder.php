@@ -53,7 +53,12 @@ class Angebot_Position_Optionale_Felder {
 	{
 		$check = false;
 
-		if(isset($this->aktive_module['lackierer_kfz'])) $check = true;
+		if(
+			(isset($this->aktive_module['lackierer_kfz'])) ||
+			(isset($this->aktive_module['teppichreinigung']))
+		) {
+			$check = true;
+		}
 
 		return $check;
 	}

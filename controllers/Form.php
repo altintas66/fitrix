@@ -1956,7 +1956,7 @@
 											'Beschreibung', 
 											$praefix.'beschreibung', 
 											'', 
-											true
+											false
 										);
 									?>
 								</div>
@@ -2208,17 +2208,33 @@
 								
 							</div>
 							<div class="row">
-								<div class="col-md-6">
-									<?php
-										$this->input_waehrung(
-											'Einrichtungsgebühr', 
-											$praefix.'einrichtungsgebuehr', 
-											'', 
-											'', 
-											$required = true
-										);
-									?>
-								</div>
+								<?php if($this->einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0') { ?>
+									<div class="col-md-6">
+										<?php
+											$this->input_waehrung(
+												'Einrichtungsgebühr', 
+												$praefix.'einrichtungsgebuehr', 
+												'', 
+												'', 
+												$required = true
+											);
+										?>
+									</div>
+								<?php } ?>
+								<?php if($this->einstellungen['rechnung_datum_nach_leistungsdatum'] == '0') { ?>
+									<div class="col-md-6">
+										<?php  
+											$this->zyklus(
+												true,
+												'',
+												$praefix.'zyklus_id'
+											); 
+										?>
+									</div>
+								<?php } ?>
+							</div>
+
+							<div class="row">
 								<div class="col-md-6">
 									<?php
 										$this->input_waehrung(
@@ -2230,9 +2246,6 @@
 										);
 									?>
 								</div>
-							</div>
-
-							<div class="row">
 								<div class="col-md-6">
 									<?php  
 										$this->artikel_typ(
@@ -2242,15 +2255,7 @@
 										); 
 									?>
 								</div>
-								<div class="col-md-6">
-									<?php  
-										$this->zyklus(
-											true,
-											'',
-											$praefix.'zyklus_id'
-										); 
-									?>
-								</div>
+								
 							</div>
 
 							<?php 

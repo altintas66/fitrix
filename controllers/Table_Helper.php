@@ -429,6 +429,9 @@ class Table_Helper {
         if(isset($this->aktive_module['lackierer_kfz'])) {
             $this->get_angebot_table_header_lackierer_kfz($optionen);
             $this->get_angebot_table_positionen_lackierer_kfz($positionen, $optionen);
+        } else if(isset($this->aktive_module['teppichreinigung'])) {
+            $this->get_angebot_table_header_teppichreinigung($optionen);
+            $this->get_angebot_table_positionen_teppichreinigung($positionen, $optionen);
         } else {
             $this->get_angebot_table_header_standard($optionen);
             $this->get_angebot_table_positionen_standard($positionen, $optionen);
@@ -449,22 +452,74 @@ class Table_Helper {
     <?php 
     }
 
-    public function get_angebot_table_header_standard($optionen = false) {
-    
-        ?>
-            <tr class="heading">
-                <th>Leistung/Artikel</th>
-                <th>Angebotsdetails</th>
-                <th>Menge</th>
-                <?php if($this->einstellungen['angebot_pdf_position_laufende_kosten_ausblenden'] == '0'){ ?>
-                    <th>Laufende<br>Kosten</th>
-                <?php }?>
+    public function get_angebot_table_header_standard($optionen = false) 
+    {
+    ?>
+        <tr class="heading">
+            <th>Leistung/Artikel</th>
+            <th>Angebotsdetails</th>
+            <th>Menge</th>
+            <?php if($this->einstellungen['angebot_pdf_position_laufende_kosten_ausblenden'] == '0'){ ?>
+                <th>Laufende<br>Kosten</th>
+            <?php }?>
+            <th>Einmalige<br>Kosten</th>
+            <?php if($optionen == true) echo '<th>Optionen</th>'; ?>
+        </tr>
+    <?php 
+    }
+
+    public function get_angebot_table_header_teppichreinigung($optionen = false) 
+    {
+    ?>
+        <tr class="heading">
+            <th>Leistung/Artikel</th>
+            <th>Menge</th>
+            <th>LängexBreite</th>
+            <?php if($this->einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0'){ ?>
                 <th>Einmalige<br>Kosten</th>
-                <?php if($optionen == true) echo '<th>Optionen</th>'; ?>
+            <?php }?>
+            <th>Einzel-Preis</th>
+            <th>Gesamt-Preis</th>
+            <?php if($optionen == true) echo '<th>Optionen</th>'; ?>
+        </tr>
+    <?php 
+    }
+
+    public function get_angebot_table_positionen_teppichreinigung($positionen, $optionen = false) 
+    {
+        foreach($positionen AS $position) { ?>
+            <tr class="item">
+                <td>
+                    <?php echo $position['artikel_name']; ?>
+                    <?php 
+                        if($position['artikel_beschreibung'] != '') {
+                            echo $this->helper->string_neue_zeilen($this->helper->replace_rn_with_br($position['artikel_beschreibung']), 30); 
+                        }
+                    ?>
+                </td>
+                <td>
+                    <?php echo $position['menge']; ?>
+                    <?php echo $position['einheit_bezeichnung']; ?>
+                </td>
+                <td>
+                    <?php echo $position['teppichreinigung_laenge']; ?><br>
+                    <?php echo $position['teppichreinigung_breite']; ?>
+                </td>
+                <?php if($this->einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0'){ ?>
+                    <?php echo $this->html->waehrung($position['einrichtungsgebuehr']); ?>
+                <?php }?>
+                <td>
+                    <?php echo $this->html->waehrung($position['netto_preis']); ?>
+                </td>
+                <td>
+                    <?php echo $this->html->waehrung((intval($position['menge']) * floatval($position['netto_preis']))); ?>
+                </td>
+                <?php if($optionen == true) $this->get_angebot_table_position_bearbeiten_td($position); ?>
             </tr>
         <?php 
-        }
-    
+        } 
+    }
+
 
     public function get_angebot_table_positionen_lackierer_kfz($positionen, $optionen = false) 
     {
