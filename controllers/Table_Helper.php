@@ -291,7 +291,7 @@ class Table_Helper {
                     <?php echo $position['artikel_name']; ?>
                 </td>
                 <td>
-                    <?php echo $this->helper->escape_html($position['artikel_beschreibung']); ?>
+                    <?php echo $this->helper->replace_rn_with_br($position['artikel_beschreibung']); ?>
                 </td>
                 <td>
                     <?php echo $position['artikel_menge']; ?>
@@ -322,7 +322,7 @@ class Table_Helper {
                     <?php echo $position['artikel_name']; ?>
                     <?php 
                         if($position['artikel_beschreibung'] != '') {
-                            echo $this->helper->string_neue_zeilen($this->helper->escape_html($position['artikel_beschreibung']), 30); 
+                            echo $this->helper->string_neue_zeilen($this->helper->replace_rn_with_br($position['artikel_beschreibung']), 30); 
                         }
                     ?>
                 </td>
@@ -362,7 +362,7 @@ class Table_Helper {
                     <?php echo $position['artikel_name']; ?>
                     <?php 
                         if($position['artikel_beschreibung'] != '') {
-                            echo $this->helper->string_neue_zeilen($this->helper->escape_html($position['artikel_beschreibung']), 30); 
+                            echo $this->helper->string_neue_zeilen($this->helper->replace_rn_with_br($position['artikel_beschreibung']), 30); 
                         }
                     ?>
                 </td>
@@ -474,7 +474,7 @@ class Table_Helper {
                     <?php echo $position['artikel_name']; ?>
                     <?php 
                         if($position['artikel_beschreibung'] != '') {
-                            echo $this->helper->string_neue_zeilen($this->helper->escape_html($position['artikel_beschreibung']), 30); 
+                            echo $this->helper->string_neue_zeilen($this->helper->replace_rn_with_br($position['artikel_beschreibung']), 30); 
                         }
                     ?>
                 </td>
@@ -516,7 +516,7 @@ class Table_Helper {
                     <?php echo $position['artikel_name']; ?>
                 </td>
                 <td>
-                    <?php echo $this->helper->escape_html($position['beschreibung']); ?>
+                    <?php echo $this->helper->replace_rn_with_br($position['beschreibung']); ?>
                 </td>
                 <td>
                     <?php echo $position['menge']; ?>

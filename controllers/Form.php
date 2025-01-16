@@ -1369,34 +1369,61 @@
 							); 
 						?>
 						<div class="modal-body">
-							<?php 
-								$this->input_disabled(
-									'', 
-									'Angebotsnummer',
-									'angebotsnummer'
-								);
-								$this->kunde();
-								$this->input_date(
-									'Angebotsdatum', 
-									'angebotsdatum', 
-									date('d.m.Y'), 
-									'', 
-									$required = true
-								);
-								$this->input_date(
-									'Fällig am', 
-									'faellig_am', 
-									date('d.m.Y', strtotime(date('Y-m-d'). ' + 14 days')), 
-									'', 
-									$required = true
-								);
-								$this->button(
-									'js_modal_angebot_anlegen_submit', 
-									'Angebot anlegen', 
-									'btn btn-success', 
-									false
-								);
-							?>
+							<div class="row">
+								<div class="col-md-4">
+									<?php 
+										$this->input_disabled(
+											'', 
+											'Angebotsnummer',
+											'angebotsnummer'
+										);
+									?>
+								</div>
+								<div class="col-md-4">
+									<?php 
+										$this->input_date(
+											'Angebotsdatum', 
+											'angebotsdatum', 
+											date('d.m.Y'), 
+											'', 
+											$required = true
+										);
+									?>
+								</div>
+								<div class="col-md-4">
+									<?php 
+										$this->input_date(
+											'Fällig am', 
+											'faellig_am', 
+											date('d.m.Y', strtotime(date('Y-m-d'). ' + 14 days')), 
+											'', 
+											$required = true
+										);
+									?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->kunde();
+									?>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->button(
+											'js_modal_angebot_anlegen_submit', 
+											'Angebot anlegen', 
+											'btn btn-success', 
+											false
+										);
+									?>
+								</div>
+							</div>
+								
 						</div>
 					</div>
 				</div>
@@ -1493,7 +1520,7 @@
 						?>
 						<div class="modal-body">
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-9">
 									<?php 
 										$this->artikel(
 											true,
@@ -1502,10 +1529,22 @@
 										); 
 									?>
 								</div>
+								<div class="col-md-3">
+									<?php
+										$this->input_number(
+											'Menge', 
+											$praefix.'menge', 
+											'', 
+											'', 
+											$required = true
+										);
+									?>
+								</div>
 							</div>
+
 							<?php if($this->einstellungen['rechnung_datum_nach_leistungsdatum'] == '0') { ?>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<?php
 											$this->select(
 												'Abrechnungszyklus',
@@ -1513,31 +1552,6 @@
 												'',
 												'',
 												true
-											);
-										?>
-									</div>
-									<div class="col-md-6">
-										<?php
-											$this->input_number(
-												'Menge', 
-												$praefix.'menge', 
-												'', 
-												'', 
-												$required = true
-											);
-										?>
-									</div>
-								</div>
-							<?php } else { ?>
-								<div class="row">
-									<div class="col-md-12">
-										<?php
-											$this->input_number(
-												'Menge', 
-												$praefix.'menge', 
-												'', 
-												'', 
-												$required = true
 											);
 										?>
 									</div>
@@ -1849,7 +1863,7 @@
 						?>
 						<div class="modal-body">
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-9">
 									<?php 
 										$this->input_text(
 											'Artikelname', 
@@ -1860,9 +1874,7 @@
 										);
 									?>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-3">
 									<?php
 										$this->input_number(
 											'Menge', 
@@ -1873,6 +1885,8 @@
 										);
 									?>
 								</div>
+							</div>
+							<div class="row">
 								<div class="col-md-6">
 									<?php 
 										$this->einheit(
@@ -1882,8 +1896,6 @@
 										); 
 									?>
 								</div>
-							</div>
-							<div class="row">
 								<div class="col-md-6">
 									<?php
 										$this->input_waehrung(
@@ -1895,20 +1907,33 @@
 										);
 									?>
 								</div>
-								<div class="col-md-6">
-									<?php
-										$this->input_waehrung(
-											'Einrichtungsgebühr', 
-											$praefix.'einrichtungsgebuehr', 
-											'', 
-											'', 
-											$required = false
-										);
-									?>
-								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-6">
+								<?php if($this->einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0') { ?>
+									<div class="col-md-4">
+										<?php
+											$this->input_waehrung(
+												'Einrichtungsgebühr', 
+												$praefix.'einrichtungsgebuehr', 
+												'', 
+												'', 
+												$required = false
+											);
+										?>
+									</div>
+								<?php } ?>
+								<?php if($this->einstellungen['rechnung_datum_nach_leistungsdatum'] == '0') { ?>
+									<div class="col-md-4">
+										<?php 
+											$this->zyklus(
+												true,
+												'',
+												$praefix.'zyklus_id'
+											); 
+										?>
+									</div>
+								<?php } ?>
+								<div class="col-md-4">
 									<?php 
 										$this->artikel_typ(
 											true,
@@ -1917,17 +1942,8 @@
 										); 
 									?>
 								</div>
-								<div class="col-md-6">
-									<?php 
-										$this->zyklus(
-											true,
-											'',
-											$praefix.'zyklus_id'
-										); 
-									?>
-								</div>
 							</div>
-
+							
 							<?php 
 								if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); 
 								if(isset($this->aktive_module['teppichreinigung'])) $this->get_rechnung_angebot_position_teppichreinigung($praefix); 
@@ -1936,7 +1952,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<?php 
-										$this->wysiwyg(
+										$this->textarea(
 											'Beschreibung', 
 											$praefix.'beschreibung', 
 											'', 
