@@ -136,8 +136,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <?php 
-                                $c_form->button_submit(
-                                    'btn_angebot_bearbeiten_submit', 
+                                $c_form->button(
+                                    'js_btn_angebot_speichern', 
                                     'Änderungen speichern', 
                                     'btn btn-success'
                                 );

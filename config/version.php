@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.3';
+    $version['nummer'] = '2.4';
  
     $versionen = array(
+        '2.4' => array(
+            'Bugifixing: Rechnung & Angebot Update Funktion'
+        ),
         '2.3' => array(
             'CSS Anpassungen & Angebot Modul Teppichrenigung'
         ),

@@ -18,6 +18,7 @@
 	11. Rechnung Zahlungserinnerung zeigen
 	12. Rechnung drucken
 	13. Rechnung Vorschau PDF generieren
+    14. Rechnung Änderungen speichern
 
 
 ========================================*/
@@ -918,3 +919,74 @@
         });
 
     });
+
+
+/*-----------------
+	14. Rechnung Änderungen speichern
+-----------------------*/
+
+$('#js_btn_rechnung_speichern').click(function() { 
+    Locker.lock(true);
+        
+    var required_fields = [
+        '#kunde_id',
+        '#rechnungsdatum',
+        '#faellig_am'
+    ];
+
+    var valid = check_required_fields(required_fields);
+
+    if(valid == false) {
+        fehlermeldung('Bitte alle Pflichtfelder eingeben');
+        Locker.lock(false);
+        return;
+    }
+
+    ajax_rechnung_aenderungen_speichern({
+        'rechnung_id'       : $('#rechnung_id').val(),
+        'kunde_id'          : $(required_fields[0]).val(),
+        'rechnungsdatum'    : $(required_fields[1]).val(),
+        'faellig_am'        : $(required_fields[2]).val(),
+        'bedingungen'       : $('#bedingungen').val(),
+        'zusatz_text'       : $('#zusatz_text').val()
+        
+
+    });
+
+    function ajax_rechnung_aenderungen_speichern(fields) {
+       
+        var data = {
+            action          : "rechnung_update",
+            rechnung_id     : fields.rechnung_id,
+            kunde_id        : fields.kunde_id,
+            rechnungsdatum  : fields.rechnungsdatum,
+            faellig_am      : fields.faellig_am,
+            bedingungen     : fields.bedingungen,
+            zusatz_text     : fields.zusatz_text
+        };
+
+        $.ajax({
+            url: siteurl + "controllers/AJAX.php",
+            type: "POST",
+            data: data,
+            success: function (success) {
+                var obj = jQuery.parseJSON(success);
+                if(obj.result == true) {
+                    location.reload();
+                } else {
+                    console.log(obj);
+                    fehlermeldung();
+
+                } 
+                Locker.lock(false);
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                fehlermeldung();
+                Locker.lock(false);
+            }
+        });
+
+    }
+
+});

@@ -140,7 +140,7 @@
                                         'Bedingungen', 
                                         'bedingungen', 
                                         $buff['bedingungen'], 
-                                        $required = true
+                                        false
                                     );
                                 ?>
                             </div>
@@ -162,7 +162,7 @@
                             <div class="col-md-12">
                                 <?php 
                                     $c_form->button_submit(
-                                        'btn_rechnung_bearbeiten_submit', 
+                                        'js_btn_rechnung_speichern', 
                                         'Änderungen speichern', 
                                         'btn btn-success'
                                     );

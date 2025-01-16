@@ -11,6 +11,7 @@
 	3.  Angebot Position bearbeiten
 	4.  Angebot Position löschen
 	5.  Angebot an Kunde senden
+    6.  Angebot Änderungen speichern
 
 ========================================*/
 
@@ -497,5 +498,79 @@ $('.js_angebot_kunde_senden').click(function() {
             Locker.lock(false);
         }
     });
+
+});
+
+
+/*-----------------
+	6. Angebot Änderungen speichern
+-----------------------*/
+
+$('#js_btn_angebot_speichern').click(function() { 
+    Locker.lock(true);
+        
+    var required_fields = [
+        '#kunde_id',
+        '#status',
+        '#angebotsdatum',
+        '#faellig_am'
+    ];
+
+    var valid = check_required_fields(required_fields);
+
+    if(valid == false) {
+        fehlermeldung('Bitte alle Pflichtfelder eingeben');
+        Locker.lock(false);
+        return;
+    }
+
+    ajax_angebot_aenderungen_speichern({
+        'angebot_id'        : $('#angebot_id').val(),
+        'kunde_id'          : $(required_fields[0]).val(),
+        'status'            : $(required_fields[1]).val(),
+        'angebotsdatum'     : $(required_fields[2]).val(),
+        'faellig_am'        : $(required_fields[3]).val(),
+        'bedingungen'       : $('#bedingungen').val(),
+        'zusatz_text'       : $('#zusatz_text').val()
+        
+
+    });
+
+    function ajax_angebot_aenderungen_speichern(fields) {
+       
+        var data = {
+            action          : "angebot_update",
+            angebot_id      : fields.angebot_id,
+            kunde_id        : fields.kunde_id,
+            status          : fields.status,
+            angebotsdatum   : fields.angebotsdatum,
+            faellig_am      : fields.faellig_am,
+            bedingungen     : fields.bedingungen,
+            zusatz_text     : fields.zusatz_text
+        };
+
+        $.ajax({
+            url: siteurl + "controllers/AJAX.php",
+            type: "POST",
+            data: data,
+            success: function (success) {
+                var obj = jQuery.parseJSON(success);
+                if(obj.result == true) {
+                    location.reload();
+                } else {
+                    console.log(obj);
+                    fehlermeldung();
+
+                } 
+                Locker.lock(false);
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                fehlermeldung();
+                Locker.lock(false);
+            }
+        });
+
+    }
 
 });

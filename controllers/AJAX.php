@@ -165,7 +165,8 @@ class AJAX
 		else if($this->action == 'abonnement_rechnungen_erstellen')                  $this->abonnement_rechnungen_erstellen();
 		else if($this->action == 'datenback_backup_erstellen')                       $this->datenback_backup_erstellen();
 		else if($this->action == 'delete_backup')   			                     $this->delete_backup();
-
+		else if($this->action == 'angebot_update')   			                     $this->angebot_update();
+		else if($this->action == 'rechnung_update')   			                     $this->rechnung_update();
 
 		
 		
@@ -1375,6 +1376,36 @@ class AJAX
 		echo json_encode(array(
 			'result' => $result
 		));
+	}
+
+	public function angebot_update()
+	{
+		$this->validate_required_field(array(
+			'angebot_id', 'kunde_id', 'status', 'angebotsdatum', 'faellig_am'
+		));
+
+	
+		$result = $this->angebot->update($_POST);
+
+		echo json_encode(array(
+			'result' => $result
+		));
+
+	}
+
+	public function rechnung_update()
+	{
+		$this->validate_required_field(array(
+			'rechnung_id', 'kunde_id', 'rechnungsdatum', 'faellig_am'
+		));
+
+	
+		$result = $this->rechnung->update($_POST);
+
+		echo json_encode(array(
+			'result' => $result
+		));
+
 	}
 
 }
