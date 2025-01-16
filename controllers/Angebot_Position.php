@@ -211,7 +211,7 @@ class Angebot_Position {
     public function insert_position($post)
     {
 
-        $artikel   = $this->artikel->get($values['artikel_id']);
+        $artikel   = $this->artikel->get($post['artikel_id']);
         $preis     = $artikel['preis'];
         $zyklus_id = $artikel['fk_zyklus_id'];
 
