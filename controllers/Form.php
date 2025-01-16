@@ -205,6 +205,8 @@
 
 		public function format_textarea_value($value) 
 		{
+			$value = str_replace("\n\n", "&#13;&#10;", $value);
+			$value = str_replace("\\n\\n", "&#13;&#10;", $value);
 			$value = str_replace("\\r\\n", "&#13;&#10;", $value);
 			return $value;
 		}
