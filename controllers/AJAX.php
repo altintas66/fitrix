@@ -565,7 +565,6 @@ class AJAX
 				'artikel_name', 
 				'menge', 
 				'netto_preis', 
-				'beschreibung', 
 				'artikel_typ_id', 
 			)
 		);
