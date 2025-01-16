@@ -239,7 +239,9 @@ class Angebot_Position {
             'fahrzeug_marke'                     => $values['fahrzeug_marke'],
 			'fahrzeug_modell'                    => $values['fahrzeug_modell'],
 			'fahrzeug_kennzeichen'               => $values['fahrzeug_kennzeichen'],
-			'fahrzeug_fin'                       => $values['fahrzeug_fin']
+			'fahrzeug_fin'                       => $values['fahrzeug_fin'],
+            'teppichlaenge_laenge'               => $values['teppichlaenge_laenge'],
+			'teppichlaenge_breite'               => $values['teppichlaenge_breite']
         ));
 
         return $result;
