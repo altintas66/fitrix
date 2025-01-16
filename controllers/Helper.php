@@ -149,7 +149,9 @@ class Helper {
 
 	public function get_key_values_from_kunde($kunden) 
 	{
-		global $einstellungen;
+		global $c_einstellungen;
+		$einstellungen = $c_einstellungen->get_all();
+		
 		if($kunden == null) return array();
 		if(is_array($kunden) == false) return array();
 		$results = array();
