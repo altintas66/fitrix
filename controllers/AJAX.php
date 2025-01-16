@@ -523,16 +523,7 @@ class AJAX
 			array('angebot_id', 'artikel_id', 'menge', 'zyklus_id')
 		);
 
-		$result = $this->angebot_position->insert_position(array(
-			'angebot_id'           => $_POST['angebot_id'],
-			'artikel_id'           => $_POST['artikel_id'],
-			'menge'                => $_POST['menge'],
-			'zyklus_id'            => $_POST['zyklus_id'],
-			'fahrzeug_marke'       => $_POST['fahrzeug_marke'],
-			'fahrzeug_modell'      => $_POST['fahrzeug_modell'],
-			'fahrzeug_kennzeichen' => $_POST['fahrzeug_kennzeichen'],
-			'fahrzeug_fin'         => $_POST['fahrzeug_fin']
-		));
+		$result = $this->angebot_position->insert_position($_POST);
 
 		echo json_encode($result);
 	}
@@ -545,17 +536,7 @@ class AJAX
 			array('angebot_id', 'artikel_name', 'einheit_id', 'menge', 'artikel_typ_id', 'zyklus_id', 'einrichtungsgebuehr', 'netto_preis', 'beschreibung')
 		);
 
-		$result = $this->angebot_position->insert_individuelle_position(array(
-			'angebot_id'           => $_POST['angebot_id'],
-			'artikel_name'         => $_POST['artikel_name'],
-			'einheit_id'           => $_POST['einheit_id'],
-			'menge'                => $_POST['menge'],
-			'artikel_typ_id'       => $_POST['artikel_typ_id'],
-			'zyklus_id'            => $_POST['zyklus_id'],
-			'einrichtungsgebuehr'  => $_POST['einrichtungsgebuehr'],
-			'netto_preis'          => $_POST['netto_preis'],
-			'beschreibung'         => $_POST['beschreibung']
-		));
+		$result = $this->angebot_position->insert_individuelle_position($_POST);
 
 		echo json_encode($result);
 	}
@@ -689,15 +670,7 @@ class AJAX
 			)
 		);	
 
-		$result = $this->abonnement_vertrag->insert_vertrag_produkt(array(
-			'abonnement_id'        => $_POST['abonnement_id'],
-			'artikel_id'           => $_POST['artikel_id'],
-			'artikel_menge'        => $_POST['artikel_menge'],
-			'zahlungsart_id'       => $_POST['zahlungsart_id'],
-			'start'                => $_POST['start'],
-			'ende'                 => $_POST['ende'],
-			'zyklus_id'            => $_POST['zyklus_id']
-		));
+		$result = $this->abonnement_vertrag->insert_vertrag_produkt($_POST);
 
 		echo json_encode($result);
 	}
@@ -720,19 +693,7 @@ class AJAX
 			)
 		);		
 
-		$result = $this->abonnement_vertrag->insert_vertrag_individuelle_position(array( 
-			'abonnement_id'            => $_POST['abonnement_id'],
-			'artikel_name'             => $_POST['artikel_name'],
-			'artikel_menge'            => $_POST['artikel_menge'],
-			'artikel_preis'            => $_POST['artikel_preis'],
-			'zahlungsart_id'           => $_POST['zahlungsart_id'],
-			'einheit_id'               => $_POST['einheit_id'],
-			'artikel_typ_id'           => $_POST['artikel_typ_id'],
-			'zyklus_id'                => $_POST['zyklus_id'],
-			'start'                    => $_POST['start'],
-			'ende'                     => $_POST['ende'],
-			'artikel_beschreibung'     => $_POST['artikel_beschreibung']
-		));
+		$result = $this->abonnement_vertrag->insert_vertrag_individuelle_position($_POST);
 
 		echo json_encode($result);
 	}
@@ -755,11 +716,7 @@ class AJAX
 			array('kunde_id', 'rechnungsdatum', 'faellig_am')
 		);
 
-		$result = $this->rechnung->insert(array(
-			'kunde_id'       => $_POST['kunde_id'],
-			'rechnungsdatum' => $_POST['rechnungsdatum'],
-			'faellig_am'     => $_POST['faellig_am']
-		));
+		$result = $this->rechnung->insert($_POST);
 
 
 		echo json_encode($result);
@@ -772,19 +729,7 @@ class AJAX
 			array('rechnung_id', 'artikel_id', 'menge', 'zyklus_id', 'leistungsdatum')
 		);
 
-		$result = $this->rechnung_position->insert_artikel_position(array(
-			'rechnung_id'                => $_POST['rechnung_id'],
-			'artikel_id'                 => $_POST['artikel_id'],
-			'menge'                      => $_POST['menge'],
-			'zyklus_id'                  => $_POST['zyklus_id'],
-			'leistungsdatum'             => $_POST['leistungsdatum'],
-			'fahrzeug_marke'             => $_POST['fahrzeug_marke'],
-			'fahrzeug_modell'            => $_POST['fahrzeug_modell'],
-			'fahrzeug_kennzeichen'       => $_POST['fahrzeug_kennzeichen'],
-			'fahrzeug_fin'               => $_POST['fahrzeug_fin'],
-			'teppichreinigung_laenge'    => $_POST['teppichreinigung_laenge'],
-			'teppichreinigung_breite'    => $_POST['teppichreinigung_breite']
-		));
+		$result = $this->rechnung_position->insert_artikel_position($_POST);
 
 		echo json_encode($result);
 
@@ -801,23 +746,7 @@ class AJAX
 			'artikel_typ_id',
 		));
 
-		$result = $this->rechnung_position->insert_individuelle_position(array(
-			'rechnung_id'            => $_POST['rechnung_id'],
-			'artikel_name'           => $_POST['artikel_name'],
-			'artikel_beschreibung'   => $_POST['artikel_beschreibung'],
-			'artikel_preis'          => $_POST['artikel_preis'],
-			'artikel_menge'          => $_POST['artikel_menge'],
-			'einheit_id'             => $_POST['einheit_id'],
-			'artikel_typ_id'         => $_POST['artikel_typ_id'],
-			'zyklus_id'              => $_POST['zyklus_id'],
-			'abrechnungszeitrum_von' => $_POST['abrechnungszeitrum_von'],
-			'abrechnungszeitrum_bis' => $_POST['abrechnungszeitrum_bis'],
-			'leistungsdatum'         => $_POST['leistungsdatum'],
-			'fahrzeug_marke'         => $_POST['fahrzeug_marke'],
-			'fahrzeug_modell'        => $_POST['fahrzeug_modell'],
-			'fahrzeug_kennzeichen'   => $_POST['fahrzeug_kennzeichen'],
-			'fahrzeug_fin'           => $_POST['fahrzeug_fin']
-		));
+		$result = $this->rechnung_position->insert_individuelle_position($_POST);
 
 
 		echo json_encode($result);
