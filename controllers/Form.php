@@ -1445,34 +1445,65 @@
 							); 
 						?>
 						<div class="modal-body">
-							<?php 
-								$this->input_disabled(
-									'', 
-									'Rechnungsnummer',
-									'rechnungsnummer'
-								);
-								$this->kunde();
-								$this->input_date(
-									'Rechnungsdatum', 
-									'rechnungsdatum', 
-									$this->helper->german_date_no_time($heute), 
-									'', 
-									$required = true
-								);
-								$this->input_date(
-									'Fällig am', 
-									'faellig_am', 
-									$this->helper->german_date_no_time($faellig_am), 
-									'', 
-									$required = true
-								);
-								$this->button(
-									'js_modal_rechnung_anlegen_submit', 
-									'Rechnung anlegen', 
-									'btn btn-success', 
-									false
-								);
-							?>
+							
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->input_disabled(
+											'', 
+											'Rechnungsnummer',
+											'rechnungsnummer'
+										);
+									?>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->kunde();
+									?>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<?php 
+										$this->input_date(
+											'Rechnungsdatum', 
+											'rechnungsdatum', 
+											$this->helper->german_date_no_time($heute), 
+											'', 
+											$required = true
+										);
+									?>
+								</div>
+								<div class="col-md-6">
+									<?php 
+										$this->input_date(
+											'Fällig am', 
+											'faellig_am', 
+											$this->helper->german_date_no_time($faellig_am), 
+											'', 
+											$required = true
+										);
+									?>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->button(
+											'js_modal_rechnung_anlegen_submit', 
+											'Rechnung anlegen', 
+											'btn btn-success', 
+											false
+										);
+									?>
+								</div>
+							</div>
+							
 						</div>
 					</div>
 				</div>

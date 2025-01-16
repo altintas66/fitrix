@@ -232,7 +232,7 @@ class Angebot {
 			".intval($kunde["mwst_satz"]).",
 			".floatval($netto_betrag).",
 			".floatval($brutto_betrag).",
-			'".$this->helper->replace_rn_with_br($einstellungen["angebot_bedingungen"])."',
+			'".$einstellungen["angebot_bedingungen"]."',
 			'".$zusatz_text."',
 			'0',
 			NULL,

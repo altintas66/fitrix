@@ -311,7 +311,7 @@ class Rechnung {
 				'0',
 				NULL,
 				'', 
-				'".$this->helper->replace_rn_with_br($einstellungen["rechnung_bedingungen"])."', 
+				'".$einstellungen["rechnung_bedingungen"]."', 
 				".intval($mwst['steuersatz']).",
 				0,
 				0,
