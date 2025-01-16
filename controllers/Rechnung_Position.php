@@ -377,6 +377,7 @@ class Rechnung_Position {
         
         $sql = "DELETE FROM ".$this->get_tablename()." WHERE id = ".intval($id)." AND fk_rechnung_id = ".intval($rechnung_id);
         $result = $this->db->delete($sql);
+		$this->optionale_felder->delete($id);
 		$this->generiere_pdf($rechnung_id);
         return $result;
     }

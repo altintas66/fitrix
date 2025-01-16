@@ -144,6 +144,12 @@ class Rechnung_Position_Optionale_Felder {
 		return $this->db->update($sql);	
 	}
 
+	public function delete($rechnung_position_id)
+	{
+		$sql = "DELETE FROM ".$this->get_tablename()." WHERE fk_rechnung_position_id = ".intval($rechnung_position_id);
+		return $this->db->delete();
+	}
+
 
 		
 }

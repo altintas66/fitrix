@@ -321,7 +321,7 @@ class Angebot_Position {
         global $c_angebot;
         $sql = "DELETE FROM ".$this->get_tablename()." WHERE id = ".intval($id)." AND fk_angebot_id = ".intval($angebot_id);
         $result = $this->db->delete($sql);
-
+        $this->optionale_felder->delete($id);
         $c_angebot->generiere_pdf($angebot_id);
 
         return $result; 
