@@ -543,6 +543,8 @@ class Helper {
 
 	public function replace_rn_with_br($text) 
 	{
+		$text = str_replace("\\n\\n", '<br><br>', $text);
+		$text = str_replace("\\n", '<br>', $text);
 		$text = str_replace("\\r\\n", '<br>', $text);
 		return $text;
 	}
