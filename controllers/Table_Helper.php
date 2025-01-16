@@ -502,8 +502,8 @@ class Table_Helper {
                     <?php echo $position['einheit_bezeichnung']; ?>
                 </td>
                 <td>
-                    <?php echo $position['teppichreinigung_laenge']; ?><br>
-                    <?php echo $position['teppichreinigung_breite']; ?>
+                    Länge: <?php echo $position['teppichreinigung_laenge']; ?><br>
+                    Breite: <?php echo $position['teppichreinigung_breite']; ?>
                 </td>
                 <?php if($this->einstellungen['artikel_einrichtungsgebuehr_ausblenden'] == '0'){ ?>
                     <?php echo $this->html->waehrung($position['einrichtungsgebuehr']); ?>
