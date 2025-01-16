@@ -147,7 +147,7 @@ class Angebot_Position_Optionale_Felder {
 	public function delete($angebot_position_id)
 	{
 		$sql = "DELETE FROM ".$this->get_tablename()." WHERE fk_angebot_position_id = ".intval($angebot_position_id);
-		return $this->db->delete();
+		return $this->db->delete($sql);
 	}
 		
 }
