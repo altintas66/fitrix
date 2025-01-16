@@ -441,7 +441,6 @@ class Rechnung {
 			UPDATE ".$this->get_tablename()." SET 
 				bearbeitet_am          = '".$date."',
 				fk_kunde_id            = ".intval($values['kunde_id']).",
-				status                 = '".$values['status']."',
 				rechnungsdatum         = '".$this->helper->english_date_no_time($values['rechnungsdatum'])."',
 				faellig_am             = '".$this->helper->english_date_no_time($values['faellig_am'])."',
 				bedingungen            = '".$values['bedingungen']."',
