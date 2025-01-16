@@ -127,10 +127,10 @@ class Angebot_Position_Optionale_Felder {
 		@var: post array
 	**/
 	
-	public function update($post) 
+	public function update($post, $angebot_position_id) 
 	{
 
-		$values = $this->helper->escape_values($post, $angebot_position_id);
+		$values = $this->helper->escape_values($post);
         
 		$sql ="
 			UPDATE ".$this->get_tablename()." SET 
