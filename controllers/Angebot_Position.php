@@ -210,7 +210,7 @@ class Angebot_Position {
 
     public function insert_position($post)
     {
-        $values    = $this->helper->escape_values($post); 
+
         $artikel   = $this->artikel->get($values['artikel_id']);
         $preis     = $artikel['preis'];
         $zyklus_id = $artikel['fk_zyklus_id'];
@@ -222,8 +222,8 @@ class Angebot_Position {
 
 
         $result = $this->insert(array(
-            'angebot_id'                         => $values['angebot_id'],
-			'artikel_id'                         => $values['artikel_id'],
+            'angebot_id'                         => $post['angebot_id'],
+			'artikel_id'                         => $post['artikel_id'],
             'zyklus_id'                          => $zyklus_id,
             'artikel_typ_id'                     => $artikel['fk_einheit_id'],
             'einheit_id'                         => $artikel['fk_artikel_typ_id'],
@@ -231,17 +231,17 @@ class Angebot_Position {
 			'artikel_name'                       => $artikel['artikel_name'],
 			'beschreibung'                       => $artikel['artikel_beschreibung_angebot'],
 			'netto_preis'                        => $preis,
-			'menge'                              => $values['menge'],
+			'menge'                              => $post['menge'],
 			'vertragslaufzeit'                   => $artikel['vertragslaufzeit'],
 			'vertragslaufzeit_kuendigungsfrist'  => $artikel['vertragslaufzeit_kuendigungsfrist'],
 			'vertragslaufzeit_monate'            => $artikel['vertragslaufzeit_monate'],
 			'einrichtungsgebuehr'                => $artikel['einrichtungsgebuehr'],
-            'fahrzeug_marke'                     => $values['fahrzeug_marke'],
-			'fahrzeug_modell'                    => $values['fahrzeug_modell'],
-			'fahrzeug_kennzeichen'               => $values['fahrzeug_kennzeichen'],
-			'fahrzeug_fin'                       => $values['fahrzeug_fin'],
-            'teppichlaenge_laenge'               => $values['teppichlaenge_laenge'],
-			'teppichlaenge_breite'               => $values['teppichlaenge_breite']
+            'fahrzeug_marke'                     => $post['fahrzeug_marke'],
+			'fahrzeug_modell'                    => $post['fahrzeug_modell'],
+			'fahrzeug_kennzeichen'               => $post['fahrzeug_kennzeichen'],
+			'fahrzeug_fin'                       => $post['fahrzeug_fin'],
+            'teppichlaenge_laenge'               => $post['teppichlaenge_laenge'],
+			'teppichlaenge_breite'               => $post['teppichlaenge_breite']
         ));
 
         return $result;

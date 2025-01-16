@@ -564,12 +564,9 @@ class AJAX
 				'angebot_position_id', 
 				'artikel_name', 
 				'menge', 
-				'einrichtungsgebuehr', 
 				'netto_preis', 
 				'beschreibung', 
 				'artikel_typ_id', 
-				'einheit_id', 
-				'zyklus_id'
 			)
 		);
 

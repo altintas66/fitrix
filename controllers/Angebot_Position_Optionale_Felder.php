@@ -114,6 +114,7 @@ class Angebot_Position_Optionale_Felder {
 			'".$values["teppichreinigung_breite"]."'
 		)";
 
+
 		return array(
 			'id'     => $this->db->get_last_inserted_id(), 
 			'result' => $this->db->insert($sql)
