@@ -50,7 +50,6 @@
                 if($angebot['positionen'] != null) { 
                     $c_table_helper->get_angebot_table_positionen($angebot['positionen'], true);
                 }
-                
             ?>
         </table>
  
