@@ -352,9 +352,11 @@ class Rechnung {
 			
 			$zuletzt_vergebene_rechnungsnummer = intval($this->einstellungen['zuletzt_vergebene_rechnungsnummer']);
 
+			$zuletzt_vergebene_rechnungsnummer++;
+
 			$this->einstellungen_controller->sql_update(
 				'zuletzt_vergebene_rechnungsnummer', 
-				($zuletzt_vergebene_rechnungsnummer + 1)
+				$zuletzt_vergebene_rechnungsnummer
 			); 
 
 			return $zuletzt_vergebene_rechnungsnummer;
