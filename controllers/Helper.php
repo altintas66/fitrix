@@ -549,4 +549,23 @@ class Helper {
 		return $text;
 	}
 
+	public function get_gesamt_preis_position($preis, $menge, $post, $aktive_module)
+	{
+		$preis = floatval($preis);
+		$menge = intval($menge);
+
+		if(isset($aktive_module['teppichreinigung'])) {
+
+			$laenge = floatval($this->format_number_for_db($post['teppichreinigung_laenge']));
+			$breite = floatval($this->format_number_for_db($post['teppichreinigung_breite']));
+
+			$qm = $laenge * $breite;
+
+			return floatval(($preis * $qm) * $menge);
+
+		} else {
+			return floatval($preis * $menge);
+		}
+	}
+
 }

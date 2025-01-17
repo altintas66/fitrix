@@ -200,7 +200,7 @@
     $c_ansprechpartner                       = new Ansprechpartner($c_db, $c_helper, $c_kunde);
     $c_mahnung                               = new Mahnung($c_db, $c_helper, $c_email, $einstellungen);
     $c_rechnung_position_optionale_felder    = new Rechnung_Position_Optionale_Felder($c_db, $c_helper, $aktive_module);
-    $c_rechnung_position                     = new Rechnung_Position($c_db, $c_helper, $c_artikel, $c_einheit, $c_zyklus, $c_artikel_typ, $c_artikel_preis, $c_rechnung_position_optionale_felder, $einstellungen);
+    $c_rechnung_position                     = new Rechnung_Position($c_db, $c_helper, $c_artikel, $c_einheit, $c_zyklus, $c_artikel_typ, $c_artikel_preis, $c_rechnung_position_optionale_felder, $einstellungen, $aktive_module);
     $c_rechnung_qualityhosting               = new Rechnung_Qualityhosting($c_db, $c_helper);
     $c_rechnung_ticket                       = new Rechnung_Ticket($c_db, $c_helper);
     $c_rechnung_zahlung                      = new Rechnung_Zahlung($c_db, $c_helper, $c_zahlungsart);
@@ -209,7 +209,7 @@
     $c_parkwin                               = new Parkwin($c_helper);
     $c_api                                   = new API($c_helper, $c_email);
     $c_angebot_position_optionale_felder     = new Angebot_Position_Optionale_Felder($c_db, $c_helper, $aktive_module);
-    $c_angebot_position                      = new Angebot_Position($c_db, $c_helper, $c_artikel, $c_einheit, $c_artikel_typ, $c_artikel_preis, $c_zyklus, $c_angebot_position_optionale_felder);
+    $c_angebot_position                      = new Angebot_Position($c_db, $c_helper, $c_artikel, $c_einheit, $c_artikel_typ, $c_artikel_preis, $c_zyklus, $c_angebot_position_optionale_felder, $aktive_module);
     $c_angebot                               = new Angebot($c_db, $c_helper, $c_kunde, $c_angebot_position, $c_pdf, $c_einstellungen);
     
     

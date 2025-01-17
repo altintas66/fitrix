@@ -110,8 +110,8 @@ class Rechnung_Position_Optionale_Felder {
 			'".$values["fahrzeug_modell"]."',
             '".$values["fahrzeug_kennzeichen"]."',
             '".$values["fahrzeug_fin"]."',
-			'".$values["teppichreinigung_laenge"]."',
-			'".$values["teppichreinigung_breite"]."'
+			".$this->helper->format_number_for_db($values["teppichreinigung_laenge"]).",
+			".$this->helper->format_number_for_db($values["teppichreinigung_breite"])."
 		)";
 
 		return array(
@@ -137,8 +137,8 @@ class Rechnung_Position_Optionale_Felder {
 				fahrzeug_modell          = '".$values['fahrzeug_modell']."',
                 fahrzeug_kennzeichen     = '".$values['fahrzeug_kennzeichen']."',
                 fahrzeug_fin             = '".$values['fahrzeug_fin']."',
-				teppichreinigung_laenge  = '".$values['teppichreinigung_laenge']."',
-				teppichreinigung_breite  = '".$values['teppichreinigung_breite']."'
+				teppichreinigung_laenge  = ".$this->helper->format_number_for_db($values['teppichreinigung_laenge']).",
+				teppichreinigung_breite  = ".$this->helper->format_number_for_db($values['teppichreinigung_breite'])."
 		WHERE fk_rechnung_position_id = ".intval($rechnung_position_id);
 
 		return $this->db->update($sql);	

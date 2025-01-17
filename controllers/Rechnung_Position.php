@@ -11,6 +11,7 @@ class Rechnung_Position {
 	private $artikel_preis;
 	private $optionale_felder;
 	private $einstellungen;
+	private $aktive_module;
 
 	
 	private $fields;
@@ -19,7 +20,7 @@ class Rechnung_Position {
 
 
 	
-	public function __construct($db, $helper, $artikel, $einheit, $zyklus, $artikel_typ, $artikel_preis, $optionale_felder, $einstellungen) 
+	public function __construct($db, $helper, $artikel, $einheit, $zyklus, $artikel_typ, $artikel_preis, $optionale_felder, $einstellungen, $aktive_module) 
 	{
 		$this->db                = $db;
 		$this->helper            = $helper;
@@ -30,6 +31,7 @@ class Rechnung_Position {
 		$this->artikel_preis     = $artikel_preis;
 		$this->optionale_felder  = $optionale_felder;
 		$this->einstellungen     = $einstellungen;
+		$this->aktive_module     = $aktive_module;
 
 		
 		$this->set_tablename();
@@ -58,6 +60,7 @@ class Rechnung_Position {
 			".$tablename.".artikel_einheit                              AS 'artikel_einheit', 
 			".$tablename.".artikel_artikel_typ                          AS 'artikel_artikel_typ', 
 			".$tablename.".artikel_zyklus                               AS 'artikel_zyklus', 
+			".$tablename.".gesamt_preis                                 AS 'gesamt_preis', 
 			".$tablename.".position                                     AS 'position',
 			rechnung_position_optionale_felder.fahrzeug_marke           AS 'fahrzeug_marke', 
 			rechnung_position_optionale_felder.fahrzeug_modell          AS 'fahrzeug_modell', 
@@ -158,6 +161,7 @@ class Rechnung_Position {
 
 		$values   = $this->helper->escape_values($post);
 		$date     = $this->helper->get_english_datetime_now();
+		$gesamt_preis =
 	
 		$sql = "INSERT INTO ".$this->get_tablename()." VALUES(
 				NULL, 
@@ -177,6 +181,7 @@ class Rechnung_Position {
 				'".$post['artikel_einheit']."',
 				'".$post['artikel_artikel_typ']."',
 				'".$post['artikel_zyklus']."',
+				'".$this->get_gesamt_preis($post['artikel_preis'], $post['artikel_menge'], $post)."',
 				99
 			)";
 	
@@ -252,7 +257,8 @@ class Rechnung_Position {
             	artikel_beschreibung   = '".$values['beschreibung']."',
 				artikel_artikel_typ    = '".$values['artikel_artikel_typ']."',
 				artikel_einheit        = '".$values['artikel_einheit']."',
-				artikel_zyklus         = '".$values['artikel_zyklus']."'
+				artikel_zyklus         = '".$values['artikel_zyklus']."',
+				gesamt_preis           = ".$this->get_gesamt_preis($preis, $values['artikel_menge'], $post)."
 		WHERE ".$this->get_tablename().".id = ".intval($post[$this->get_tablename().'_id']);
 		$result = $this->db->update($sql);
 
@@ -490,6 +496,10 @@ class Rechnung_Position {
 		return $row;
 	}
 
+	public function get_gesamt_preis($preis, $menge, $post) 
+	{
+		return $this->helper->get_gesamt_preis_position($preis, $menge, $post, $this->aktive_module);
+	}
 
 	
 

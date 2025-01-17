@@ -10,6 +10,7 @@ class Angebot_Position {
     private $artikel_preis;
     private $zyklus;
     private $optionale_felder;
+    private $aktive_module;
 
     
     private $fields;
@@ -18,7 +19,7 @@ class Angebot_Position {
 
 
     
-    public function __construct($db, $helper, $artikel, $einheit, $artikel_typ, $artikel_preis, $zyklus, $optionale_felder) 
+    public function __construct($db, $helper, $artikel, $einheit, $artikel_typ, $artikel_preis, $zyklus, $optionale_felder, $aktive_module) 
     {
         
         $this->db                 = $db;
@@ -29,6 +30,7 @@ class Angebot_Position {
         $this->artikel_preis      = $artikel_preis;
         $this->zyklus             = $zyklus;
         $this->optionale_felder   = $optionale_felder;
+        $this->aktive_module      = $aktive_module;
 
         $this->set_tablename();
         $this->set_fields($this->get_tablename());
@@ -57,6 +59,7 @@ class Angebot_Position {
             ".$tablename.".vertragslaufzeit_kuendigungsfrist           AS 'vertragslaufzeit_kuendigungsfrist', 
             ".$tablename.".einrichtungsgebuehr                         AS 'einrichtungsgebuehr', 
             ".$tablename.".position                                    AS 'position', 
+            ".$tablename.".gesamt_netto                               AS 'gesamt_netto', 
             ".$tablename.".status                                      AS 'status',
 			zyklus.id                                                  AS 'zyklus_id',
 			zyklus.bezeichnung                                         AS 'zyklus_bezeichnung',
@@ -190,6 +193,7 @@ class Angebot_Position {
 			".intval($values["vertragslaufzeit_kuendigungsfrist"]).",
 			'".floatval($values['einrichtungsgebuehr'])."',
 			99,
+            '".$this->get_gesamt_preis($netto_preis, $values["menge"], $values)."',
             'sichtbar'
         )";
 
@@ -294,9 +298,11 @@ class Angebot_Position {
     public function update($post) 
     {
         global $c_angebot;
-        $values  = $this->helper->escape_values($post);
-        $date    = $this->helper->get_english_datetime_now();
-        $id      = $post['angebot_position_id'];
+
+        $values      = $this->helper->escape_values($post);
+        $date        = $this->helper->get_english_datetime_now();
+        $id          = $post['angebot_position_id'];
+        $netto_preis = $this->helper->format_waehrung_for_db($values["netto_preis"]);
         
 		$sql = "UPDATE ".$this->get_tablename()." SET 
             fk_einheit_id        = '".$values['einheit_id']."',
@@ -305,9 +311,10 @@ class Angebot_Position {
             bearbeitet_am        = '".$date."',
             artikel_name         = '".$values['artikel_name']."',
             beschreibung         = '".$values['beschreibung']."',
-            netto_preis          = '".$this->helper->format_waehrung_for_db($values["netto_preis"])."',
+            netto_preis          = '".$netto_preis."',
             menge                = ".intval($values['menge']).",
-            einrichtungsgebuehr  = '".$this->helper->format_waehrung_for_db($values["einrichtungsgebuehr"])."'
+            einrichtungsgebuehr  = '".$this->helper->format_waehrung_for_db($values["einrichtungsgebuehr"])."',
+            gesamt_preis         = ".$this->get_gesamt_preis($netto_preis, $values["menge"], $values).",
         WHERE ".$this->get_tablename().".id = ".intval($post['angebot_position_id']); 
         
         $result = $this->db->update($sql);
@@ -333,6 +340,11 @@ class Angebot_Position {
 	{
 		$this->optionale_felder->insert_update($post, $id);
 	}
+
+    public function get_gesamt_preis($preis, $menge, $post) 
+    {
+        return $this->helper->get_gesamt_preis_position($preis, $menge, $post, $this->aktive_module);
+    }
 
         
 }

@@ -138,6 +138,14 @@
 		<?php
 			if($label != false) $this->wrapper_end();
 		}
+
+		public function input_decimal($label, $name, $value = '', $placeholder = '', $required = false, $class = '', $custom = '') {
+			if($label != false) $this->wrapper_start($label, $required);
+		?>
+			<input autocomplete="off"  data-a-sign=" " data-a-dec="," data-a-sep="."  <?php if($required) echo 'required'; ?> class="autonumeric form-control <?php echo($class); ?>" type="number" id="<?php echo $name; ?>" <?php echo($custom); ?> name="<?php echo $name; ?>" value="<?php echo $value; ?>" placeholder="<?php echo $placeholder; ?>" />
+		<?php
+			if($label != false) $this->wrapper_end();
+		}
 		
 		public function input_password($label = false, $name, $value, $placeholder = '', $required = false) {
 		?>
@@ -1784,7 +1792,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<?php 
-						$this->input_text(
+						$this->input_decimal(
 							'Länge', 
 							$praefix.'teppichreinigung_laenge', 
 							'', 
@@ -1795,7 +1803,7 @@
 				</div>
 				<div class="col-md-6">
 					<?php
-						$this->input_text(
+						$this->input_decimal(
 							'Breite', 
 							$praefix.'teppichreinigung_breite', 
 							'', 

@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.5';
+    $version['nummer'] = '2.6';
  
     $versionen = array(
+        '2.6' => array(
+            'Teppichmodul Anpassungen'
+        ),
         '2.5' => array(
             'E-Mail Testmodus'
         ),
