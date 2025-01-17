@@ -47,8 +47,7 @@ class Email {
 	{
 		global $config, $einstellungen;
 
-		//$empfaenger_email = 'altintas@inoya.de';
-		$empfaenger_email = 'mh@inoya.de';
+		if(isset($config['email_test_modus']) && ($config['email_test_modus'] == true)) $empfaenger_email = 'altintas@inoya.de';
 
 		$phpMailer = $this->get_mail_connection();
 		$phpMailer->addAddress($empfaenger_email);
@@ -95,7 +94,7 @@ class Email {
 	public function administrator_email($nachricht) 
 	{
 		global $einstellungen, $config;
-		$empfaenger_email = 'mh@inoya.de';
+		$empfaenger_email = 'altintas@inoya.de';
 
 		$betreff = 'Datenbank Fehler '.$einstellungen['firmen_name'];
 		$inhalt = '<p>'.$nachricht.'</p>';

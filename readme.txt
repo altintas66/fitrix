@@ -10,8 +10,13 @@ Folgende Order anlegen und 777 Rechte vergeben
 * /backup/
 * /cache/
 * /pdf/
+   * /pdf/abonnements/
+   * /pdf/angebote/
+   * /pdf/mahnungen/
+   * /pdf/rechnungen
 * /upload/
 * /xml/
+   * /xml/rechnungen/
 
 
 In der Datenbank die erforderlichen Module unter "modul" aktivieren

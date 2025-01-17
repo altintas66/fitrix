@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.4';
+    $version['nummer'] = '2.5';
  
     $versionen = array(
+        '2.5' => array(
+            'E-Mail Testmodus'
+        ),
         '2.4' => array(
             'Bugifixing: Rechnung & Angebot Update Funktion'
         ),
