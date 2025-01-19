@@ -775,7 +775,8 @@ class AJAX
 		);
 
 		$position = $this->rechnung_position->get($_POST['rechnung_position_id']);
-		
+		$position['teppichreinigung_laenge'] = $this->helper->format_input_decimal($position['teppichreinigung_laenge']);
+		$position['teppichreinigung_breite'] = $this->helper->format_input_decimal($position['teppichreinigung_breite']);
 
 		echo json_encode(array(
 			'result' => $position

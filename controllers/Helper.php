@@ -568,4 +568,14 @@ class Helper {
 		}
 	}
 
+	public function format_input_decimal($value)
+	{
+		if($value == '') return '';
+		if($value == null) return '';
+		
+		$value = strval($value);
+		$value = str_replace(".", ",", $value);
+		return $value;
+	}
+
 }
