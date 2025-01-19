@@ -141,10 +141,21 @@
 
 		public function input_decimal($label, $name, $value = '', $placeholder = '', $required = false, $class = '', $custom = '') {
 			if($label != false) $this->wrapper_start($label, $required);
+			$value = $this->format_input_decimal($value);
 		?>
 			<input autocomplete="off"  data-a-sign=" " data-a-dec="," data-a-sep="."  <?php if($required) echo 'required'; ?> class="autonumeric form-control <?php echo($class); ?>" type="text" id="<?php echo $name; ?>" <?php echo($custom); ?> name="<?php echo $name; ?>" value="<?php echo $value; ?>" placeholder="<?php echo $placeholder; ?>" />
 		<?php
 			if($label != false) $this->wrapper_end();
+		}
+
+		public function format_input_decimal($value)
+		{
+			if($value == '') return '';
+			if($value == null) return '';
+			
+			$value = strval($value);
+			$value = str_replace(".", ",", $value);
+			return $value;
 		}
 		
 		public function input_password($label = false, $name, $value, $placeholder = '', $required = false) {
