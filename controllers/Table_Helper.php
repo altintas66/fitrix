@@ -305,7 +305,7 @@ class Table_Helper {
                     ?>
                 </td>
                 <td>
-                    <?php echo $this->html->waehrung((intval($position['artikel_menge']) * floatval($position['artikel_preis']))); ?>
+                    <?php echo $this->html->waehrung($position['gesamt_preis']); ?>
                 </td>
                 <?php if($optionen == true) $this->get_rechnung_table_position_bearbeiten_td($position); ?>
             </tr>
@@ -345,7 +345,7 @@ class Table_Helper {
                     <?php echo $this->html->waehrung($position['artikel_preis']); ?>
                 </td>
                 <td>
-                    <?php echo $this->html->waehrung((intval($position['artikel_menge']) * floatval($position['artikel_preis']))); ?>
+                    <?php echo $this->html->waehrung($position['gesamt_preis']); ?>
                 </td>
                 <?php if($optionen == true) $this->get_rechnung_table_position_bearbeiten_td($position); ?>
             </tr>
@@ -381,7 +381,7 @@ class Table_Helper {
                     <?php echo $this->html->waehrung($position['artikel_preis']); ?>
                 </td>
                 <td>
-                    <?php echo $this->html->waehrung((intval($position['artikel_menge']) * floatval($position['artikel_preis']))); ?>
+                    <?php echo $this->html->waehrung($position['gesamt_preis']); ?>
                 </td>
                 <?php if($optionen == true) $this->get_rechnung_table_position_bearbeiten_td($position); ?>
             </tr>
@@ -512,7 +512,7 @@ class Table_Helper {
                     <?php echo $this->html->waehrung($position['netto_preis']); ?>
                 </td>
                 <td>
-                    <?php echo $this->html->waehrung((intval($position['menge']) * floatval($position['netto_preis']))); ?>
+                    <?php echo $this->html->waehrung($position['gesamt_netto']); ?>
                 </td>
                 <?php if($optionen == true) $this->get_angebot_table_position_bearbeiten_td($position); ?>
             </tr>
@@ -549,7 +549,7 @@ class Table_Helper {
                     <?php echo $this->html->waehrung($position['netto_preis']); ?>
                 </td>
                 <td>
-                    <?php echo $this->html->waehrung((intval($position['menge']) * floatval($position['netto_preis']))); ?>
+                    <?php echo $this->html->waehrung($position['gesamt_netto']); ?>
                 </td>
                 <?php if($optionen == true) $this->get_angebot_table_position_bearbeiten_td($position); ?>
             </tr>

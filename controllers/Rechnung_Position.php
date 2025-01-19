@@ -457,19 +457,6 @@ class Rechnung_Position {
 	}
 
 
-
-	public function update_fahrzeugdaten($post, $id)
-	{
-		$sql = "UPDATE ".$this->get_tablename()." SET 
-			fahrzeug_marke        = '".$post['fahrzeug_marke']."',
-			fahrzeug_modell       = '".$post['fahrzeug_modell']."',
-			fahrzeug_kennzeichen  = '".$post['fahrzeug_kennzeichen']."',
-			fahrzeug_fin          = '".$post['fahrzeug_fin']."'
-		WHERE ".$this->get_tablename().".id = ".intval($id);
-
-		return $this->db->update($sql);
-	}
-
 	public function add_multi_fields($rows)
 	{
 		if($rows == null) return null;
