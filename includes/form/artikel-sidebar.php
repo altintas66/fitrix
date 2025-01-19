@@ -50,17 +50,19 @@
                             ); 
                         ?>
                     </div>
-                    <div class="col-md-12">
-                        <?php 
-                            $c_form->input_text(
-                                'Quality Hosting Product ID', 
-                                'quality_hosting_product_id', 
-                                isset($buff['quality_hosting_product_id']) ? $buff['quality_hosting_product_id'] : '',
-                                '', 
-                                false
-                            ); 
-                        ?>
-                    </div>
+                    <?php if($einstellungen['quality_hosting_rechnungen_ausblenden'] == '0') { ?>
+                        <div class="col-md-12">
+                            <?php 
+                                $c_form->input_text(
+                                    'Quality Hosting Product ID', 
+                                    'quality_hosting_product_id', 
+                                    isset($buff['quality_hosting_product_id']) ? $buff['quality_hosting_product_id'] : '',
+                                    '', 
+                                    false
+                                ); 
+                            ?>
+                        </div>
+                    <?php } ?>
 
                     
                 </div>

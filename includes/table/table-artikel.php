@@ -9,7 +9,7 @@
                     array('title' => 'Foto'),
 					array('title' => 'Artikelname'),
 					array('title' => 'Beschreibung'),
-					array('title' => 'Preis'),
+					array('title' => 'Preis', 'class' => 'th_preis'),
 					array('title' => 'Einrichtungs-<br>gebühr', 'ausblenden' => $einr_geb_ausb),
 					array('title' => 'Status'),
 					array('title' => 'Optionen', 'class' => 'text-right')
