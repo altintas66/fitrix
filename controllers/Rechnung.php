@@ -559,7 +559,11 @@ class Rechnung {
 		$positionen = $this->rechnung_position->get_all($id);
 
 		foreach($positionen AS $position) {
-			$gesamt_netto += floatval(floatval($position['artikel_preis']) * intval($position['artikel_menge']));
+			$gesamt_netto += $this->rechnung_position->get_gesamt_preis(
+				$position['preis'],
+				$position['menge'],
+				$position
+			);
 		}
 
 		$gesamt_mwst   = $this->helper->get_mwst($gesamt_netto, $rechnung['mwst_satz']);
