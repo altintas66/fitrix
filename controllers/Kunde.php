@@ -65,7 +65,8 @@ class Kunde {
 			ort.ortsname                                                 AS 'ort',
 			user.id                                                      AS 'user_id',
 			user.username                                                AS 'user_username',
-			mwst.steuersatz                                              AS 'mwst_satz'
+			mwst.steuersatz                                              AS 'mwst_satz',
+			mwst.bezeichnung                                             AS 'mwst_bezeichnung'
 
 		";
 	}

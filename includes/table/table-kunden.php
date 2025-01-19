@@ -36,7 +36,7 @@
                             <?php echo $buff['ort']; ?>
                         </td>
 						<td>
-                            <?php echo $buff['mwst_satz']; ?>
+                            <?php echo $buff['mwst_bezeichnung']; ?>
                         </td>
 						<td>
 							<?php $c_form->status_edit($buff['status'], $buff['kunde_id'], $c_kunde->get_tablename()); ?>
