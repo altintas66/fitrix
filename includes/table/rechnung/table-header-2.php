@@ -8,6 +8,10 @@
                         $kunde['firmen_name']
                     );
                     echo $c_table_helper->get_table_tr_th_td(
+                        'Mwst Satz', 
+                        $kunde['mwst_bezeichnung']
+                    );
+                    echo $c_table_helper->get_table_tr_th_td(
                         'Erstellt von', 
                         $erstellt_von
                     );

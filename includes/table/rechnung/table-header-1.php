@@ -12,6 +12,10 @@
                         $c_helper->german_date_no_time($buff['rechnungsdatum'])
                     );
                     echo $c_table_helper->get_table_tr_th_td(
+                        'Zuletzt bearbeitet', 
+                        $c_helper->german_date_no_time($buff['bearbeitet_am'])
+                    );
+                    echo $c_table_helper->get_table_tr_th_td(
                         'Fällig am', 
                         $c_helper->german_date_no_time($buff['faellig_am'])
                     );
