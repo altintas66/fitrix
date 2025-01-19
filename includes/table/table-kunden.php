@@ -7,6 +7,7 @@
 					array('title' => 'Firmenname'),
                     array('title' => 'Kontakt<br>Daten'),
                     array('title' => 'Anschrift'),
+					array('title' => 'Mwst Satz'),
 					array('title' => 'Status'),
 					array('title' => 'Optionen', 'class' => 'text-right')
                 ));
@@ -33,6 +34,9 @@
                             <?php echo $buff['strasse']; ?><br>
                             <?php echo $buff['plz']; ?>
                             <?php echo $buff['ort']; ?>
+                        </td>
+						<td>
+                            <?php echo $buff['mwst_satz']; ?>
                         </td>
 						<td>
 							<?php $c_form->status_edit($buff['status'], $buff['kunde_id'], $c_kunde->get_tablename()); ?>
