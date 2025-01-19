@@ -2416,9 +2416,11 @@
 								</div>
 							</div>
 							
-							<?php $this->modal_rechnung_zeitraum($praefix); ?>
-							<?php if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix); ?>
-
+							<?php 
+								$this->modal_rechnung_zeitraum($praefix); 
+								if(isset($this->aktive_module['lackierer_kfz'])) $this->get_rechnung_angebot_position_fahrzeugdaten($praefix);
+								if(isset($this->aktive_module['teppichreinigung'])) $this->get_rechnung_angebot_position_teppichreinigung($praefix);
+							?>
 							
 							<div class="row">
 								<div class="col-md-12">
