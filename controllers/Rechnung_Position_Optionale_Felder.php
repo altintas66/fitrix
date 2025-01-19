@@ -126,7 +126,7 @@ class Rechnung_Position_Optionale_Felder {
 		@var: post array
 	**/
 	
-	public function update($post) 
+	public function update($post, $rechnung_position_id) 
 	{
 
 		$values = $this->helper->escape_values($post, $rechnung_position_id);
