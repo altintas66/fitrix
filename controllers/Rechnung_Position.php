@@ -353,23 +353,25 @@ class Rechnung_Position {
 		
 		$result = $this->insert(
 			array(
-				'rechnung_id'             => $post['rechnung_id'],
-				'artikel_id'              => $artikel_id,
-				'artikel_nummer'          => $artikel_nummer,
-				'artikel_name'            => $post['artikel_name'],
-				'artikel_beschreibung'    => $post['artikel_beschreibung'],
-				'artikel_preis'           => $this->helper->format_waehrung_for_db($post['artikel_preis']),
-				'artikel_menge'           => $post['artikel_menge'],
-				'artikel_einheit'         => $artikel_einheit,
-				'artikel_artikel_typ'     => $artikel_artikel_typ,
-				'artikel_zyklus'          => $artikel_zyklus,
-				'abrechnungszeitraum_von' => $abrechnungszeitraum_von,
-				'abrechnungszeitraum_bis' => $abrechnungszeitraum_bis,
-				'leistungsdatum'          => $leistungsdatum,
-				'fahrzeug_marke'          => $post['fahrzeug_marke'],
-				'fahrzeug_modell'         => $post['fahrzeug_modell'],
-				'fahrzeug_kennzeichen'    => $post['fahrzeug_kennzeichen'],
-				'fahrzeug_fin'            => $post['fahrzeug_fin']
+				'rechnung_id'              => $post['rechnung_id'],
+				'artikel_id'               => $artikel_id,
+				'artikel_nummer'           => $artikel_nummer,
+				'artikel_name'             => $post['artikel_name'],
+				'artikel_beschreibung'     => $post['artikel_beschreibung'],
+				'artikel_preis'            => $this->helper->format_waehrung_for_db($post['artikel_preis']),
+				'artikel_menge'            => $post['artikel_menge'],
+				'artikel_einheit'          => $artikel_einheit,
+				'artikel_artikel_typ'      => $artikel_artikel_typ,
+				'artikel_zyklus'           => $artikel_zyklus,
+				'abrechnungszeitraum_von'  => $abrechnungszeitraum_von,
+				'abrechnungszeitraum_bis'  => $abrechnungszeitraum_bis,
+				'leistungsdatum'           => $leistungsdatum,
+				'fahrzeug_marke'           => $post['fahrzeug_marke'],
+				'fahrzeug_modell'          => $post['fahrzeug_modell'],
+				'fahrzeug_kennzeichen'     => $post['fahrzeug_kennzeichen'],
+				'fahrzeug_fin'             => $post['fahrzeug_fin'],
+				'teppichreinigung_laenge'  => $post['teppichreinigung_laenge'],
+				'teppichreinigung_breite'  => $post['teppichreinigung_breite']
 			)
 		);
 

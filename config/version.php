@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.7';
+    $version['nummer'] = '2.8';
  
     $versionen = array(
+        '2.8' => array(
+            'Teppichreinigung Bug Anpassung individuelle Position Rechnung anlegen'
+        ),
         '2.7' => array(
             'Mwst Satz Anpassungen'
         ),
