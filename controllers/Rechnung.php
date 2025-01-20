@@ -559,11 +559,7 @@ class Rechnung {
 		$positionen = $this->rechnung_position->get_all($id);
 
 		foreach($positionen AS $position) {
-			$gesamt_netto += $this->rechnung_position->get_gesamt_preis(
-				$position['artikel_preis'],
-				$position['artikel_menge'],
-				$position
-			);
+			$gesamt_netto += floatval($position['gesamt_preis']);
 		}
 
 
