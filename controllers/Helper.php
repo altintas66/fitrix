@@ -578,4 +578,15 @@ class Helper {
 		return $value;
 	}
 
+	public function get_qm($value)
+	{
+		if($value == '') return '';
+		if($value == null) return '';
+
+		$value = strval($value);
+		$value = str_replace(".", ",", $value);
+
+		return $value." m²";
+	}
+
 }

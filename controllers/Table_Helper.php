@@ -371,8 +371,14 @@ class Table_Helper {
                     <?php echo $position['artikel_einheit']; ?>
                 </td>
                 <td>
-                    Länge: <?php echo $position['teppichreinigung_laenge']; ?><br>
-                    Breite: <?php echo $position['teppichreinigung_breite']; ?>
+                    <span class="table-data-small">
+                        (
+                            Länge: <?php echo $this->helper->get_qm($position['teppichreinigung_laenge']); ?> /
+                            Breite: <?php echo $this->helper->get_qm($position['teppichreinigung_breite']); ?> 
+                        )
+                    </span>
+                    <br>
+                    <?php echo $this->helper->get_qm($position['teppichreinigung_laenge'] * $position['teppichreinigung_breite']); ?>
                 </td>
                 <td>
                     <?php echo $c_rechnung_position->get_abrechnungszeitraum_beschreibung($position); ?>
