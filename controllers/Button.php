@@ -343,7 +343,7 @@ class Button {
         $this->form->button_link(
             '#rechnung-bearbeiten',
             '<i class="fa fa-edit"></i> Rechnung bearbeiten', 
-            'btn btn-success btn-sm btn-icon'
+            'btn btn-warning btn-sm btn-icon'
         ); 
     }
 
@@ -352,7 +352,7 @@ class Button {
         $this->form->button(
             'btn_rechnung_position_hinzufuegen', 
             '<i class="fa fa-plus"></i> Position hinzufügen', 
-            'btn btn-green btn-sm btn-icon js_rechnung_position_hinzufuegen'
+            'btn btn-secondary btn-sm btn-icon js_rechnung_position_hinzufuegen'
         ); 
     }
 

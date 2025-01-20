@@ -1705,22 +1705,27 @@
 		
 
 							<div class="row">
-								<div class="col-md-12">
-									<div class="button-row">
+								<div class="col-md-6">
+									<?php 
+										$this->button(
+											'js_modal_rechnung_position_anlegen_submit', 
+											'Position hinzufügen', 
+											'btn btn-success', 
+											false
+										);
+									
+
+									?>
+								</div>
+								<div class="col-md-6">
+									<div class="text-right">
 										<?php 
-											$this->button(
-												'js_modal_rechnung_position_anlegen_submit', 
-												'Position hinzufügen', 
-												'btn btn-success', 
-												false
-											);
 											$this->button(
 												'js_modal_rechnung_position_individuelle_position', 
 												'Individuelle Position hinzufügen', 
 												'btn btn-blue', 
 												false
 											);
-
 										?>
 									</div>
 								</div>
