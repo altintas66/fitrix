@@ -560,11 +560,12 @@ class Rechnung {
 
 		foreach($positionen AS $position) {
 			$gesamt_netto += $this->rechnung_position->get_gesamt_preis(
-				$position['preis'],
-				$position['menge'],
+				$position['artikel_preis'],
+				$position['artikel_menge'],
 				$position
 			);
 		}
+
 
 		$gesamt_mwst   = $this->helper->get_mwst($gesamt_netto, $rechnung['mwst_satz']);
 		$gesamt_brutto = $this->helper->get_brutto($gesamt_netto, $rechnung['mwst_satz']);
