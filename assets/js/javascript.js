@@ -1069,6 +1069,7 @@ $(document).ready(function() {
 				var obj = jQuery.parseJSON(success);
 				if(obj.result != false) {
 					$('.js_table_kunden tbody').html(obj.html);
+					$('.js_anzahl_kunde_tabelle').html(obj.result.length);
 				}
 
 				Locker_Top.lock(false);
