@@ -606,7 +606,7 @@ class Table_Helper {
         ob_start();
         foreach($kunden AS $buff) { 
     ?>
-        <tr data-status="<?php echo $buff['status']; ?>">
+        <tr data-id="<?php echo $buff['kunde_id']; ?>" data-status="<?php echo $buff['status']; ?>">
             <td>
                 <?php echo $this->get_kunde_logo($buff); ?>
             </td>

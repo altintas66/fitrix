@@ -24,6 +24,7 @@
 	17. Backup erstellen
 	18. Backup löschen
 	19. Kunden laden
+	20. Kunde suchen
 
 
 
@@ -1089,5 +1090,29 @@ $(document).ready(function() {
 
 	});
 	
+
+/*-----------------
+	20. Kunde suchen
+-----------------------*/
+
+	$(document).ready(function() { 
+		
+		if($('.js_kunde_uebersicht_wrapper').length == 0) return;
+
+		$('#kunde_id').change(function() { 
+			var val = $(this).val();
+
+			Locker_Top.lock(true);
+			$('.js_table_kunden tbody tr').hide();
+
+			$('.js_table_kunden tbody tr').each(function() { 
+				if($(this).attr('data-id') == val) $(this).show();
+			});
+			Locker_Top.lock(false);
+
+		});
+
+
+	});
 
 	
