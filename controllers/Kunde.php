@@ -250,6 +250,7 @@ class Kunde {
 		$id = $this->db->get_last_inserted_id();
 
 		if($files['logo'] != '') $this->update_logo($values, $files);
+		$this->update_cache();
 
 		return array(
 			'id'     => $id,
@@ -300,6 +301,8 @@ class Kunde {
 
 		$result = $this->db->update($sql);
 		if($files['logo'] != '') $this->update_logo($values, $files);
+		$this->update_cache();
+
 		return $result;
 	}
 
@@ -319,6 +322,12 @@ class Kunde {
 		
 		if($kunde['logo'] == '') return $this->einstellungen['kunde_logo'];
 		else return $this->helper->get_upload_path($kunde['logo']);
+	}
+
+	public function update_cache()
+	{
+		global $c_cache;
+		$c_cache->set_kunden();
 	}
 	
 

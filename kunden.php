@@ -34,7 +34,16 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<?php $c_form->freitext_suche_filter('search-input-kunde', $c_kunde->get_status()); ?>
+				<?php 
+					$c_form->kunde(
+						$wrapper = true, 
+						$value = '', 
+						$field_name = 'kunde_id', 
+						$label = 'Kunde', 
+						$required = true, 
+						$alle_kunden = true
+					);
+				?>
 			</div>
 		</div>
 		
