@@ -160,6 +160,16 @@ class Kunde {
 		return $this->add_multi_fields($rows);
 	}
 
+	public function get_anzahl_kunden() 
+	{
+		$sql = "SELECT 
+				COUNT(id) AS 'anzahl'
+			FROM ".$this->get_tablename();
+		
+		$row = $this->db->get($sql);
+		return $row['anzahl'];
+	}
+
 	/**
 		Get all
 		@return: MYSQL_ASSOC | NULL

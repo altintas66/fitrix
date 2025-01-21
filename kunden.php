@@ -12,6 +12,8 @@
 		1000
 	);
 
+	$anzahl_kunden = $c_kunde->get_anzahl_kunden();
+
 	$filter_arten= array(
 		'Aktive Kunden anzeigen'       => 'aktiv',
 		'Deaktive Kunden anzeigen'	   => 'deaktiv',
@@ -20,38 +22,42 @@
 
 ?>
 	
-	<div class="row mb-4"> 
-		<div class="col-md-12">
-            <?php 
-				$c_button->button_kunde_anlegen();
-			?>
-		</div>
-	</div>
+	<div class="js_kunde_uebersicht_wrapper" data-anzahl-kunden="<?php echo $anzahl_kunden; ?>">
 
-	<div class="row">
-		<div class="col-md-12">
-			<?php $c_form->freitext_suche_filter('search-input-kunde', $c_kunde->get_status()); ?>
+		<div class="row mb-4"> 
+			<div class="col-md-12">
+				<?php 
+					$c_button->button_kunde_anlegen();
+				?>
+			</div>
 		</div>
-	</div>
-	
-	<?php if($kunden != NULL) { ?>
+
 		<div class="row">
 			<div class="col-md-12">
-				<div class="card card-table">
-					<?php
-						$c_html->card_header(
-							$c_table_helper->get_card_title_mit_verfuegbarkeit(
-								'Kunden',
-								'kunde'
-							)  
-						);?> 
-					<div class="card-body">
-						<?php include 'includes/table/table-kunden.php'; ?>
+				<?php $c_form->freitext_suche_filter('search-input-kunde', $c_kunde->get_status()); ?>
+			</div>
+		</div>
+		
+		<?php if($kunden != NULL) { ?>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card card-table">
+						<?php
+							$c_html->card_header(
+								$c_table_helper->get_card_title_mit_verfuegbarkeit(
+									'Kunden',
+									'kunde'
+								)  
+							);?> 
+						<div class="card-body">
+							<?php include 'includes/table/table-kunden.php'; ?>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	<?php } ?>
+		<?php } ?>
+
+	</div>
 
    
 <?php $c_html->get_footer(); ?>
