@@ -124,18 +124,24 @@
 		if ($('.js_status_change').length == 0) return;
 
 		$(".js_status_change").change(function () {
-			var id = $(this).attr('data-id');
-			var table = $(this).attr('data-table');
-
-			if ($(this).prop("checked") == true) {
-				update_status(id, table, 'aktiv');
-			} else {
-				update_status(id, table, 'deaktiv');
-			}
+			init_js_status_change();
 		});
 
-
 	});
+
+	function init_js_status_change() {
+
+		var id = $(this).attr('data-id');
+		var table = $(this).attr('data-table');
+
+		if ($(this).prop("checked") == true) {
+			update_status(id, table, 'aktiv');
+		} else {
+			update_status(id, table, 'deaktiv');
+		}
+	}
+
+
 
 	function update_status(id, table, status, reload = false) {
 
@@ -1070,6 +1076,7 @@ $(document).ready(function() {
 				if(obj.result != false) {
 					$('.js_table_kunden tbody').html(obj.html);
 					$('.js_anzahl_kunde_tabelle').html(obj.result.length);
+					init_js_status_change();
 				}
 
 				Locker_Top.lock(false);
