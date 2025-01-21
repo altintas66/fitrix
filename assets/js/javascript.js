@@ -1102,6 +1102,11 @@ $(document).ready(function() {
 		$('#kunde_id').change(function() { 
 			var val = $(this).val();
 
+			if(val == '') {
+				$('.js_table_kunden tbody tr').show();
+				return;
+			}
+
 			Locker_Top.lock(true);
 			$('.js_table_kunden tbody tr').hide();
 
