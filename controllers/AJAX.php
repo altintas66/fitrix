@@ -167,6 +167,8 @@ class AJAX
 		else if($this->action == 'delete_backup')   			                     $this->delete_backup();
 		else if($this->action == 'angebot_update')   			                     $this->angebot_update();
 		else if($this->action == 'rechnung_update')   			                     $this->rechnung_update();
+		else if($this->action == 'get_kunden')   			                         $this->get_kunden();
+		
 
 		
 		
@@ -1406,6 +1408,19 @@ class AJAX
 		echo json_encode(array(
 			'result' => $result
 		));
+
+	}
+
+	public function get_kunden()
+	{
+		$kunden = $this->kunde->get_all();
+		$html = $this->table_helper->get_table_kunden($kunden);
+
+		echo json_encode(array(
+			'result' => $kunden,
+			'html'   => $html
+		));
+
 
 	}
 

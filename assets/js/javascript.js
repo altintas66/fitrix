@@ -23,6 +23,7 @@
 	16. Quality Hosting Rechnung anlegen
 	17. Backup erstellen
 	18. Backup löschen
+	19. Kunden laden
 
 
 
@@ -1041,3 +1042,45 @@ $(document).ready(function() {
 			}
 		});
 	}
+
+/*-----------------
+    19. Kunden laden
+-----------------------*/
+
+	$(document).ready(function() { 
+		
+		if($('.js_kunde_uebersicht_wrapper').length == 0) return;
+
+		var anzahl_kunden = parseInt($('.js_kunde_uebersicht_wrapper').attr('data-anzahl-kunden'));
+
+		if(anzahl_kunden <= 1000) return;
+
+		Locker_Top.lock(true);
+
+		var data = {
+			action      : "get_kunden"
+		};
+
+		$.ajax({
+			url: siteurl + "controllers/AJAX.php",
+			type: "POST",
+			data: data,
+			success: function (success) {
+				var obj = jQuery.parseJSON(success);
+				if(obj.result != false) {
+					$('.js_table_kunden tbody').html(obj.html);
+				}
+
+				Locker_Top.lock(false);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				fehlermeldung();
+				Locker.lock(false);
+			}
+		});
+
+
+	});
+	
+
+	
