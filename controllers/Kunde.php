@@ -141,7 +141,7 @@ class Kunde {
 		@return: MYSQL_ASSOC | NULL
 	**/
 	
-	public function get_all($status = '', $join_rechnung = false) 
+	public function get_all($status = '', $join_rechnung = false, $limit = null) 
 	{
 		$sql = "SELECT 
 				".$this->get_fields()."
@@ -153,6 +153,8 @@ class Kunde {
 		$sql .= " WHERE ".$this->get_tablename().".id > 0";
 			
 		if($status != '') $sql .= " AND ".$this->get_tablename().".status = '".$status."'";
+
+		if($limit != null) $sql .= " LIMIT ".intval($limit);
 		
 		$rows = $this->db->get_all($sql);
 		return $this->add_multi_fields($rows);

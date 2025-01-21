@@ -2,9 +2,12 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.8';
+    $version['nummer'] = '2.9';
  
     $versionen = array(
+        '2.9' => array(
+            'Kunden Seite Ladezeiten verbessern'
+        ),
         '2.8' => array(
             'Teppichreinigung Bug Anpassung individuelle Position Rechnung anlegen'
         ),

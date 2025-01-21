@@ -6,7 +6,11 @@
 	$c_html->get_breadcrumbs(array(array('Alle Kunden', '#'))); 
 	
 
-	$kunden = $c_kunde->get_all();
+	$kunden = $c_kunde->get_all(
+		$status = '', 
+		$join_rechnung = false, 
+		1000
+	);
 
 	$filter_arten= array(
 		'Aktive Kunden anzeigen'       => 'aktiv',
