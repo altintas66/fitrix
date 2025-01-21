@@ -123,22 +123,21 @@
 	$(document).ready(function () {
 		if ($('.js_status_change').length == 0) return;
 
-		$(".js_status_change").change(function () {
-			init_js_status_change();
-		});
+		init_js_status_change();
 
 	});
 
 	function init_js_status_change() {
+		$(".js_status_change").change(function () {
+			var id = $(this).attr('data-id');
+			var table = $(this).attr('data-table');
 
-		var id = $(this).attr('data-id');
-		var table = $(this).attr('data-table');
-
-		if ($(this).prop("checked") == true) {
-			update_status(id, table, 'aktiv');
-		} else {
-			update_status(id, table, 'deaktiv');
-		}
+			if ($(this).prop("checked") == true) {
+				update_status(id, table, 'aktiv');
+			} else {
+				update_status(id, table, 'deaktiv');
+			}
+		});
 	}
 
 
