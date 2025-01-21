@@ -2,10 +2,10 @@
  
     global $version, $versionen;
  
-    $version['nummer'] = '2.9';
+    $version['nummer'] = '3.0';
  
     $versionen = array(
-        '2.9' => array(
+        '3.0' => array(
             'Kunden Seite Ladezeiten verbessern'
         ),
         '2.8' => array(
