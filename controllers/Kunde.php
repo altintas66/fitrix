@@ -141,7 +141,7 @@ class Kunde {
 		@return: MYSQL_ASSOC | NULL
 	**/
 	
-	public function get_all($status = '', $join_rechnung = false) 
+	public function get_all($status = '', $join_rechnung = false, $limit = null) 
 	{
 		$sql = "SELECT 
 				".$this->get_fields()."
@@ -153,9 +153,21 @@ class Kunde {
 		$sql .= " WHERE ".$this->get_tablename().".id > 0";
 			
 		if($status != '') $sql .= " AND ".$this->get_tablename().".status = '".$status."'";
+
+		if($limit != null) $sql .= " LIMIT ".intval($limit);
 		
 		$rows = $this->db->get_all($sql);
 		return $this->add_multi_fields($rows);
+	}
+
+	public function get_anzahl_kunden() 
+	{
+		$sql = "SELECT 
+				COUNT(id) AS 'anzahl'
+			FROM ".$this->get_tablename();
+		
+		$row = $this->db->get($sql);
+		return $row['anzahl'];
 	}
 
 	/**
@@ -238,6 +250,7 @@ class Kunde {
 		$id = $this->db->get_last_inserted_id();
 
 		if($files['logo'] != '') $this->update_logo($values, $files);
+		$this->update_cache();
 
 		return array(
 			'id'     => $id,
@@ -288,6 +301,8 @@ class Kunde {
 
 		$result = $this->db->update($sql);
 		if($files['logo'] != '') $this->update_logo($values, $files);
+		$this->update_cache();
+
 		return $result;
 	}
 
@@ -307,6 +322,12 @@ class Kunde {
 		
 		if($kunde['logo'] == '') return $this->einstellungen['kunde_logo'];
 		else return $this->helper->get_upload_path($kunde['logo']);
+	}
+
+	public function update_cache()
+	{
+		global $c_cache;
+		$c_cache->set_kunden();
 	}
 	
 

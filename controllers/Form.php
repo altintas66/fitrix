@@ -617,10 +617,12 @@
 			);
 		}
 
-		public function kunde($wrapper = true, $value = '', $field_name = 'kunde_id', $label = 'Kunde', $required = true) {
-			global $c_kunde;
-			$kunden = $c_kunde->get_all('aktiv');
+		public function kunde($wrapper = true, $value = '', $field_name = 'kunde_id', $label = 'Kunde', $required = true, $alle_kunden = false) {
 			
+			global $c_cache;
+			
+			if($alle_kunden == false) $kunden = $c_cache->get_kunden();
+			else $kunden = $c_cache->get_alle_kunden();
 
 			if($wrapper != true) $label = $wrapper;
  

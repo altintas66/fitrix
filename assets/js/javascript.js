@@ -23,6 +23,8 @@
 	16. Quality Hosting Rechnung anlegen
 	17. Backup erstellen
 	18. Backup löschen
+	19. Kunden laden
+	20. Kunde suchen
 
 
 
@@ -122,6 +124,11 @@
 	$(document).ready(function () {
 		if ($('.js_status_change').length == 0) return;
 
+		init_js_status_change();
+
+	});
+
+	function init_js_status_change() {
 		$(".js_status_change").change(function () {
 			var id = $(this).attr('data-id');
 			var table = $(this).attr('data-table');
@@ -132,9 +139,9 @@
 				update_status(id, table, 'deaktiv');
 			}
 		});
+	}
 
 
-	});
 
 	function update_status(id, table, status, reload = false) {
 
@@ -1041,3 +1048,76 @@ $(document).ready(function() {
 			}
 		});
 	}
+
+/*-----------------
+    19. Kunden laden
+-----------------------*/
+
+	$(document).ready(function() { 
+		
+		if($('.js_kunde_uebersicht_wrapper').length == 0) return;
+
+		var anzahl_kunden = parseInt($('.js_kunde_uebersicht_wrapper').attr('data-anzahl-kunden'));
+
+		if(anzahl_kunden <= 1000) return;
+
+		Locker_Top.lock(true);
+
+		var data = {
+			action      : "get_kunden"
+		};
+
+		$.ajax({
+			url: siteurl + "controllers/AJAX.php",
+			type: "POST",
+			data: data,
+			success: function (success) {
+				var obj = jQuery.parseJSON(success);
+				if(obj.result != false) {
+					$('.js_table_kunden tbody').html(obj.html);
+					$('.js_anzahl_kunde_tabelle').html(obj.result.length);
+					init_js_status_change();
+				}
+
+				Locker_Top.lock(false);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				fehlermeldung();
+				Locker.lock(false);
+			}
+		});
+
+
+	});
+	
+
+/*-----------------
+	20. Kunde suchen
+-----------------------*/
+
+	$(document).ready(function() { 
+		
+		if($('.js_kunde_uebersicht_wrapper').length == 0) return;
+
+		$('#kunde_id').change(function() { 
+			var val = $(this).val();
+
+			if(val == '') {
+				$('.js_table_kunden tbody tr').show();
+				return;
+			}
+
+			Locker_Top.lock(true);
+			$('.js_table_kunden tbody tr').hide();
+
+			$('.js_table_kunden tbody tr').each(function() { 
+				if($(this).attr('data-id') == val) $(this).show();
+			});
+			Locker_Top.lock(false);
+
+		});
+
+
+	});
+
+	

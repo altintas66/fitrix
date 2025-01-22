@@ -1,12 +1,19 @@
 <?php
  
     global $version, $versionen;
+
  
-    $version['nummer'] = '2.8';
+    $version['nummer'] = '3.1';
  
     $versionen = array(
-        '2.8' => array(
+        '3.1' => array(
             'PLZ Ort API'
+        ),
+        '3.0' => array(
+            'Kunden Seite Ladezeiten verbessern'
+        ),
+        '2.8' => array(
+            'Teppichreinigung Bug Anpassung individuelle Position Rechnung anlegen'
         ),
         '2.7' => array(
             'Mwst Satz Anpassungen'

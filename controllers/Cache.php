@@ -7,6 +7,7 @@ class Cache {
 	private $filedir_zammad_kunden;
 	private $filedir_zammad_benutzer;
 	private $filedir_abonnement_daten;
+	private $filedir_kunden;
 
 	CONST ROLLE_ID_KUNDE = 3;
 	CONST ROLLE_ID_BENUTZER = 2;
@@ -20,6 +21,8 @@ class Cache {
 		$this->filedir_zammad_kunden           = $dir.'zammad_kunden.json';
 		$this->filedir_zammad_benutzer         = $dir.'zammad_benutzer.json';
 		$this->filedir_abonnement_daten        = $dir.'abonnement_daten.json';
+		$this->filedir_kunden                  = $dir.'kunden.json';
+		$this->filedir_alle_kunden             = $dir.'alle_kunden.json';
 		
 	}
 
@@ -29,7 +32,8 @@ class Cache {
 			'Zammad_Organisationen'   => $this->filedir_zammad_organisationen,
 			'Zammad_Kunden'           => $this->filedir_zammad_kunden,
 			'Zammad_Benutzer'         => $this->filedir_zammad_benutzer,
-			'Abonnement_Daten'        => $this->filedir_abonnement_daten
+			'Abonnement_Daten'        => $this->filedir_abonnement_daten,
+			'Kunden'                  => $this->filedir_kunden
 		);
 	}
 
@@ -40,6 +44,7 @@ class Cache {
 		$this->set_zammad_kunden();
 		$this->set_zammad_benutzer();
 		$this->set_abonnement_daten();
+		$this->set_kunden();
 	}
 
 
@@ -49,7 +54,7 @@ class Cache {
 		$result = $c_einstellungen->get_all();		
 		
 		$fp = fopen($this->filedir_einstellungen, 'w');
-		fwrite(fopen($this->filedir_einstellungen, 'w'), json_encode($result));
+		fwrite($fp, json_encode($result));
 		
 		fclose($fp);
 	}	
@@ -72,7 +77,7 @@ class Cache {
 		}
 		
 		$fp = fopen($this->filedir_zammad_organisationen, 'w');
-		fwrite(fopen($this->filedir_zammad_organisationen, 'w'), json_encode($result));
+		fwrite($fp, json_encode($result));
 		
 		fclose($fp);
 	}	
@@ -98,7 +103,7 @@ class Cache {
 		}
 		
 		$fp = fopen($this->filedir_zammad_kunden, 'w');
-		fwrite(fopen($this->filedir_zammad_kunden, 'w'), json_encode($result));
+		fwrite($fp, json_encode($result));
 		
 		fclose($fp);
 	}	
@@ -123,7 +128,7 @@ class Cache {
 		}
 		
 		$fp = fopen($this->filedir_zammad_benutzer, 'w');
-		fwrite(fopen($this->filedir_zammad_benutzer , 'w'), json_encode($result));
+		fwrite($fp, json_encode($result));
 		
 		fclose($fp);
 	}	
@@ -151,12 +156,34 @@ class Cache {
 		}
 
 		$fp = fopen($this->filedir_abonnement_daten, 'w');
-		fwrite(fopen($this->filedir_abonnement_daten , 'w'), json_encode($result));
+		fwrite($fp, json_encode($result));
 		
 		fclose($fp);
 
 	}
 
+	public function set_kunden() 
+	{
+		global $c_kunde;
+		$result = $c_kunde->get_all('aktiv');		
+		
+		$fp = fopen($this->filedir_kunden, 'w');
+		fwrite($fp, json_encode($result));
+		
+		fclose($fp);
+		$this->set_alle_kunden();
+	}	
+	
+	public function set_alle_kunden() 
+	{
+		global $c_kunde;
+		$result = $c_kunde->get_all();		
+		
+		$fp = fopen($this->filedir_alle_kunden, 'w');
+		fwrite($fp, json_encode($result));
+		
+		fclose($fp);
+	}
 
 	public function get_einstellungen() 
 	{
@@ -181,6 +208,16 @@ class Cache {
 	public function get_abonnement_daten() 
 	{
 		return json_decode(file_get_contents($this->filedir_abonnement_daten), true);
+	}
+
+	public function get_kunden() 
+	{
+		return json_decode(file_get_contents($this->filedir_kunden), true);
+	}
+
+	public function get_alle_kunden() 
+	{
+		return json_decode(file_get_contents($this->filedir_alle_kunden), true);
 	}
 
 

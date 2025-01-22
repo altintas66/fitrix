@@ -166,7 +166,7 @@
     $c_html                                  = new HTML($c_helper, $c_url);
     $c_form                                  = new Form($c_helper, $c_html, $einstellungen, $aktive_module);
     $c_button                                = new Button($c_url, $c_form);
-    $c_table_helper                          = new Table_Helper($c_helper, $c_button, $c_html, $c_form, $aktive_module, $einstellungen);
+    $c_table_helper                          = new Table_Helper($c_helper, $c_button, $c_html, $c_form, $c_url, $aktive_module, $einstellungen);
     $c_json_helper                           = new JSON_Helper();
     $c_email_log                             = new Email_Log($c_db, $c_helper);
     $c_email                                 = new Email($c_helper, $c_email_log);

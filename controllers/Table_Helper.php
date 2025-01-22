@@ -6,15 +6,17 @@ class Table_Helper {
     private $button;
     private $html;
     private $form;
+    private $url;
     private $aktive_module;
     private $einstellungen;
 
-    public function __construct($helper, $button, $html, $form, $aktive_module, $einstellungen) 
+    public function __construct($helper, $button, $html, $form, $url, $aktive_module, $einstellungen) 
     {
         $this->helper         = $helper;
         $this->button         = $button;
         $this->html           = $html;
         $this->form           = $form;
+        $this->url            = $url;
         $this->aktive_module  = $aktive_module;
         $this->einstellungen  = $einstellungen;
     }
@@ -371,8 +373,14 @@ class Table_Helper {
                     <?php echo $position['artikel_einheit']; ?>
                 </td>
                 <td>
-                    Länge: <?php echo $position['teppichreinigung_laenge']; ?><br>
-                    Breite: <?php echo $position['teppichreinigung_breite']; ?>
+                    <span class="table-data-small">
+                        (
+                            Länge: <?php echo $this->helper->get_qm($position['teppichreinigung_laenge']); ?> /
+                            Breite: <?php echo $this->helper->get_qm($position['teppichreinigung_breite']); ?> 
+                        )
+                    </span>
+                    <br>
+                    <?php echo $this->helper->get_qm($position['teppichreinigung_laenge'] * $position['teppichreinigung_breite']); ?>
                 </td>
                 <td>
                     <?php echo $c_rechnung_position->get_abrechnungszeitraum_beschreibung($position); ?>
@@ -590,6 +598,56 @@ class Table_Helper {
             </tr>
         <?php 
         }
+    }
+
+    public function get_table_kunden($kunden)
+    {
+        global $c_kunde;
+        ob_start();
+        foreach($kunden AS $buff) { 
+    ?>
+        <tr data-id="<?php echo $buff['kunde_id']; ?>" data-status="<?php echo $buff['status']; ?>">
+            <td>
+                <?php echo $this->get_kunde_logo($buff); ?>
+            </td>
+            <td>
+                <?php echo $this->helper->string_neue_zeilen($buff['firmen_name'], 30); ?><br>
+                <span class="table-data-small">Suchname: <?php echo $buff['suchname']; ?></span>
+            </td>
+            <td>
+                <?php echo $buff['telefon']; ?><br>
+                <?php echo $buff['email']; ?><br> 
+                <?php if($buff['webseite'] != '') { ?> 
+                    <a href="<?php echo $buff['webseite']; ?>" class="a_link" target="_blank">Webseite</a>	
+                <?php } ?>
+            </td>
+            <td>
+                <?php echo $buff['strasse']; ?><br>
+                <?php echo $buff['plz']; ?>
+                <?php echo $buff['ort']; ?>
+            </td>
+            <td>
+                <?php echo $buff['mwst_bezeichnung']; ?>
+            </td>
+            <td>
+                <?php $this->form->status_edit($buff['status'], $buff['kunde_id'], $c_kunde->get_tablename()); ?>
+            </td>
+            <td class="text-right"> 
+                <div class="actions">
+                    <?php 
+                        echo $this->form->edit(
+                            $buff['kunde_id'], 
+                            'edit_kunde', 
+                            $this->url->get_kunde_bearbeiten($buff['kunde_id'])
+                        ); 
+                    ?>
+                </div>
+            </td>
+        </tr>
+    <?php 
+        }
+        $html = ob_get_clean();
+        return $html;
     }
 
 }

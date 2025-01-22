@@ -172,11 +172,7 @@ class AJAX
 		else if($this->action == 'rechnung_update')   			                     $this->rechnung_update();
 		else if($this->action == 'plz_anlegen')   			                         $this->plz_anlegen();
 		else if($this->action == 'get_ort_by_plz')   			                     $this->get_ort_by_plz();
-
-		
-		
-
-		
+		else if($this->action == 'get_kunden')   			                         $this->get_kunden();
 		
 		
 		exit();
@@ -1417,6 +1413,7 @@ class AJAX
 
 	}
 
+
 	public function plz_anlegen() 
 	{
 
@@ -1453,6 +1450,19 @@ class AJAX
 			'ort_hinzugefuegt'  => $response['ort_hinzugefuegt'],
 			'plz'               => $_POST['plz']
 		));
+	}
+
+	public function get_kunden()
+	{
+		$kunden = $this->kunde->get_all();
+		$html = $this->table_helper->get_table_kunden($kunden);
+
+		echo json_encode(array(
+			'result' => $kunden,
+			'html'   => $html
+		));
+
+
 	}
 
 
