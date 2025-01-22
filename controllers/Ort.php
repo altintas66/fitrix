@@ -106,12 +106,12 @@ class Ort {
 	
 	public function insert($post) 
 	{
-		$entry = $this->get_by_ortsname($values["ortsname"]);
-		if($entry != null) return false;
 		
 		$values   = $this->helper->escape_values($post);
 		$date     = $this->helper->get_english_datetime_now();
 
+		$entry = $this->get_by_ortsname($values["ortsname"]);
+		if($entry != null) return false;
 	
 		$sql = "INSERT INTO ".$this->get_tablename()." VALUES(
 			NULL, 
@@ -149,6 +149,21 @@ class Ort {
 		return $result;
 	}
 
+		/**
+		Get by name
+		@var: int id
+		@return: MYSQL_ASSOC | NULL
+	**/
+
+	public function get_by_name($name) 
+	{
+		$sql = "SELECT 
+				".$this->get_fields()."
+			FROM ".$this->get_tablename()."
+			WHERE ".$this->get_tablename().".ortsname = '".$name."'";
+		
+		return $this->db->get($sql);
+	}
 	
 
 

@@ -37,6 +37,7 @@ class AJAX
 	private $rechnung_qualityhosting;
 	private $backup;
 	private $plz_ort_suche;
+	private $ort;
 	
 
 	public function __construct() 
@@ -68,7 +69,8 @@ class AJAX
 			$c_kunde,
 			$c_rechnung_qualityhosting,
 			$c_backup,
-			$c_plz_ort_suche;
+			$c_plz_ort_suche,
+			$c_ort;
 			
 		$this->helper                           = $c_helper;
 		$this->einstellungen                    = $c_einstellungen;
@@ -97,6 +99,7 @@ class AJAX
 		$this->rechnung_qualityhosting          = $c_rechnung_qualityhosting;
 		$this->backup			   		        = $c_backup;
 		$this->plz_ort_suche                    = $c_plz_ort_suche;
+		$this->ort                              = $c_ort;
 
 		$this->action = '';
 		if(isset($_POST['action'])) $this->action = $_POST['action'];

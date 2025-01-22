@@ -153,7 +153,7 @@ class PLZ_Ort_Suche {
 
             if($ort_obj == NULL) {
                 $ort_insert = $this->ort->insert(array(
-                    'name' => $api_ort_name
+                    'ortsname' => $api_ort_name
                 ));
                 $ort_id = $ort_insert['id'];
             } else {
@@ -177,7 +177,7 @@ class PLZ_Ort_Suche {
             $ort_obj = $this->ort->get($ort_id);  
             
             return array(
-                'ort_name'          => $ort_obj['name'],
+                'ort_name'          => $ort_obj['ortsname'],
                 'ort_hinzugefuegt'  => false
             );
         }
