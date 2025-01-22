@@ -7,7 +7,7 @@
  
     $versionen = array(
         '3.1' => array(
-            'PLZ Ort API'
+            'PLZ Ort API (Mit Zwischenspeicher)'
         ),
         '3.0' => array(
             'Kunden Seite Ladezeiten verbessern'
