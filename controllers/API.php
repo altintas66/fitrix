@@ -5,6 +5,7 @@
 		private $helper;
 		private $email;
 
+		CONST APIURL_PLZ = 'https://openplzapi.org/de/Localities';
 
 		public function __construct($helper, $email)
 		{
@@ -18,7 +19,9 @@
 			return $url;
 		}
 
-		
+		public function get_api_url_plz() {
+            return self::APIURL_PLZ;
+        }
 		
 		
 		public function get_parkwin_buchungen($kunde) 
@@ -45,9 +48,28 @@
 				$this->email->administrator_email('Fehler. Parkwin API nicht erreichbar! '.$api_url);
 				return null;
 			}
+		}
 
+        public function get_response($url, $type = 'GET', $data = array()) 
+        { 
+		
+          
+            $curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_URL             => $url,
+				CURLOPT_RETURNTRANSFER  => true,
+				CURLOPT_CUSTOMREQUEST   => $type,
+                CURLOPT_POSTFIELDS      => json_encode($data),
+				CURLOPT_HTTPHEADER      => array(
+					'cache-control: no-cache',
+                    'content-type: application/json'
+				),
+			));
+            
+			$response = json_decode(curl_exec($curl), true);
+			curl_close($curl);
 
-
+			return $response;
 		}
 
     }

@@ -31,6 +31,8 @@
 12. Vertical Tabs
 13. Löschen von Einträgen
 14. PDF drucken
+15. Orte-PLZ anlegen
+16. Automatische Ortssuche
 
 
 
@@ -862,3 +864,104 @@ function printPDF() {
 		alert('Das PDF konnte nicht gedruckt werden!');
 	}
 }
+
+
+/*-----------------
+    15. Orte-PLZ anlegen
+-----------------------*/
+
+
+
+$('.js_btn_plz_anlegen').click(function () {
+	
+
+	var ort_id = $(this).attr('data-id');
+	var plz = $(this).parent().find('input').val();
+
+
+	Locker.lock(true);
+	var data = {
+		action           : 'plz_anlegen',
+		fk_ort_id        : ort_id,
+		suchbegriff_plz  : plz
+	};
+
+	$.ajax({
+		url: siteurl + "controllers/AJAX.php",
+		type: "POST",
+		data: data,
+		success: function (success) {
+			var obj = jQuery.parseJSON(success);
+			if (obj.result == true) {
+				erfolgsmeldung('PLZ wurde erfolgreich angelegt');
+				
+				location.reload();
+			}
+			else if (obj.result == 'vorhanden') {
+				fehlermeldung('PLZ bereits vorhanden');
+			} else {
+				fehlermeldung();
+			}
+
+			Locker.lock(false);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			Locker.lock(false);
+			fehlermeldung();
+		}
+	});
+
+
+});
+
+
+
+/*-----------------
+	16. Automatische Ortssuche
+-----------------------*/
+
+$(document).ready(function () {
+	if (
+		($('#plz').length == 0) &&
+		($('#ort_id').length == 0)
+	) {
+		return;
+	}
+
+	$('#plz').change(function () {
+		plz_changed($(this).val());
+	});
+
+	function plz_changed(value) {
+
+		if ((value.length < 4) || (value.length > 5)) {
+			fehlermeldung('PLZ muss mindestens 4 und max 5 Zeichen lang sein');
+			return;
+		}
+
+		var data = {
+			action : 'get_ort_by_plz',
+			plz    : value
+		};
+
+		$.ajax({
+			url: siteurl + "controllers/AJAX.php",
+			type: "POST",
+			data: data,
+			success: function (success) {
+				var obj = jQuery.parseJSON(success);
+				if (obj.ort_id != null) {
+					if (obj.ort_hinzugefuegt == true) add_select2_value('#ort_id', obj.ort_id, obj.ort);
+					else set_select2_value('#ort_id', obj.ort_id);
+
+				} else {
+					fehlermeldung();
+				}
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				fehlermeldung();
+			}
+		});
+	}
+
+});

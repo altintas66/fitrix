@@ -36,6 +36,7 @@ class AJAX
 	private $kunde;
 	private $rechnung_qualityhosting;
 	private $backup;
+	private $plz_ort_suche;
 	
 
 	public function __construct() 
@@ -66,7 +67,8 @@ class AJAX
 			$c_mahnung,
 			$c_kunde,
 			$c_rechnung_qualityhosting,
-			$c_backup;
+			$c_backup,
+			$c_plz_ort_suche;
 			
 		$this->helper                           = $c_helper;
 		$this->einstellungen                    = $c_einstellungen;
@@ -94,6 +96,7 @@ class AJAX
 		$this->kunde                            = $c_kunde;
 		$this->rechnung_qualityhosting          = $c_rechnung_qualityhosting;
 		$this->backup			   		        = $c_backup;
+		$this->plz_ort_suche                    = $c_plz_ort_suche;
 
 		$this->action = '';
 		if(isset($_POST['action'])) $this->action = $_POST['action'];
@@ -167,6 +170,11 @@ class AJAX
 		else if($this->action == 'delete_backup')   			                     $this->delete_backup();
 		else if($this->action == 'angebot_update')   			                     $this->angebot_update();
 		else if($this->action == 'rechnung_update')   			                     $this->rechnung_update();
+		else if($this->action == 'plz_anlegen')   			                         $this->plz_anlegen();
+		else if($this->action == 'get_ort_by_plz')   			                     $this->get_ort_by_plz();
+
+		
+		
 
 		
 		
@@ -1408,6 +1416,45 @@ class AJAX
 		));
 
 	}
+
+	public function plz_anlegen() 
+	{
+
+
+		$plz = $this->plz_ort_suche->get_by_plz($_POST['suchbegriff_plz'],$_POST['fk_ort_id']);
+		if($plz == NULL) {
+			$neue_plz = $this->plz_ort_suche->insert($_POST);
+			$result = true;
+			$plzs = $this->plz_ort_suche->get_by_ort_id($_POST['fk_ort_id']);
+		}
+		else $result = 'vorhanden';
+		
+		echo json_encode(array(
+			'result'       => $result,
+			'plzs'         => $plzs,
+			'ort_id'       => $neuer_ort['id'],
+			'ort_name'     => $_POST['name']
+
+
+		));
+	}
+	
+	public function get_ort_by_plz() 
+	{
+		$response = $this->plz_ort_suche->get_ort_by_api($_POST['plz']);
+		$ortsname = $response['ort_name'];
+
+		$ort_obj = $this->ort->get_by_name($ortsname);
+		$ort_id = $ort_obj['ort_id'];
+
+		echo json_encode(array(
+			'ort'               => $ortsname,
+			'ort_id'            => $ort_id,
+			'ort_hinzugefuegt'  => $response['ort_hinzugefuegt'],
+			'plz'               => $_POST['plz']
+		));
+	}
+
 
 }
   

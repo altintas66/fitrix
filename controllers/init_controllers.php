@@ -49,6 +49,7 @@
         'Permission',
         'Placeholder',
         'Plesk_API',
+        'PLZ_Ort_Suche',
         'Quality_Hosting_CSV_Rechnung',
         'Rechnung_Position_Optionale_Felder',
         'Rechnung',
@@ -142,7 +143,8 @@
         $aktive_module,
         $c_backup,
         $c_rechnung_position_optionale_felder,
-        $c_angebot_position_optionale_felder
+        $c_angebot_position_optionale_felder,
+        $c_plz_ort_suche
     ;
 
 
@@ -195,6 +197,8 @@
     $c_artikel_typ                           = new Artikel_Typ($c_db, $c_helper);
     $c_artikel                               = new Artikel($c_db, $c_helper, $c_artikel_preis, $c_artikel_kategorie, $einstellungen);
     $c_ort                                   = new Ort($c_db, $c_helper);
+    $c_api                                   = new API($c_helper, $c_email);
+    $c_plz_ort_suche                         = new PLZ_Ort_Suche($c_db, $c_helper, $c_api, $c_ort);
     $c_mwst                                  = new Mwst($c_db, $c_helper, $c_artikel);
     $c_kunde                                 = new Kunde($c_db, $c_helper, $c_mwst, $einstellungen);
     $c_ansprechpartner                       = new Ansprechpartner($c_db, $c_helper, $c_kunde);
@@ -207,11 +211,10 @@
     $c_rechnung_zahlungserinnerung           = new Rechnung_Zahlungserinnerung($c_db, $c_helper, $c_email);
     $c_rechnung                              = new Rechnung($c_db, $c_helper, $c_rechnung_position, $c_rechnung_zahlung, $c_kunde, $c_pdf, $c_mwst, $c_mahnung, $c_einstellungen);
     $c_parkwin                               = new Parkwin($c_helper);
-    $c_api                                   = new API($c_helper, $c_email);
+    
     $c_angebot_position_optionale_felder     = new Angebot_Position_Optionale_Felder($c_db, $c_helper, $aktive_module);
     $c_angebot_position                      = new Angebot_Position($c_db, $c_helper, $c_artikel, $c_einheit, $c_artikel_typ, $c_artikel_preis, $c_zyklus, $c_angebot_position_optionale_felder, $aktive_module);
     $c_angebot                               = new Angebot($c_db, $c_helper, $c_kunde, $c_angebot_position, $c_pdf, $c_einstellungen);
-    
     
     $c_statistik                             = new Statistik($c_helper, $c_rechnung, $c_rechnung_zahlung);
     $c_zammad                                = new Zammad($c_helper, $config);
