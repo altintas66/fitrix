@@ -28,20 +28,20 @@
 					$array[] = array('Rechnungen', 'rechnung.png', $c_url->get_rechnung_uebersicht());
 				}
 		
-				if(isset($this->aktive_module['angebot'])) {
+				if(isset($aktive_module['angebot'])) {
 					if($c_permission->check_user_has_permission('ANGEBOTE_VERWALTEN')) {
 						$array[] = array('Angebote', 'angebot.png', $c_url->get_angebot_uebersicht());
 					}
 				}
 
 				
-				if(isset($this->aktive_module['abonnement'])) {
+				if(isset($aktive_module['abonnement'])) {
 					if($c_permission->check_user_has_permission('ABONNEMENT_VERWALTEN')) {
 						$array[] = array('Abonnements', 'abonnement.png', $c_url->get_abonnement_uebersicht());
 					}
 				}
 
-				if(isset($this->aktive_module['zammad'])) {
+				if(isset($aktive_module['zammad'])) {
 					if($einstellungen['zammad_api_tickets'] == '1') {
 						if($c_permission->check_user_has_permission('ZAMMAD_API')) {
 							$zammad = array();
@@ -57,7 +57,7 @@
 
 				$array[] = array('Weiteres', NULL, NULL);
 
-				if(isset($this->aktive_module['mahnung'])) {
+				if(isset($aktive_module['mahnung'])) {
 					if($c_permission->check_user_has_permission('MAHNUNGEN_VERWALTEN')) {
 						$array[] = array('Mahnungen', 'mahnung.png', $c_url->get_mahnung_uebersicht());
 					}
@@ -95,7 +95,7 @@
 					$inhalte[] = array('Artikel Typen', $c_url->get_artikel_typ_uebersicht());
 					$inhalte[] = array('Zahlungsarten', $c_url->get_zahlungsart_uebersicht());
 					
-					if(isset($this->aktive_module['hosting_server'])) {
+					if(isset($aktive_module['hosting_server'])) {
 						if($c_permission->check_user_has_permission('SERVER_VERWALTEN')) {
 							$inhalte[] = array('Hostings', $c_url->get_hosting_uebersicht());
 							$inhalte[] = array('Server', $c_url->get_server_uebersicht());
