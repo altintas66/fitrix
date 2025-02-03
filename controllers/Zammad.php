@@ -133,6 +133,7 @@
         public function get_zeitabrechnung($jahr, $monat, $organization_id = null)
         {
             $response = $this->get_time_accounting($jahr, $monat);
+
             $zeitabrechnung = array();
 
             $zammad_kunden = $this->kunde->get_zammad_kunden();
@@ -166,19 +167,45 @@
                 }
 
                 $zeitabrechnung[$organization_id]['takt'] += $time_unit;
-                $zeitabrechnung[$organization_id]['anzahl_tickets'] += 1;
-                $zeitabrechnung[$organization_id]['tickets'][] = array(
-                    'id'     => $ticket['id'],
-                    'number' => $ticket['number'],
-                    'takt'   => $time_unit
-                );
-             
+
+                if(array_key_exists($ticket['id'], $zeitabrechnung[$organization_id]['tickets']) == true)
+                {
+                    $zeitabrechnung[$organization_id]['tickets'][$ticket['id']]['takt'] += $time_unit;
+                } else {
+                    $zeitabrechnung[$organization_id]['anzahl_tickets'] += 1;
+
+                    $zeitabrechnung[$organization_id]['tickets'][$ticket['id']] = array(
+                    'id'          => $ticket['id'],
+                    'number'      => $ticket['number'],
+                    'takt'        => $time_unit,
+                    'gesamt_takt' => $ticket['time_unit']
+                    );
+                }
+
             }
 
-            
+            foreach ($zeitabrechnung AS $zeitab) {  
+                if (isset($zeitab['tickets']) && is_array($zeitab['tickets'])) {
+                    usort($zeitab['tickets'], function ($a, $b) {
+                        return $b['takt'] <=> $a['takt'];
+                    });
+                }
+            }
+            unset($zeitab);
+   
 
             return $zeitabrechnung;
             
+        }
+
+        public function get_ticket_badge($ticket)
+        {
+            global $c_url;
+            $html = '<a target="_blank" class="badge badge-secondary mr-10 mb-10" href="'.$c_url->get_zammad_ticket_bearbeiten($ticket['id']).'">';
+            $html .= '#'.$ticket['number'].' ('.$ticket['takt'].')';
+            if($ticket['takt'] != $ticket['gesamt_takt']) $html .= ' <span class="bg-warning-light">'.$ticket['gesamt_takt'].'</span>';
+            $html .= '</a>';
+            return $html;
         }
         
 

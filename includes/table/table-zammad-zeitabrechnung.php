@@ -26,7 +26,7 @@
                                 $html = '';
                                 $ticket_counter = 0;
                                 foreach($buff['tickets'] AS $ticket) {
-                                    $html .= '<a target="_blank" class="badge badge-secondary mr-10 mb-10" href="'.$c_url->get_zammad_ticket_bearbeiten($ticket['id']).'">#'.$ticket['number'].' ('.$ticket['takt'].')</a>';
+                                    $html .= $c_zammad->get_ticket_badge($ticket);
                                     $ticket_counter++;
                                     if($ticket_counter == 5) {
                                         $html .= '<br>';
