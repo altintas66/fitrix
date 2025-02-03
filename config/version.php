@@ -3,9 +3,12 @@
     global $version, $versionen;
 
  
-    $version['nummer'] = '3.1';
+    $version['nummer'] = '3.2';
  
     $versionen = array(
+        '3.2' => array(
+            'Zammad Zeitabrechnung'
+        ),
         '3.1' => array(
             'PLZ Ort API (Mit Zwischenspeicher)'
         ),

@@ -49,6 +49,7 @@
 							$zammad[] = array('Organisationen', $c_url->get_zammad_organisation_uebersicht());
 							$zammad[] = array('Kunden', $c_url->get_zammad_kunden_uebersicht());
 							$zammad[] = array('Benutzer', $c_url->get_zammad_benutzer_uebersicht());
+							$zammad[] = array('Zeitabrechnung', $c_url->get_zammad_zeitabrechnung_uebersicht());
 							$array[] = array('Zammad', 'zammad_logo.png', '#', $zammad);
 						}
 					}

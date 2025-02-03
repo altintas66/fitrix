@@ -217,7 +217,7 @@
     $c_angebot                               = new Angebot($c_db, $c_helper, $c_kunde, $c_angebot_position, $c_pdf, $c_einstellungen);
     
     $c_statistik                             = new Statistik($c_helper, $c_rechnung, $c_rechnung_zahlung);
-    $c_zammad                                = new Zammad($c_helper, $config);
+    $c_zammad                                = new Zammad($c_helper, $c_kunde, $config);
     
     $c_abonnement_vertrag_rechnung_position  = new Abonnement_Vertrag_Rechnung_Position($c_db, $c_helper);
     $c_abonnement_vertrag_rechnung           = new Abonnement_Vertrag_Rechnung($c_db, $c_helper, $c_abonnement_vertrag_rechnung_position);

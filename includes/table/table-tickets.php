@@ -3,7 +3,7 @@
 		<table class="table table-striped table-center">
 			<?php 
                 $c_html->table_header(array(
-					array('title' => 'ID'),
+					array('title' => 'Zammad<br>Ticketnr.'),
 					array('title' => 'Titel'),
                     array('title' => 'Besitzer'),
 					array('title' => 'Kunde (Orga)'),
@@ -14,11 +14,16 @@
             ?>
 			<tbody>
 				<?php foreach($tickets AS $ticket_id => $buff) { 
-					$gesamt_takt += floatval($buff['time_unit']);
+					if($buff['time_unit'] == '') continue;
+
+					$time_unit_lm = $tickets_vor_monat['assets']['Ticket'][$ticket_id]['time_unit'];
+					$time_unit = $buff['time_unit'] - $time_unit_lm;
+
+					$gesamt_takt += floatval($time_unit);
                 ?>
 					<tr>
 						<td>
-                            <a target="_blank" class="a_link" href="<?php echo $config['zammad_url']; ?>#ticket/zoom/<?php echo $buff['id']; ?>">
+                            <a target="_blank" class="a_link" href="<?php echo $c_url->get_zammad_ticket_bearbeiten($buff['id']); ?>">
                                 <?php echo $buff['number']; ?>
                             </a>
                         </td>
@@ -27,6 +32,8 @@
 						</td>
 						<td>
 							<?php echo $buff['owner_id']; ?>
+							<br>
+							<?php echo $tickets_vor_monat['assets']['Ticket'][$ticket_id]; ?>
                         </td>
                         <td>
                             <?php echo $buff['customer_id']; ?><br>

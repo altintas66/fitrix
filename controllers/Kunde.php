@@ -135,7 +135,19 @@ class Kunde {
 		$result = $this->db->get($sql);
 		return $result['id'];
 	}
+
+	public function get_zammad_kunden()
+	{
+		$sql = "SELECT 
+				".$this->get_fields()."
+			FROM ".$this->get_tablename()."
+			".$this->get_joins()."
+		WHERE zammad_organization_id != ''";
 	
+		$row = $this->db->get_all($sql);
+		return $this->add_fields($row);
+	}
+
 	/**
 		Get all
 		@return: MYSQL_ASSOC | NULL

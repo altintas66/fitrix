@@ -3,14 +3,16 @@
     class Zammad 
     {
         private $helper;
+        private $kunde;
         private $config;
 
         private $auth_token;
         private $zammad_url;
 
-        public function __construct($helper, $config) 
+        public function __construct($helper, $kunde, $config) 
         {
             $this->helper = $helper;
+            $this->kunde  = $kunde;
             $this->config = $config;
 
             $this->auth_token = $config['zammad_auth_thoken'];
@@ -73,13 +75,10 @@
 
         public function get_time_accounting($jahr, $monat) 
         {
-            
             $url = '/api/v1/time_accounting/log/by_activity/'.$jahr.'/'.$monat;
             $response = $this->get_response($url);
-            return $response;
+            return json_decode($response['response'], true);
         }
-        
-        
 
 
         public function get_zammad_users()
@@ -112,24 +111,6 @@
             return $domain;
         }
 
-        public function get_zeiterfassung($von, $bis, $organization_id) 
-        {
-            $url = '/api/v1/report/1?start='.$von.'&end='.$bis;
-
-            $response = $this->get_response($url);
-
-            return $response;
-        }
-
-        public function get_statistics() 
-        {
-            $url = '/api/v1/tickets/4113724/time_accounting';
-
-            $response = $this->get_response($url);
-
-            return $response;
-        }
-
         public function insert_ticket_eintrag($ticket_id, $betreff, $text) 
         {
             $url = '/api/v1/ticket_articles';
@@ -147,6 +128,57 @@
             var_dump($response);
             return $response;
 
+        }
+
+        public function get_zeitabrechnung($jahr, $monat, $organization_id = null)
+        {
+            $response = $this->get_time_accounting($jahr, $monat);
+            $zeitabrechnung = array();
+
+            $zammad_kunden = $this->kunde->get_zammad_kunden();
+
+            foreach($zammad_kunden AS $zammad_kunde) {
+                if(($zammad_kunde == null) || ($zammad_kunde == '')) continue;
+                if(isset($zammad_kunde['zammad_organization_id'])) {
+                    $zeitabrechnung[$zammad_kunde['zammad_organization_id']] = array(
+                        'kunde_id'       => $zammad_kunde['kunde_id'],
+                        'firmen_name'    => $zammad_kunde['firmen_name'],
+                        'takt'           => 0, 
+                        'anzahl_tickets' => 0,
+                        'tickets'        => array()
+                    );
+                }
+            }
+
+            foreach($response AS $entry) {
+                $time_unit       = floatval($entry['time_unit']);
+                $organization_id = intval($entry['ticket']['organization_id']);
+                $ticket          = $entry['ticket'];
+                
+
+                if(array_key_exists($organization_id, $zeitabrechnung) == false) {
+                    $zeitabrechnung[$organization_id] = array(
+                        'firmen_name'     => $entry['organization'],
+                        'takt'            => 0, 
+                        'anzahl_tickets'  => 0,
+                        'tickets'        => array()
+                    );   
+                }
+
+                $zeitabrechnung[$organization_id]['takt'] += $time_unit;
+                $zeitabrechnung[$organization_id]['anzahl_tickets'] += 1;
+                $zeitabrechnung[$organization_id]['tickets'][] = array(
+                    'id'     => $ticket['id'],
+                    'number' => $ticket['number'],
+                    'takt'   => $time_unit
+                );
+             
+            }
+
+            
+
+            return $zeitabrechnung;
+            
         }
         
 

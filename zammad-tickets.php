@@ -18,6 +18,19 @@
     $result = $c_zammad->get_tickets($jahr, $monat, $organisation);
     $response = json_decode($result['response'], true);
 
+    $date     = new DateTime('now');
+    $date->modify('-1 month');
+
+    $v_jahr = $date->format('Y');
+    $v_monat = $date->format('m');
+    $result2 = $c_zammad->get_tickets($v_jahr, $v_monat, $organisation);
+    $tickets_vor_monat = json_decode($result2['response'], true);
+
+
+    // echo '<pre>';
+    // print_r($tickets_vor_monat['assets']['Ticket']);
+    // echo '</pre>';
+
     $ticket_nummern = $response['tickets'];
     $tickets = $response['assets']['Ticket'];
     $anzahl_tickets = $response['tickets_count'];

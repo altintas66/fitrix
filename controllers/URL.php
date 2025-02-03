@@ -283,6 +283,14 @@ class URL {
         return $this->get_base_url().'zammad-benutzer.php'; 
     }
 
+    public function get_zammad_zeitabrechnung_uebersicht() {
+        return $this->get_base_url().'zammad-zeitabrechnung.php'; 
+    }
+
+    public function get_zammad_ticket_bearbeiten($id) {
+        return $this->config['zammad_url'].'#ticket/zoom/'.$id;
+    }
+    
     // Cronjob
 
     public function get_cronjob_uebersicht() {
