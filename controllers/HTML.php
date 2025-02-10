@@ -188,7 +188,7 @@
 
 		public function get_beitraege($beitraege, $disabled = false) {
 			if($beitraege == NULL) return '';
-			global $c_helper, $c_url;
+			global $c_helper, $c_url, $c_user, $c_table_helper;
 
 			$html = '';
 			foreach($beitraege AS $beitrag) {
@@ -223,6 +223,10 @@
 								$html .= '<div class="col-md-8">';
 									$html .= 'Erstellt am: '.$c_helper->german_date($beitrag['erstellt_am']);
 									if($beitrag['bearbeitet_am'] != NULL) $html .= ' / Bearbeitet am: '.$c_helper->german_date($beitrag['bearbeitet_am']);
+									if($beitrag['beitrag_user_markierung_user_id'] != null) {
+										$markierter_user = $c_user->get($beitrag['beitrag_user_markierung_user_id']);
+										$html .= '<br><span class="bg-warning-light">Markierung: '.$c_table_helper->get_td_user_markierung($markierter_user).'</span>';
+									}
 								$html .= '</div>';
 								$html .= '<div class="col-md-4 text-right table-data-small">';
 									$html .= '<a target="_blank" class="link" href="'.$c_url->get_user_bearbeiten($beitrag['user_id']).'">';	
@@ -462,6 +466,48 @@
 
 			return $html;
 
+		}
+
+		public function get_notifications($notifications)
+		{
+			global $c_benachrichtigung, $c_url;
+			$anzahl_notifications = $this->helper->get_size_of_array($notifications);
+		?>
+			<li class="nav-item dropdown noti-dropdown">
+				<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+					<i class="fe fe-bell"></i> 
+					<span class="badge badge-pill js_notifications_anzahl">
+						<?php echo $anzahl_notifications; ?>
+					</span>
+				</a>
+				<div class="dropdown-menu notifications">
+					
+					<div class="noti-content">
+						<ul class="notification-list">
+							<?php foreach($notifications AS $n) { ?>
+								<li class="notification-message">
+									<div class="media">
+										<div class="media-body">
+											<p clapss="noti-details">
+												<p class="noti-title">
+													<span class= "ampel-notification"></span>
+													<?php echo $n['typ']; ?>
+												</p>
+												<p class="noti-text"><?php echo $n['text']; ?></p>
+											</p>
+											<p class="noti-time"><span class="notification-time"><?php echo $this->helper->german_date($n['datum']); ?></span></p>
+										</div>
+									</div>
+								</li>
+							<?php } ?>
+						</ul>
+					</div>
+					<div class="topnav-dropdown-footer">
+						<a href="<?php echo $c_url->get_notification_uebersicht(); ?>">Zeige alle</a>
+					</div>
+				</div>
+			</li>
+		<?php 
 		}
 		
 

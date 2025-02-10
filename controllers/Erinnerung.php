@@ -26,11 +26,9 @@ class Erinnerung {
 		$this->fields = "
 			".$tablename.".id                          AS 'erinnerung_id', 
 			".$tablename.".fk_user_id                  AS 'fk_user_id', 
-            ".$tablename.".fk_eintrag_id               AS 'fk_eintrag_id', 
+            ".$tablename.".datum                       AS 'datum', 
 			".$tablename.".erstellt_am                 AS 'erstellt_am', 
-			".$tablename.".typ                         AS 'typ',
-			".$tablename.".text                        AS 'text', 
-			".$tablename.".ignorieren_bis              AS 'ignorieren_bis'
+			".$tablename.".text                        AS 'text'
 		";
 	}
 	
@@ -66,24 +64,6 @@ class Erinnerung {
 		return $row;
 	}
 
-	/**
-		Get by id
-		@var: int id
-		@return: MYSQL_ASSOC | NULL
-	**/
-
-	public function get_by_eintrag($eintrag_id, $typ) 
-	{
-		$sql = "SELECT 
-				".$this->get_fields()."
-			FROM ".$this->get_tablename()."
-			WHERE ".$this->get_tablename().".fk_eintrag_id = ".intval($eintrag_id)."
-			AND typ = '".$typ."'";
-
-		$row = $this->db->get($sql);
-
-		return $row;
-	}
 
 	/**
 		Get by Eintrag ID
@@ -115,22 +95,21 @@ class Erinnerung {
 	
 	public function insert($post) 
 	{
-        $date = $this->helper->get_english_datetime_now();
+        $heute  = $this->helper->get_english_datetime_now();
 		$values = $this->helper->escape_values($post);
+		$datum  = $this->helper->english_date_no_time($values['datum']);
 		
 		$sql = "INSERT INTO ".$this->get_tablename()." VALUES(
 			NULL, 
 			NULL,
-            ".intval($values["eintrag_id"]).",
-			'".$date."',
-			'".$values["typ"]."',
-			'".$values["text"]."',
-           NULL
+			'".$datum."',
+			'".$heute."',
+			'".$values["text"]."'
 		)";
 
 		$result = $this->db->insert($sql);	
 		$id = $this->db->get_last_inserted_id();
-		if(isset($post['user_id'])) $this->update_user_id($id, $post['user_id']);
+		if(isset($post['fk_user_id'])) $this->update_user_id($id, $post['fk_user_id']);
 
 		return array(
 			'id'     => $id,
@@ -149,5 +128,12 @@ class Erinnerung {
 		if($typ == 'angebot') return '<a class="a_link" href="'.$this->url->get_angebot_bearbeiten($id).'">Angebot</a>';
 	}
 
+	public function delete($id)
+    {
+        $sql = "DELETE FROM ".$this->get_tablename()." WHERE id = ".intval($id);
+        $result = $this->db->delete($sql);
+
+        return $result;
+	}
 		
 }

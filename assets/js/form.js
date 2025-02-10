@@ -378,8 +378,9 @@ function wordwrap(str, cut, width, brk) {
 -----------------------*/
 
 function get_typ() {
-	if ($('#kunde_id').length > 0) return [$('#kunde_id').val(), 'kunde'];
-	else if ($('#angebot_id').length > 0) return [$('#angebot_id').val(), 'angebot'];
+	if ($('#angebot_id').length > 0) return [$('#angebot_id').val(), 'angebot'];
+	else if ($('#rechnung_id').length > 0) return [$('#rechnung_id').val(), 'rechnung'];
+	else if ($('#kunde_id').length > 0) return [$('#kunde_id').val(), 'kunde'];
 	else if ($('#abonnement_id').length > 0) return [$('#abonnement_id').val(), 'abonnement'];
 	else if ($('#artikel_id').length > 0) return [$('#artikel_id').val(), 'artikel'];
 	else if ($('#mahnung_id').length > 0) return [$('#mahnung_id').val(), 'mahnung'];
@@ -478,10 +479,10 @@ function beitraege_laden() {
 	var typ_obj = get_typ();
 
 	var data = {
-		action: 'get_beitrage',
-		typ_id: typ_obj[0],
-		typ: typ_obj[1],
-		disabled: $('.js_beitraege_list').attr('data-disabled')
+		action   : 'get_beitrage',
+		typ_id   : typ_obj[0],
+		typ      : typ_obj[1],
+		disabled : $('.js_beitraege_list').attr('data-disabled')
 	};
 
 	$.ajax({
@@ -509,11 +510,14 @@ $('#js_btn_beitrag_submit').click(function (e) {
 	var valid = validate_wyiswyg(val);
 	if (valid == false) return;
 
+	var tagged_user = get_select2_value('#markiere_user_id');
+
 	var data = {
 		action : 'insert_beitrag',
 		typ_id : $(this).attr('data-id'),
 		typ    : $(this).attr('data-typ'),
-		text   : val
+		text   : val,
+		user   : tagged_user
 	};
 
 	$.ajax({
@@ -523,9 +527,10 @@ $('#js_btn_beitrag_submit').click(function (e) {
 		success: function (success) {
 			var obj = jQuery.parseJSON(success);
 			update_beitraege_html(obj.beitraege_html);
-			ausgabemeldung('Beitrag wurde erfolgreich gespeichert');
+			erfolgsmeldung('Beitrag wurde erfolgreich gespeichert');
 			var typ_obj = get_typ();
-			set_wysiwyg_value('#' + typ_obj[0], '');
+			set_wysiwyg_value($('textarea[name="js_beitrag_posten"]'), '');
+			reset_select2('#markiere_user_id');
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			fehlermeldung();

@@ -42,7 +42,8 @@ class Beitrag {
 			".$user_table.".vorname                     AS 'user_vorname', 
 			".$user_table.".nachname                    AS 'user_nachname', 
 			".$user_table.".email                       AS 'user_email', 
-			".$user_table.".mobil                        AS 'user_mobil'
+			".$user_table.".mobil                       AS 'user_mobil',
+			beitrag_user_markierung.fk_user_id          AS 'beitrag_user_markierung_user_id'
 
 		";
 	}
@@ -57,7 +58,9 @@ class Beitrag {
 		global $c_user;
 		$user_table = $c_user->get_tablename();
 		$this->joins = "
-		LEFT JOIN ".$c_user->get_tablename()." ON fk_".$c_user->get_tablename()."_id = ".$c_user->get_tablename().".id";
+		LEFT JOIN ".$c_user->get_tablename()." ON fk_".$c_user->get_tablename()."_id = ".$c_user->get_tablename().".id
+		LEFT JOIN beitrag_user_markierung ON beitrag.id = beitrag_user_markierung.fk_beitrag_id
+		";
 	}
 	
 	public function get_fields()

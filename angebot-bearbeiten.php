@@ -153,7 +153,12 @@
         
     </div>
 
-    <?php $c_form->beitraege($angebot_id, $c_angebot->get_tablename()); ?>
+    <div class="row">
+		<div class="col-md-12">
+			<?php $c_form->beitraege($angebot_id, $c_angebot->get_tablename()); ?>
+		</div>
+	</div>
+
     
    
 <?php 

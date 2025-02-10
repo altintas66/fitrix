@@ -16,6 +16,7 @@
         'Artikel_Typ',
         'Backup',
         'Beitrag',
+        'Beitrag_User_Markierung',
         'Button',
         'Cache',
         'Cronjob',
@@ -42,6 +43,8 @@
         'Mahnung',
         'Modul',
         'Mwst',
+        'Notification',
+        'Notification_User',
         'Ort',
         'Parkwin',
         'PDF',
@@ -103,7 +106,9 @@
         $c_pdf,
         $c_parkwin,
         $c_datei_zuweisung,
-        $c_datei
+        $c_datei,
+        $c_notification,
+        $c_notification_user
     ;
 
     global 
@@ -144,7 +149,8 @@
         $c_backup,
         $c_rechnung_position_optionale_felder,
         $c_angebot_position_optionale_felder,
-        $c_plz_ort_suche
+        $c_plz_ort_suche,
+        $c_beitrag_user_markierung
     ;
 
 
@@ -160,6 +166,8 @@
     $einstellungen                           = $c_einstellungen->get_all();
     $c_cronjob                               = new Cronjob($c_db, $c_helper);
     $c_placeholder                           = new Placeholder($c_db, $c_helper, $einstellungen);
+    $c_notification                          = new Notification($c_db, $c_helper, $c_url);
+    $c_notification_user                     = new Notification_User($c_db, $c_helper);
     $c_erinnerung                            = new Erinnerung($c_db, $c_helper, $c_url);
     $c_inhalt                                = new Inhalt($c_db, $c_helper);
     $c_inhalt_placeholder                    = new Inhalt_Placeholder($c_db, $c_helper);
@@ -179,6 +187,7 @@
     $c_permission                            = new Permission($c_db, $c_helper);
     $c_kommentar                             = new Kommentar($c_db, $c_helper, $c_user);
     $c_beitrag                               = new Beitrag($c_db, $c_helper);
+    $c_beitrag_user_markierung               = new Beitrag_User_Markierung($c_db, $c_helper);
     $c_datei_zuweisung                       = new Datei_Zuweisung($c_db, $c_helper);
     $c_datei                                 = new Datei($c_db, $c_helper, $c_datei_zuweisung);
     $c_xml                                   = new XML($c_helper);

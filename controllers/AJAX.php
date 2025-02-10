@@ -38,6 +38,10 @@ class AJAX
 	private $backup;
 	private $plz_ort_suche;
 	private $ort;
+	private $notification;
+	private $notification_user;
+	private $beitrag_user_markierung;
+	private $erinnerung;
 	
 
 	public function __construct() 
@@ -70,7 +74,11 @@ class AJAX
 			$c_rechnung_qualityhosting,
 			$c_backup,
 			$c_plz_ort_suche,
-			$c_ort;
+			$c_ort,
+			$c_notification,
+			$c_notification_user,
+			$c_beitrag_user_markierung,
+			$c_erinnerung;
 			
 		$this->helper                           = $c_helper;
 		$this->einstellungen                    = $c_einstellungen;
@@ -100,6 +108,10 @@ class AJAX
 		$this->backup			   		        = $c_backup;
 		$this->plz_ort_suche                    = $c_plz_ort_suche;
 		$this->ort                              = $c_ort;
+		$this->notification                     = $c_notification;
+		$this->notification_user                = $c_notification_user;
+		$this->beitrag_user_markierung          = $c_beitrag_user_markierung;
+		$this->erinnerung                       = $c_erinnerung;
 
 		$this->action = '';
 		if(isset($_POST['action'])) $this->action = $_POST['action'];
@@ -176,6 +188,7 @@ class AJAX
 		else if($this->action == 'plz_anlegen')   			                         $this->plz_anlegen();
 		else if($this->action == 'get_ort_by_plz')   			                     $this->get_ort_by_plz();
 		else if($this->action == 'get_kunden')   			                         $this->get_kunden();
+		else if($this->action == 'insert_erinnerung')   			                 $this->insert_erinnerung();
 		
 		
 		exit();
@@ -257,11 +270,30 @@ class AJAX
 			'text'               => $_POST['text']
 		));
 
+		if($_POST['user'] != '---'){
+			$user = $this->user->get_by_username($_POST['user']);
+
+			$notification = $this->notification->insert(array(
+				'eintrag_id'             => $_POST['typ_id'],
+				'typ'                    => $_POST['typ'],
+				'text'                   => $_POST['text']
+			));
+
+			$this->notification_user->insert(array(
+				'fk_user_id'            => $user['user_id'],
+				'fk_notification_id'    => $notification['id']
+			));
+
+			$this->beitrag_user_markierung->insert($user['user_id'], $result['id']);
+
+		}
+
 		$beitraege = $this->beitrag->get_by_eintrag_id($_POST['typ_id'], $_POST['typ']);
 		$beitraege_html = $this->html->get_beitraege($beitraege);
 
 		echo json_encode(array(
 			'result'          => $result,
+			'beitrage'          => $beitrage,
 			'beitraege_html'  => $beitraege_html
 		));
 
@@ -359,6 +391,8 @@ class AJAX
 			));
 			return;
 		}
+
+		$this->beitrag_user_markierung->delete($_POST['beitrag_id']);
 		
 
 		$result = $this->beitrag->delete(array(
@@ -1464,10 +1498,26 @@ class AJAX
 			'result' => $kunden,
 			'html'   => $html
 		));
-
-
 	}
 
+	public function insert_erinnerung()
+	{
+		$this->validate_required_field(
+			array('username', 'datum', 'text')
+		);
+
+		$user = $this->user->get_by_username($_POST['username']);
+
+		$result = $this->erinnerung->insert(array(
+			'fk_user_id'  => $user['user_id'],
+			'datum'       => $_POST['datum'],
+			'text'        => $_POST['text']
+		));
+
+
+		echo json_encode($result);
+		
+	}
 
 }
   

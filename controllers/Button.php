@@ -684,6 +684,16 @@ class Button {
         ); 
     }
 
+    //Erinnerungen
+
+    public function button_erinnerung_anlegen() {
+        $this->form->button(
+            'btn_erinnerung_anlegen', 
+            '<i class="fa fa-plus"></i> Erinnerung anlegen', 
+            'btn btn-success btn-sm btn-icon js_erinnerung_anlegen'
+        ); 
+    }
+
     
 
 }

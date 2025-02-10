@@ -39,6 +39,10 @@ class URL {
         return $this->get_base_url().'error.php';
     }
 
+    public function get_notification_uebersicht() {
+        return $this->get_base_url().'notifications.php';
+    }
+
     
     //User
 

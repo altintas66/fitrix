@@ -1,12 +1,13 @@
 <?php
 
-	global $einstellungen, $c_html, $c_helper, $c_einstellungen, $version, $config, $c_user, $c_url, $c_erinnerung;
+	global $einstellungen, $c_html, $c_helper, $c_einstellungen, $version, $config, $c_user, $c_url, $c_erinnerung, $c_notification_user, $aktive_module;
 	$user         = $c_user->get($_SESSION['id']);
 	$erinnerungen = $c_erinnerung->get_all();
 	
 	$logo       = $config['logo'];
 	$logo_klein = $config['logo_klein'];
 
+	$notifications = $c_notification_user->get_all($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -41,9 +42,11 @@
 				
 				<ul class="nav user-menu">
 				
-					<?php 
-						if($erinnerungen != null) $c_html->get_erinnerungen($erinnerungen);
-					?>
+
+					<?php if(isset($aktive_module['benachrichtigung'])) {
+						if($notifications != null) $c_html->get_notifications($notifications);
+					} ?>
+
 
 					<li class="nav-item dropdown has-arrow">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -58,6 +61,7 @@
 								</div>
 							</div>
 							<a class="dropdown-item" href="profil.php?id=<?php echo $_SESSION['id']; ?>">Profil</a>
+							<a class="dropdown-item" href="erinnerungen.php">Erinnerungen</a>
 							<a class="dropdown-item" href="einstellungen.php">Einstellungen</a>
 							<a class="dropdown-item" href="version.php">Version & Updates</a>
 							<a class="dropdown-item" href="logout.php">Abmelden</a>

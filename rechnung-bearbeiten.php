@@ -190,6 +190,14 @@
     </div>
 
     
+    <div class="row">
+		<div class="col-md-12">
+			<?php $c_form->beitraege($buff['rechnung_id'], $c_rechnung->get_tablename()); ?>
+		</div>
+	</div>
+
+
+    
    
 <?php 
     $c_form->modal_email_logs($buff['rechnung_id'], $c_rechnung->get_tablename());

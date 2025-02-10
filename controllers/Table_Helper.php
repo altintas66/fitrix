@@ -37,6 +37,12 @@ class Table_Helper {
         return '<a class="a_link" href="'.$c_url->get_user_bearbeiten($buff['user_id']).'">'.$buff['user_username'].'</a><br><span class="table-data-small">'.$buff['rolle'].'</span>';
     }
 
+    public function get_td_user_markierung($buff) 
+    {
+        global $c_url;
+        return '<a class="a_link" href="'.$c_url->get_user_bearbeiten($buff['user_id']).'">'.$buff['username'].'</a>';
+    }
+
     public function get_td_kunde($buff) 
     {
         global $c_url;

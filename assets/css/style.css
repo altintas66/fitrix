@@ -1943,6 +1943,11 @@ html.menu-opened body {
 	padding: 10px 15px;
 	border-radius: 2px;
 }
+
+.notifications .notification-message {
+	padding: 20px;
+}
+
 /*-----------------
 	14. Dashboard
 -----------------------*/
@@ -3683,6 +3688,8 @@ a {
 input[type="checkbox"] {
     filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);
 }
+
+
 
 
 /*-----------------

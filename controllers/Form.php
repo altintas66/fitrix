@@ -1029,7 +1029,10 @@
 					<!-- Beiträge wird mit JS nachgeladen -->
 				</ul>
 				<div class="beitrag-form">
-					<?php $this->add_beitrag($id.$typ, $id, $typ); ?>
+					<?php
+						$this->user(true, '', 'markiere_user_id', 'Jemanden markieren', false); 
+						$this->add_beitrag($id.$typ, $id, $typ); 
+					?>
 				</div>
 			</div>
 		<?php
@@ -3342,7 +3345,71 @@
 					</div>
 				</div>
 			<?php	
-			}
+		}
+
+		public function modal_erinnerung_anlegen() {
+		?>
+			<div class="modal fade bd-example-modal-xl" id="modal_erinnerung_anlegen" role="dialog" aria-hidden="true" style="display: none;">
+				<div class="modal-dialog modal-xl" role="document">
+					<div class="modal-content">
+						<?php 
+							$this->html->modal_header(
+								'Erinnerung anlegen'
+							); 
+						?>
+						<div class="modal-body">
+
+							<div class="row">
+								<div class="col-md-6">
+									<?php 
+										$this->user();
+									?>
+								</div>
+								<div class="col-md-6">
+								<?php 
+									$this->input_date(
+										'Datum', 
+										'datum', 
+										'', 
+										'', 
+										$required = true
+									);
+								?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->textarea(
+											'Text', 
+											'text', 
+											'', 
+											true
+										);
+									?>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<?php 
+										$this->button(
+											'js_modal_erinnerung_anlegen_submit', 
+											'Erinnerung anlegen', 
+											'btn btn-success', 
+											false
+										);
+									?>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php	
+		}
 
 
 	} 

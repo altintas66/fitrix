@@ -3,9 +3,12 @@
     global $version, $versionen;
 
  
-    $version['nummer'] = '3.2';
+    $version['nummer'] = '3.3';
  
     $versionen = array(
+        '3.3' => array(
+            'Erinnerungen'
+        ),
         '3.2' => array(
             'Zammad Zeitabrechnung'
         ),
